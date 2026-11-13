@@ -7,6 +7,7 @@ study reads them; a small stdlib-only YAML reader remains as a fallback.
 from __future__ import annotations
 
 import argparse
+import ast
 import csv
 import hashlib
 import html
@@ -179,6 +180,7 @@ def nav(prefix: str, current: str) -> str:
   <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span>Index</span><i aria-hidden="true"></i></button>
   <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
     <a href="{prefix}./#catalog"{' aria-current="page"' if current == 'catalog' else ''}>Catalog <sup>52</sup></a>
+    <a href="{prefix}inventory.html"{' aria-current="page"' if current == 'inventory' else ''}>Inventory</a>
     <a href="{prefix}method.html"{' aria-current="page"' if current == 'method' else ''}>Method & evidence</a>
     <a class="personal-link" href="https://xhyccc.github.io/">Website <span aria-hidden="true">↗</span></a>
     <a class="paper-link" href="{prefix}assets/paper/pohe-position.pdf">Read the paper <span aria-hidden="true">↗</span></a>
@@ -279,6 +281,74 @@ def catalog_row(p: dict) -> str:
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>""".strip()
+
+
+def inventory_entry(p: dict) -> str:
+    source_anchor = next((anchor for anchor in p["anchors"] if anchor.get("kind") == "source"), None)
+    if source_anchor:
+        exemplar = (
+            f'<a class="inventory-source-link" href="{esc(source_anchor["url"])}" target="_blank" rel="noreferrer">'
+            f'{esc(source_anchor["repo_slug"])}<code>{esc(source_anchor["implementation"])}</code></a>'
+        )
+        if source_anchor.get("support_url"):
+            exemplar += (
+                f'<span class="inventory-support">Support: '
+                f'<a href="{esc(source_anchor["support_url"])}" target="_blank" rel="noreferrer">'
+                f'{esc(source_anchor["support"])}</a></span>'
+            )
+    else:
+        exemplar = '<span class="inventory-empty">None. This record is anchored only in its source specification.</span>'
+    aliases = ", ".join(esc(alias) for alias in p["aliases"]) or "None"
+    source = esc(p["source_locator"]) if p["source_locator"] else "See the source record."
+    coordinates = " · ".join(esc(item) for item in p["activities"])
+    return f"""<article class="inventory-entry" id="record-{p['id']}" data-family="{p['family']}">
+  <div class="inventory-entry-head">
+    <span class="inventory-code">{p['id']}</span>
+    <div class="inventory-title"><h3><a href="patterns/{p['id']}/">{esc(p['name'])}</a></h3><p>{esc(p['problem'])}</p></div>
+    <span class="inventory-coords">{esc(p['family_name'])} · {coordinates}</span>
+  </div>
+  <dl class="inventory-fields">
+    <div><dt>Join point</dt><dd><code>{esc(p['join_point'])}</code></dd></div>
+    <div><dt>Source locator</dt><dd>{source}</dd></div>
+    <div class="inventory-wide"><dt>Lexical cue</dt><dd><code class="inventory-regex">{esc(p['retrieval_cue']['regex'])}</code></dd></div>
+    <div><dt>Aliases</dt><dd>{aliases}</dd></div>
+    <div><dt>Canonical exemplar</dt><dd>{exemplar}</dd></div>
+    <div class="inventory-wide"><dt>Negative control</dt><dd>{esc(p['negative_control'])}</dd></div>
+  </dl>
+</article>"""
+
+
+def render_inventory(data: dict) -> str:
+    patterns = data["patterns"]
+    families = []
+    jump = []
+    for key, (label, _summary) in FAMILIES.items():
+        items = [p for p in patterns if p["family"] == key]
+        entries = "".join(inventory_entry(p) for p in items)
+        jump.append(f'<a href="#inventory-{key}"><b>{key}</b><span>{esc(label)}</span><small>{len(items)} records</small></a>')
+        families.append(
+            f'<section class="inventory-family" id="inventory-{key}">'
+            f'<div class="inventory-family-head"><span class="inventory-family-code">{key}</span>'
+            f'<div><h2>{esc(label)}</h2><p>{len(items)} records</p></div></div>{entries}</section>'
+        )
+    body = f"""
+<main id="main-content" class="inventory-page">
+  <header class="method-hero inventory-hero">
+    <span class="section-index">INVENTORY / 52 RECORDS</span>
+    <h1>Every record,<br><em>its source and its cue.</em></h1>
+    <p>The record-by-record companion to the paper's detection and matching method. Each entry gives the source locator, lexical cue, aliases, canonical exemplar, support artifact, and negative control. The complete pointcut, contract, variation, and evidence layers remain on the record page.</p>
+    <div class="method-actions"><a class="button button-primary" href="#inventory">Read the ledger <span aria-hidden="true">↓</span></a><a class="text-link" href="./#catalog">Browse the catalog <span aria-hidden="true">↗</span></a></div>
+    <nav class="inventory-jump" aria-label="Inventory families">{''.join(jump)}</nav>
+  </header>
+  <div class="inventory-ledger" id="inventory">{''.join(families)}</div>
+</main>"""
+    return shell(
+        "Inventory — POHE",
+        "The record-by-record POHE inventory: 52 design patterns with source locators, lexical cues, aliases, canonical exemplars, and negative controls.",
+        body,
+        current="inventory",
+        canonical="inventory.html",
+    )
 
 
 def render_index(patterns: list[dict]) -> str:
@@ -501,7 +571,56 @@ python3 -m http.server 8000</code></pre><p>The generator uses PyYAML with a stdl
     return shell("Method & evidence — POHE", "How the POHE field guide separates proposed specifications, retrieval cues, source exemplars, and review; frozen inputs, hashes, commands, overlays, and limitations.", body, current="method", canonical="method.html")
 
 
-def load_data(study: Path) -> dict:
+def load_aliases(study: Path) -> dict[str, list[str]]:
+    """Read the frozen compound-alias table without executing study code."""
+    source = study / "src/detectors/layered_pattern_matcher.py"
+    if not source.is_file():
+        return {}
+    try:
+        tree = ast.parse(source.read_text(encoding="utf-8"))
+    except SyntaxError:
+        return {}
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and any(
+            isinstance(target, ast.Name) and target.id == "MANUAL_ALIASES"
+            for target in node.targets
+        ):
+            value = ast.literal_eval(node.value)
+            if isinstance(value, dict):
+                return {str(key): [str(alias) for alias in aliases] for key, aliases in value.items()}
+    return {}
+
+
+def latex_to_text(value: str) -> str:
+    value = re.sub(r"\\cite\{[^}]*\}", "", value)
+    value = value.replace("\\allowbreak", "").replace("~", " ")
+    value = value.replace("``", "“").replace("''", "”")
+    value = re.sub(r"\\emph\{([^{}]*)\}", r"\1", value)
+    value = value.replace("\\S", "§").replace("\\&", "&").replace("\\_", "_").replace("\\%", "%")
+    value = re.sub(r"\\[a-zA-Z]+\{([^{}]*)\}", r"\1", value)
+    value = value.replace("{", "").replace("}", "")
+    value = re.sub(r"\s+", " ", value).strip()
+    return re.sub(r"\s+([,.;:])", r"\1", value)
+
+
+def load_source_locators(paper: Path) -> dict[str, str]:
+    """Extract the source locator line from the manuscript's record cards."""
+    cards = paper.parent / "harness-patterns-cards.tex"
+    if not cards.is_file():
+        return {}
+    text = cards.read_text(encoding="utf-8")
+    locators: dict[str, str] = {}
+    for block in re.split(r"(?=\\noindent\\textbf\{[PWCRE]\d\d / A\d\.\})", text):
+        match = re.match(r"\\noindent\\textbf\{([PWCRE]\d\d) / A\d\.\}", block)
+        if not match:
+            continue
+        source = re.search(r"\\textit\{Source:\}\s*(.*?)\\par", block, re.S)
+        if source:
+            locators[match.group(1)] = latex_to_text(source.group(1))
+    return locators
+
+
+def load_data(study: Path, paper: Path) -> dict:
     candidates = list(csv.DictReader((study / "data/manifests/candidates.csv").open(encoding="utf-8", newline="")))
     spec_doc = yaml_load((study / "protocol/harness_pattern_specification.yaml").read_text(encoding="utf-8"))
     diagram_doc = yaml_load((study / "protocol/pattern_diagram_models.yaml").read_text(encoding="utf-8"))
@@ -514,6 +633,8 @@ def load_data(study: Path) -> dict:
     realizations: dict[str, list[dict]] = defaultdict(list)
     for row in csv.DictReader((study / "data/derived/pattern_repo_realizations.csv").open(encoding="utf-8", newline="")):
         realizations[row["candidate_id"]].append(row)
+    aliases = load_aliases(study)
+    source_locators = load_source_locators(paper)
     if set(specs) != set(EXPECTED_IDS) or set(diagrams) != set(EXPECTED_IDS):
         raise ValueError("Source protocols do not contain the expected 52 records")
     records = []
@@ -557,6 +678,7 @@ def load_data(study: Path) -> dict:
                 "coverage_meaning": "Any current cue, historical cue, or canonical source layer; not confirmed prevalence.",
             },
             "anchors": anchors, "repo_files": realization_files(anchors, realizations.get(pid, [])),
+            "aliases": aliases.get(pid, []), "source_locator": source_locators.get(pid, ""),
             "interactions": diagrams[pid]["interactions"],
             "retrieval_cue": {"regex": detector[pid]["regex"], "version": detector_doc["version"], "frozen_at": detector_doc["frozen_at"], "role": "exploratory_retrieval_only"},
             "diagram_svg": f"assets/diagrams/{pid}.svg", "diagram_pdf": f"assets/diagrams/{pid}.pdf",
@@ -592,7 +714,7 @@ def main() -> None:
     parser.add_argument("--paper", type=Path, default=ROOT.parent / "POHE_complete/main.pdf")
     args = parser.parse_args()
     study = args.study.resolve()
-    data = load_data(study)
+    data = load_data(study, args.paper)
     if data["record_count"] != 52 or [p["id"] for p in data["patterns"]] != EXPECTED_IDS:
         raise ValueError("Catalog must contain exactly P01–P29, W01–W07, C01–C04, R01–R02, E01–E10")
     if set(EXAMPLES) != set(EXPECTED_IDS):
@@ -601,6 +723,7 @@ def main() -> None:
         raise ValueError(f"Examples must cover every record; missing={missing}, extra={extra}")
     write_text(ROOT / "data/patterns.json", json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     write_text(ROOT / "index.html", render_index(data["patterns"]))
+    write_text(ROOT / "inventory.html", render_inventory(data))
     write_text(ROOT / "method.html", render_method(data))
     for index, pattern in enumerate(data["patterns"]):
         write_text(ROOT / "patterns" / pattern["id"] / "index.html", render_detail(pattern, EXPECTED_IDS[(index - 1) % 52], EXPECTED_IDS[(index + 1) % 52]))

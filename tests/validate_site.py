@@ -23,7 +23,8 @@ REQUIRED_PATTERN_FIELDS = {
     "problem", "join_point", "pointcut", "requires", "ensures", "invariant",
     "violation", "variation", "negative_control", "test_obligation",
     "evolution_question", "evidence", "anchors", "interactions", "diagram_svg",
-    "diagram_pdf", "class_svg", "interaction_svg", "interaction_pdf", "repo_files", "url",
+    "diagram_pdf", "class_svg", "interaction_svg", "interaction_pdf", "repo_files",
+    "aliases", "source_locator", "url",
 }
 
 
@@ -139,6 +140,20 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertIn(f"../{previous_id}/", text)
                 self.assertIn(f"../{next_id}/", text)
 
+    def test_inventory_ledger_covers_every_record(self) -> None:
+        text = (ROOT / "inventory.html").read_text(encoding="utf-8")
+        self.assertEqual(text.count('class="inventory-entry"'), 52)
+        self.assertEqual(text.count('class="inventory-regex"'), 52)
+        for pattern in self.patterns:
+            with self.subTest(pattern=pattern["id"]):
+                self.assertIn(f'id="record-{pattern["id"]}"', text)
+                self.assertIn(pattern["name"], text)
+                if pattern["id"] == "E08":
+                    self.assertIn("anchored only in its source specification", text)
+        for field in ("Join point", "Source locator", "Lexical cue", "Aliases", "Canonical exemplar", "Negative control"):
+            self.assertIn(field, text)
+        self.assertIn('href="inventory.html" aria-current="page"', text)
+
     def test_catalog_search_filters_and_empty_state(self) -> None:
         text, parser = parse_document(ROOT / "index.html")
         self.assertEqual(parser.pattern_rows, 52)
@@ -158,7 +173,7 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertIn("coverage is not confirmed prevalence", text.lower())
 
     def test_page_metadata_and_accessibility_shell(self) -> None:
-        pages = [ROOT / "index.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
+        pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
         for page in pages:
             with self.subTest(page=page.relative_to(ROOT)):
                 text, parser = parse_document(page)
@@ -175,7 +190,7 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertIn('href="https://xhyccc.github.io/"', text)
 
     def test_all_local_html_references_resolve(self) -> None:
-        pages = [ROOT / "index.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
+        pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
         for page in pages:
             _, parser = parse_document(page)
             for reference in parser.references:

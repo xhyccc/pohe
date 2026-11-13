@@ -111,6 +111,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §6.2, p. 14 (Mini-SWE-Agent, “Minimal Linear Loop”); source label",
       "interactions": [
         [
           "Client",
@@ -260,6 +262,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §6.2, p. 13 (Claude Code, “Streaming Loop with Concurrent Tool Batching”); shortened label",
       "interactions": [
         [
           "HarnessRuntime",
@@ -409,6 +413,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §6.2, p. 14 (Codex, “Tokio Async State Machine”); generalized label",
       "interactions": [
         [
           "Runtime",
@@ -552,6 +558,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §6.2, p. 14 (Mistral Vibe, “Middleware-Pipeline Loop”); Table 11, p. 52; source label",
       "interactions": [
         [
           "Invocation",
@@ -701,6 +709,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §6.2, p. 15 (Gemini CLI, “Async-Generator Loop”); source label",
       "interactions": [
         [
           "Consumer",
@@ -856,6 +866,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §6.2, p. 15 (Pi, “Functional Core with Steering Queues”); source label",
       "interactions": [
         [
           "SteeringInput",
@@ -999,6 +1011,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., Table 12, p. 53 (OpenCode, “Cache-Dialect Fanout”); source label",
       "interactions": [
         [
           "RequestBuilder",
@@ -1142,6 +1156,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §7.1, p. 18 (“Provider Abstraction Spectrum: multi-provider via an abstraction layer or owned transports”); merged label",
       "interactions": [
         [
           "Client",
@@ -1285,6 +1301,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §8.3, p. 27 (“Deferred Tool Loading”); Table 11, p. 52; source label",
       "interactions": [
         [
           "Agent",
@@ -1430,6 +1448,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "ToolExecutor",
@@ -1573,6 +1593,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §14.1, p. 59 (Signal 3, “The disappearing boundary between tool and workflow”); our reframing as a boundary to declare",
       "interactions": [
         [
           "Agent",
@@ -1734,6 +1756,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §6.4, p. 16 (“Coordinator-Worker Pattern”); Table 11 “Recursive Composition”, p. 52; adapted label",
       "interactions": [
         [
           "Coordinator",
@@ -1879,6 +1903,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "LogQueue",
@@ -2024,6 +2050,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "EventLog",
@@ -2169,6 +2197,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "Agent",
@@ -2314,6 +2344,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "Runtime",
@@ -2457,6 +2489,14 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "verifyonstop",
+        "beforestop",
+        "stopverify",
+        "completioncheck",
+        "acceptancecheck"
+      ],
+      "source_locator": "Barbaste et al., §6.2, p. 15 (Hermes stop-guards); Table 12 “Outer Verification Loop”, p. 53; source label",
       "interactions": [
         [
           "Agent",
@@ -2606,6 +2646,13 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "loopdetect",
+        "doomloop",
+        "repetitiondetect",
+        "stuckloop"
+      ],
+      "source_locator": "Barbaste et al., §6.2, p. 15 (Gemini CLI, “Hybrid Loop Detection”); Table 11 “Stuck Detection”, p. 52; source label",
       "interactions": [
         [
           "Agent",
@@ -2749,6 +2796,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §6.2, p. 15 (Hermes, “Budgeted Loop with Stop-Guards”); adapted label",
       "interactions": [
         [
           "Agent",
@@ -2894,6 +2943,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "Agent",
@@ -3010,6 +3061,13 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "shellparse",
+        "commandparse",
+        "syntaxaware",
+        "authorizecommand"
+      ],
+      "source_locator": "Barbaste et al., §10.9, p. 39 (OpenCode); Table 12 “Syntax-Aware Command Permissioning”, p. 53; source label",
       "interactions": [
         [
           "CommandProposal",
@@ -3153,6 +3211,13 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "policyfloor",
+        "minimumpolicy",
+        "denyrules",
+        "policycomposition"
+      ],
+      "source_locator": "Barbaste et al., §10.7, p. 38 (Hermes, “A Policy Floor That Survives YOLO”); source label",
       "interactions": [
         [
           "ProjectPolicy",
@@ -3302,6 +3367,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §10.1, p. 35 (Claude Code, “Three-Layered Permission System”); §10.2, p. 36 (Codex permission stack with native sandboxing); merged label",
       "interactions": [
         [
           "Agent",
@@ -3445,6 +3512,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §10.2, p. 36 (Codex, “Guardian, an LLM Approval Reviewer”); source label",
       "interactions": [
         [
           "Agent",
@@ -3594,6 +3663,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §10.4, p. 37 (OpenClaw, “Scope-Based Authorization”); §10.6, p. 38 (Mistral Vibe agent-profile gates); merged label",
       "interactions": [
         [
           "Agent",
@@ -3737,6 +3808,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., Table 12, p. 53 (Pi; OpenHands conversation tree, “Session-Tree Version Control”); source label",
       "interactions": [
         [
           "SessionTree",
@@ -3886,6 +3959,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §9.5, p. 32 (“Threshold Compaction”); §9.5, p. 33 (Hermes, “Lineage Compaction”); merged label",
       "interactions": [
         [
           "HistoryLog",
@@ -4029,6 +4104,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Barbaste et al., §9.6, p. 33 (“Persistent Memory Pipelines”); Table 12 “Agent-Maintained Memory”, p. 53; source label",
       "interactions": [
         [
           "Agent",
@@ -4180,6 +4257,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "HarnessInterface",
@@ -4323,6 +4402,12 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "promptchain",
+        "sequentialagent",
+        "sequentialpipeline"
+      ],
+      "source_locator": "Anthropic",
       "interactions": [
         [
           "TaskPlanner",
@@ -4472,6 +4557,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Anthropic",
       "interactions": [
         [
           "Input",
@@ -4621,6 +4708,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Anthropic",
       "interactions": [
         [
           "TaskPartitioner",
@@ -4764,6 +4853,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Anthropic",
       "interactions": [
         [
           "Application",
@@ -4909,6 +5000,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "Artifact",
@@ -5052,6 +5145,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "OpenAI",
       "interactions": [
         [
           "Manager",
@@ -5195,6 +5290,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "OpenAI",
       "interactions": [
         [
           "ActiveAgent",
@@ -5338,6 +5435,12 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "mediator",
+        "messagecoordinator",
+        "coordinationinterface"
+      ],
+      "source_locator": "Sarkar and Sarkar",
       "interactions": [
         [
           "Participant",
@@ -5487,6 +5590,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Sarkar and Sarkar",
       "interactions": [
         [
           "Observer",
@@ -5632,6 +5737,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "Publisher",
@@ -5775,6 +5882,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Sarkar and Sarkar",
       "interactions": [
         [
           "Client",
@@ -5930,6 +6039,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "Yao et al.",
       "interactions": [
         [
           "Agent",
@@ -6047,6 +6158,13 @@
           "kind": "canonical source"
         }
       ],
+      "aliases": [
+        "reflectionmemory",
+        "episodicmemory",
+        "lessonslearned",
+        "reflexion"
+      ],
+      "source_locator": "",
       "interactions": [
         [
           "Attempt",
@@ -6186,6 +6304,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "HarnessBase",
@@ -6329,6 +6449,12 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "proposeprobecompose",
+        "candidateprobe",
+        "harnesseditcycle"
+      ],
+      "source_locator": "Xu et al.",
       "interactions": [
         [
           "CurrentHarness",
@@ -6474,6 +6600,8 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [],
+      "source_locator": "",
       "interactions": [
         [
           "CandidateHarness",
@@ -6619,6 +6747,13 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "multiobjective",
+        "paretofront",
+        "objectiveweights",
+        "candidateselection"
+      ],
+      "source_locator": "",
       "interactions": [
         [
           "CurrentHarness",
@@ -6743,6 +6878,13 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "harnessfoundry",
+        "componentsearch",
+        "harnessbuild",
+        "composeharness"
+      ],
+      "source_locator": "",
       "interactions": [
         [
           "ComponentLibrary",
@@ -6858,6 +7000,13 @@
           "kind": "canonical source"
         }
       ],
+      "aliases": [
+        "coevolution",
+        "jointoptim",
+        "harnesspolicy",
+        "policyevolution"
+      ],
+      "source_locator": "Chen et al.",
       "interactions": [
         [
           "HarnessRuntime",
@@ -6989,6 +7138,13 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "programsearch",
+        "fitnessevaluation",
+        "evolveprogram",
+        "programevolution"
+      ],
+      "source_locator": "",
       "interactions": [
         [
           "ProgramGenerator",
@@ -7091,6 +7247,13 @@
         }
       ],
       "repo_files": [],
+      "aliases": [
+        "adapttarget",
+        "targetselection",
+        "domainadapt",
+        "adaptationtarget"
+      ],
+      "source_locator": "Wang et al.",
       "interactions": [
         [
           "TaskState",
@@ -7228,6 +7391,13 @@
           "kind": "retrieval cue"
         }
       ],
+      "aliases": [
+        "dualloop",
+        "plannerexecutor",
+        "assistanceloop",
+        "planningfeedback"
+      ],
+      "source_locator": "",
       "interactions": [
         [
           "Planner",
@@ -7345,6 +7515,13 @@
           "kind": "canonical source"
         }
       ],
+      "aliases": [
+        "observabilitydriven",
+        "tracedriven",
+        "traceguided",
+        "harnessevolution"
+      ],
+      "source_locator": "",
       "interactions": [
         [
           "TraceCollector",

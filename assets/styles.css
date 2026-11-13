@@ -3214,3 +3214,262 @@ body::before {
     display: none;
   }
 }
+
+/* Inventory ledger: the paper's record-by-record appendix, online. */
+
+.inventory-page {
+  max-width: min(1480px, 100%);
+  margin: 0 auto;
+  padding: 56px var(--gutter) 80px;
+}
+
+.inventory-hero {
+  display: block;
+}
+
+.inventory-hero .method-actions {
+  margin-top: 26px;
+}
+
+.inventory-jump {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 34px;
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+}
+
+.inventory-jump a {
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  color: var(--ink-soft);
+  text-decoration: none;
+  background: var(--paper-raised);
+}
+
+.inventory-jump a:hover {
+  border-color: var(--accent);
+}
+
+.inventory-jump b {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+}
+
+.inventory-jump span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.inventory-jump small {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.inventory-ledger {
+  display: grid;
+  gap: 54px;
+  margin-top: 56px;
+}
+
+.inventory-family-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 10px;
+}
+
+.inventory-family-code {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.inventory-family-head h2 {
+  font-size: 30px;
+  margin-right: auto;
+}
+
+.inventory-family-head p {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.inventory-family,
+.inventory-entry {
+  scroll-margin-top: 96px;
+}
+
+.inventory-entry {
+  border-bottom: 1px solid var(--rule);
+  padding: 22px 0;
+}
+
+.inventory-entry-head {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 14px;
+}
+
+.inventory-code {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  padding-top: 5px;
+}
+
+.inventory-title h3 {
+  font-size: 22px;
+  margin: 0 0 4px;
+}
+
+.inventory-title h3 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.inventory-title h3 a:hover {
+  color: var(--accent);
+}
+
+.inventory-title p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+  max-width: 80ch;
+}
+
+.inventory-coords {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-top: 5px;
+  white-space: nowrap;
+}
+
+.inventory-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1px;
+  background: var(--rule-soft);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 0;
+}
+
+.inventory-fields > div {
+  background: var(--paper-raised);
+  padding: 12px 14px;
+  min-width: 0;
+}
+
+.inventory-fields .inventory-wide {
+  grid-column: 1 / -1;
+}
+
+.inventory-fields dt {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 5px;
+}
+
+.inventory-fields dd {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+
+.inventory-fields code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 11.5px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.inventory-regex {
+  display: block;
+  font-size: 11.5px !important;
+  line-height: 1.55;
+  color: var(--ink) !important;
+}
+
+.inventory-source-link {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: baseline;
+  color: var(--blueprint);
+  text-decoration: none;
+}
+
+.inventory-source-link:hover {
+  text-decoration: underline;
+}
+
+.inventory-source-link code {
+  color: var(--ink-soft);
+}
+
+.inventory-support {
+  display: block;
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+.inventory-support a {
+  color: var(--ink-soft);
+}
+
+.inventory-empty {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .inventory-jump {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .inventory-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .inventory-fields .inventory-wide {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .inventory-entry-head {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+  .inventory-coords {
+    grid-column: 2;
+    text-align: left;
+    padding-top: 0;
+    white-space: normal;
+  }
+  .inventory-jump {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
