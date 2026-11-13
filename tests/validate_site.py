@@ -148,7 +148,7 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertIn("Activities × Assets", text)
         self.assertIn("Pattern-Oriented", text)
         self.assertIn("Harness Engineering", text)
-        self.assertIn("Design Patterns when OOD meets Agentic AI", text)
+        self.assertIn("Design needs Patterns, when Agentic AI meets OOD", text)
         for family in ("P", "W", "C", "R", "E"):
             self.assertIn(f'value="{family}"', text)
         for activity in ("A1", "A2", "A3"):
