@@ -23,7 +23,7 @@ REQUIRED_PATTERN_FIELDS = {
     "problem", "join_point", "pointcut", "requires", "ensures", "invariant",
     "violation", "variation", "negative_control", "test_obligation",
     "evolution_question", "evidence", "anchors", "interactions", "diagram_svg",
-    "diagram_pdf", "class_svg", "interaction_svg", "interaction_pdf", "url",
+    "diagram_pdf", "class_svg", "interaction_svg", "interaction_pdf", "repo_files", "url",
 }
 
 
@@ -117,6 +117,13 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertIn(f'id="interactions"', text)
                 self.assertIn(f"assets/interactions/{pattern_id}.svg", text)
                 self.assertIn(f"assets/interactions/{pattern_id}.pdf", text)
+                self.assertIn("Repository files", text)
+                self.assertIn('id="repo-files"', text)
+                if pattern["repo_files"]:
+                    self.assertIn('class="repo-file"', text)
+                    self.assertIn("https://github.com/", text)
+                else:
+                    self.assertIn("No repository file was retrieved", text)
                 self.assertIn("Prompt + code design", text)
                 self.assertIn("PROMPT SKETCH", text)
                 self.assertIn("CODE DESIGN / PYTHON", text)
@@ -204,6 +211,12 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertEqual(pdf.read_bytes()[:4], b"%PDF")
                 self.assertEqual(interaction_pdf.read_bytes()[:4], b"%PDF")
                 self.assertTrue(all(len(edge) == 4 for edge in pattern["interactions"]))
+                if pattern["id"] == "E08":
+                    self.assertEqual(pattern["repo_files"], [])
+                else:
+                    self.assertTrue(1 <= len(pattern["repo_files"]) <= 5)
+                for item in pattern["repo_files"]:
+                    self.assertRegex(item["url"], r"^https://github\.com/[^/]+/[^/]+/blob/[0-9a-f]{40}/")
 
     def test_method_and_reproducibility_boundaries(self) -> None:
         text = (ROOT / "method.html").read_text(encoding="utf-8").lower()

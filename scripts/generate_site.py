@@ -17,7 +17,7 @@ import subprocess
 import sys
 
 sys.dont_write_bytecode = True
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 from urllib.parse import quote
 
@@ -186,6 +186,56 @@ def nav(prefix: str, current: str) -> str:
 </header>""".strip()
 
 
+def realization_files(anchors: list[dict], realizations: list[dict], limit: int = 5) -> list[dict]:
+    """Pick a canonical exemplar plus source-first cue realizations from distinct repos."""
+    files: list[dict] = []
+    seen_repos: set[str] = set()
+    for anchor in anchors:
+        if anchor.get("kind") != "source":
+            continue
+        repo = str(anchor["repo_slug"])
+        seen_repos.add(repo)
+        locator = str(anchor["implementation"])
+        match = re.match(r"^(.*):(\d+)$", locator)
+        path, line = (match.group(1), int(match.group(2))) if match else (locator, None)
+        files.append(
+            {
+                "repo": repo,
+                "path": path,
+                "line": line,
+                "url": str(anchor["url"]),
+                "kind": "canonical source",
+            }
+        )
+    ordered = sorted(
+        realizations,
+        key=lambda row: (
+            0 if str(row["realization_status"]).startswith("source") else 1,
+            str(row["repo_slug"]).lower(),
+            str(row["representative_path"]),
+        ),
+    )
+    for row in ordered:
+        if len(files) >= limit:
+            break
+        repo = str(row["repo_slug"])
+        if repo in seen_repos:
+            continue
+        seen_repos.add(repo)
+        path = str(row["representative_path"])
+        line = int(row["representative_line"]) if str(row["representative_line"]).isdigit() else None
+        files.append(
+            {
+                "repo": repo,
+                "path": path,
+                "line": line,
+                "url": source_url(repo, str(row["first_introduced_commit"]), f"{path}:{line}" if line else path),
+                "kind": "retrieval cue",
+            }
+        )
+    return files
+
+
 def shell(title: str, description: str, body: str, prefix: str = "", current: str = "", canonical: str = "") -> str:
     return f"""<!doctype html>
 <html lang="en">
@@ -268,7 +318,7 @@ def render_index(patterns: list[dict]) -> str:
   </section>
 
   <section class="lens-section" aria-labelledby="lens-title">
-    <div class="lens-head"><div class="section-index">A² / THE LENS</div><h2 id="lens-title">Activities × Assets</h2><p>A pattern name is not yet an engineering record. The A² lens asks <strong>when</strong> an obligation is designed, verified, and revisited—and <strong>what</strong> must remain stable while implementations change.</p></div>
+    <div class="lens-head"><div class="section-index">A² / THE LENS</div><h2 id="lens-title">Activities × Assets</h2><p>An engineering record gives a design pattern its operational shape. The A² lens asks <strong>when</strong> an obligation is designed, verified, and revisited—and <strong>what</strong> must remain stable while implementations change.</p></div>
     <div class="a2-matrix" role="img" aria-label="A two-by-three matrix: protected contract and permitted variation across design, verification, and evolution activities.">
       <div class="a2-corner"><span>A²</span><small>record lens</small></div>
       <div class="a2-col"><b>A1</b><span>Design</span></div>
@@ -335,6 +385,30 @@ def example_section(p: dict) -> str:
   </section>"""
 
 
+def repo_files_html(files: list[dict]) -> str:
+    if not files:
+        return (
+            '<div class="repo-files-empty"><strong>No repository file was retrieved for this record.</strong>'
+            "<p>The frozen panel returned no cue realization, so the record remains specification-only. "
+            "No repository link is invented to fill the gap.</p></div>"
+        )
+    rows = []
+    for index, item in enumerate(files, 1):
+        locator = esc(item["path"])
+        if item.get("line"):
+            locator += f":{item['line']}"
+        tag = "CANONICAL SOURCE" if item["kind"] == "canonical source" else "RETRIEVAL CUE"
+        label = f"{item['repo']}: {item['path']}" + (f" line {item['line']}" if item.get("line") else "")
+        rows.append(
+            f'<a class="repo-file" href="{esc(item["url"])}" target="_blank" rel="noreferrer" '
+            f'aria-label="{esc(label)} (opens in a new tab)">'
+            f'<span class="repo-file-index">{index:02d}</span>'
+            f'<span class="repo-file-main"><strong>{esc(item["repo"])}</strong><code>{locator}</code></span>'
+            f'<span class="repo-file-kind">{tag}</span><span class="repo-file-arrow" aria-hidden="true">↗</span></a>'
+        )
+    return "".join(rows)
+
+
 def render_detail(p: dict, previous_id: str, next_id: str) -> str:
     activities = "".join(f'<li><b>{a}</b><span>{esc(ACTIVITIES[a])}</span></li>' for a in p["activities"])
     pointcut = "".join(f'<div><dt>{label}</dt><dd>{esc(p["pointcut"][key])}</dd></div>' for key, label in (("context", "Context"), ("trigger", "Trigger"), ("structure", "Structure"), ("effect", "Effect")))
@@ -365,7 +439,7 @@ def render_detail(p: dict, previous_id: str, next_id: str) -> str:
 
   <section class="record-section interaction-section" id="interactions"><div class="record-section-label"><span>02</span><h2>Object interactions</h2><p>The same roles and calls as a class collaboration and a numbered message sequence.</p></div><figure class="interaction-figure"><a href="../../{p['interaction_svg']}" aria-label="Open full-size object interaction diagram for {p['id']}"><img src="../../{p['interaction_svg']}" alt="Object interaction diagram for {esc(p['name'])}, showing role collaboration and a numbered message sequence" loading="lazy"></a><figcaption><span>FIG. {p['id']} / OBJECT INTERACTIONS</span><div class="figure-links"><a href="../../{p['interaction_svg']}">Open full SVG <span aria-hidden="true">↗</span></a><a class="download-link" href="../../{p['interaction_pdf']}" download>Download PDF <span aria-hidden="true">↓</span></a></div></figcaption></figure></section>
 
-  <nav class="record-toc" aria-label="On this page"><span>On this record</span><a href="#uml-view">UML view</a><a href="#interactions">Object interactions</a><a href="#pointcut">Pointcut</a><a href="#contract">Contract</a><a href="#variation">Variation</a><a href="#prompt-code">Prompt + code</a><a href="#evidence">Evidence</a></nav>
+  <nav class="record-toc" aria-label="On this page"><span>On this record</span><a href="#uml-view">UML view</a><a href="#interactions">Object interactions</a><a href="#pointcut">Pointcut</a><a href="#contract">Contract</a><a href="#variation">Variation</a><a href="#prompt-code">Prompt + code</a><a href="#repo-files">Repository files</a><a href="#evidence">Evidence</a></nav>
 
   <section class="record-section pointcut-section" id="pointcut"><div class="record-section-label"><span>03</span><h2>Pointcut</h2><p>Where the mechanism applies. All four dimensions belong to the proposed match, not just its vocabulary.</p></div><dl class="pointcut-grid">{pointcut}</dl></section>
 
@@ -377,7 +451,9 @@ def render_detail(p: dict, previous_id: str, next_id: str) -> str:
 
 {example_section(p)}
 
-  <section class="record-section evidence-section" id="evidence"><div class="record-section-label"><span>07</span><h2>Evidence & provenance</h2><p>Each layer answers a different question. Do not substitute retrieval for review.</p></div><div class="evidence-content"><div class="evidence-status"><span class="status-mark"></span><h3>{esc(status)}</h3><p>{esc(evidence_note)}</p><p class="review-note"><strong>Review boundary:</strong> this candidate and its specification come from an AI-assisted study. Independent human validation remains open.</p></div><div class="coverage-figure"><span>ANY-EVIDENCE FAMILY COVERAGE</span><strong>{coverage}<i>/{family_total}</i></strong><div class="coverage-bar" aria-hidden="true"><i style="width:{percent}%"></i></div><p>{percent}% of repository families in the frozen panel have at least one current cue, historical cue, or canonical source layer. <strong>This is not confirmed prevalence.</strong></p><small>Current lexical-cue repositories: {current} / {evidence['repository_total']}</small></div></div><div class="anchors">{anchors}</div><details class="retrieval-cue"><summary>Exploratory retrieval cue <span>Regex / v{esc(p['retrieval_cue']['version'])}</span></summary><div><code>{regex}</code><p>This expression is a discovery instrument only. A match is a retrieval cue—not a confirmed implementation, pointcut match, or contract proof.</p></div></details></section>
+  <section class="record-section repo-files-section" id="repo-files"><div class="record-section-label"><span>07</span><h2>Repository files</h2><p>Up to five public files retrieved by the frozen cue and pinned to the audited commit. A match is a place to inspect, not a confirmed implementation.</p></div><div class="repo-files">{repo_files_html(p['repo_files'])}</div></section>
+
+  <section class="record-section evidence-section" id="evidence"><div class="record-section-label"><span>08</span><h2>Evidence & provenance</h2><p>Each layer answers a different question. Do not substitute retrieval for review.</p></div><div class="evidence-content"><div class="evidence-status"><span class="status-mark"></span><h3>{esc(status)}</h3><p>{esc(evidence_note)}</p><p class="review-note"><strong>Review boundary:</strong> this candidate and its specification come from an AI-assisted study. Independent human validation remains open.</p></div><div class="coverage-figure"><span>ANY-EVIDENCE FAMILY COVERAGE</span><strong>{coverage}<i>/{family_total}</i></strong><div class="coverage-bar" aria-hidden="true"><i style="width:{percent}%"></i></div><p>{percent}% of repository families in the frozen panel have at least one current cue, historical cue, or canonical source layer. <strong>This is not confirmed prevalence.</strong></p><small>Current lexical-cue repositories: {current} / {evidence['repository_total']}</small></div></div><div class="anchors">{anchors}</div><details class="retrieval-cue"><summary>Exploratory retrieval cue <span>Regex / v{esc(p['retrieval_cue']['version'])}</span></summary><div><code>{regex}</code><p>This expression is a discovery instrument only. A match is a retrieval cue—not a confirmed implementation, pointcut match, or contract proof.</p></div></details></section>
 
   <nav class="record-pagination" aria-label="Adjacent pattern records"><a class="previous-record" href="../{previous_id}/"><span>← Previous record</span><strong>{previous_id}</strong></a><a href="../../#catalog" class="all-records">All 52</a><a class="next-record" href="../{next_id}/"><span>Next record →</span><strong>{next_id}</strong></a></nav>
 </main>"""
@@ -435,6 +511,9 @@ def load_data(study: Path) -> dict:
     detector = detector_doc["candidates"]
     atlas = {row["candidate_id"]: row for row in csv.DictReader((study / "reports/full_catalog/pattern_instance_atlas.csv").open(encoding="utf-8", newline=""))}
     coverage = {row["candidate_id"]: row for row in csv.DictReader((study / "data/statistics/pattern_coverage.csv").open(encoding="utf-8", newline=""))}
+    realizations: dict[str, list[dict]] = defaultdict(list)
+    for row in csv.DictReader((study / "data/derived/pattern_repo_realizations.csv").open(encoding="utf-8", newline="")):
+        realizations[row["candidate_id"]].append(row)
     if set(specs) != set(EXPECTED_IDS) or set(diagrams) != set(EXPECTED_IDS):
         raise ValueError("Source protocols do not contain the expected 52 records")
     records = []
@@ -477,7 +556,8 @@ def load_data(study: Path) -> dict:
                 "historical_cue_repositories": int(coverage_row["historical_cue_repositories"]),
                 "coverage_meaning": "Any current cue, historical cue, or canonical source layer; not confirmed prevalence.",
             },
-            "anchors": anchors, "interactions": diagrams[pid]["interactions"],
+            "anchors": anchors, "repo_files": realization_files(anchors, realizations.get(pid, [])),
+            "interactions": diagrams[pid]["interactions"],
             "retrieval_cue": {"regex": detector[pid]["regex"], "version": detector_doc["version"], "frozen_at": detector_doc["frozen_at"], "role": "exploratory_retrieval_only"},
             "diagram_svg": f"assets/diagrams/{pid}.svg", "diagram_pdf": f"assets/diagrams/{pid}.pdf",
             "class_svg": f"assets/diagrams/{pid}-class.svg",
@@ -490,6 +570,7 @@ def load_data(study: Path) -> dict:
         "data/manifests/candidates.csv", "protocol/harness_pattern_specification.yaml",
         "protocol/pattern_diagram_models.yaml", "protocol/detector_queries.yaml",
         "reports/full_catalog/pattern_instance_atlas.csv", "data/statistics/pattern_coverage.csv",
+        "data/derived/pattern_repo_realizations.csv",
         "data/manifests/current_41_repositories.csv", "environment/requirements.lock",
         "src/detectors/run_candidate_queries.py", "src/detectors/layered_pattern_matcher.py",
     ]

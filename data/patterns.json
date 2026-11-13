@@ -12,6 +12,7 @@
     "protocol/detector_queries.yaml": "41811b978a3b96f91dc1da1e542d650e08bcc173300e006f2a0fe1ce87ee6699",
     "reports/full_catalog/pattern_instance_atlas.csv": "c334af137d972e26289abb9f217254cef687971bfbff8e49c1bcb3dc305e43e0",
     "data/statistics/pattern_coverage.csv": "c211d3dd55b8db786cbc95b428c4b6e5148234a821295a4de6488e2e194a757c",
+    "data/derived/pattern_repo_realizations.csv": "34b0dae9fb6ecd491d480c0d9e04e43461e1a4149dc6e1df116099c810574977",
     "data/manifests/current_41_repositories.csv": "61155fb41ffc1e21e8de0bdaee844071e3e1f3537cd43fab1f9fac3ad4d10cdd",
     "environment/requirements.lock": "9d20a7092c271e0455d1ee7cd89185f371a0dfa9a6d11e07c2955f75eaa521f4",
     "src/detectors/run_candidate_queries.py": "f24ed3772b753d3e37ea48651d1c789055f1c979d5d76e2186a3f8362c16d60e",
@@ -71,6 +72,43 @@
           "note": "Explicit agent turn/tool streaming loop.",
           "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/run_internal/run_loop.py#L987",
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/tests/test_agent_runner.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "src/agents/run_internal/run_loop.py",
+          "line": 987,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/run_internal/run_loop.py#L987",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/examples/agent.rs",
+          "line": 61,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/examples/agent.rs#L61",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/skill-comply/scripts/grader.py",
+          "line": 94,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/skill-comply/scripts/grader.py#L94",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/company/manager.py",
+          "line": 328,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/company/manager.py#L328",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/coders/base_coder.py",
+          "line": 882,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/base_coder.py#L882",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -185,6 +223,43 @@
           "support_url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/tests/sdk/agent/test_parallel_tool_span_context.py#L1"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "openhands-sdk/openhands/sdk/agent/parallel_executor.py",
+          "line": 51,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-sdk/openhands/sdk/agent/parallel_executor.py#L51",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/handoff.rs",
+          "line": 113,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/handoff.rs#L113",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/continuous-learning-v2/scripts/instinct-cli.py",
+          "line": 409,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/continuous-learning-v2/scripts/instinct-cli.py#L409",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/db/singlestore/utils.py",
+          "line": 217,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/db/singlestore/utils.py#L217",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/coders/editblock_coder.py",
+          "line": 457,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/editblock_coder.py#L457",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "HarnessRuntime",
@@ -297,6 +372,43 @@
           "support_url": "https://github.com/langchain-ai/langgraph/blob/5847733bcb186c26b32da5cc822eaf8a89deffeb/libs/langgraph/tests/test_subgraph_persistence_async.py#L63"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "langchain-ai/langgraph",
+          "path": "libs/langgraph/langgraph/graph/state.py",
+          "line": 131,
+          "url": "https://github.com/langchain-ai/langgraph/blob/5847733bcb186c26b32da5cc822eaf8a89deffeb/libs/langgraph/langgraph/graph/state.py#L131",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/server.rs",
+          "line": 14,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/server.rs#L14",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/operator-approval-loop/references/approval_claims.py",
+          "line": 17,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/operator-approval-loop/references/approval_claims.py#L17",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/company/manager.py",
+          "line": 238,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/company/manager.py#L238",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/website/_includes/leaderboard_table.js",
+          "line": 286,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/website/_includes/leaderboard_table.js#L286",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Runtime",
@@ -401,6 +513,43 @@
           "note": "Typed agent middleware pipeline.",
           "url": "https://github.com/microsoft/agent-framework/blob/71e56792f5dbe401a52360141ea138d613cf65b1/python/packages/core/agent_framework/_middleware.py#L860",
           "support_url": "https://github.com/microsoft/agent-framework/blob/71e56792f5dbe401a52360141ea138d613cf65b1/python/packages/core/tests/core/test_middleware_context_result.py#L46"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "microsoft/agent-framework",
+          "path": "python/packages/core/agent_framework/_middleware.py",
+          "line": 860,
+          "url": "https://github.com/microsoft/agent-framework/blob/71e56792f5dbe401a52360141ea138d613cf65b1/python/packages/core/agent_framework/_middleware.py#L860",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/provider.rs",
+          "line": 1227,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/provider.rs#L1227",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/db/singlestore/singlestore.py",
+          "line": 567,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/db/singlestore/singlestore.py#L567",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/analytics.py",
+          "line": 105,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/analytics.py#L105",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/ai/example/tutorial.ts",
+          "line": 225,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/ai/example/tutorial.ts#L225",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -513,6 +662,43 @@
           "note": "Async generator yields incremental response events.",
           "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/models/chatcmpl_stream_handler.py#L603",
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/tests/test_stream_events.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "src/agents/models/chatcmpl_stream_handler.py",
+          "line": 603,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/models/chatcmpl_stream_handler.py#L603",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/db/migrations/versions/v3_0_0.py",
+          "line": 32,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/db/migrations/versions/v3_0_0.py#L32",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/codemode/src/interpreter/generators.ts",
+          "line": 35,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/codemode/src/interpreter/generators.ts#L35",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/app/gateway/app.py",
+          "line": 3,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/app/gateway/app.py#L3",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "cline/cline",
+          "path": "apps/cli/src/connectors/runtime-turn.ts",
+          "line": 156,
+          "url": "https://github.com/cline/cline/blob/ea16751d6ae3ae1e443681994906bf29cbc45039/apps/cli/src/connectors/runtime-turn.ts#L156",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -633,6 +819,43 @@
           "support_url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/test/session-runner.test.ts#L1"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/core/src/session/inbox.ts",
+          "line": 54,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/session/inbox.ts#L54",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/server_factory.rs",
+          "line": 198,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/server_factory.rs#L198",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/os/job_queue.py",
+          "line": 2827,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/os/job_queue.py#L2827",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/app/gateway/auth/oidc.py",
+          "line": 143,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/app/gateway/auth/oidc.py#L143",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "cline/cline",
+          "path": "sdk/packages/agents/src/agent-runtime.ts",
+          "line": 1796,
+          "url": "https://github.com/cline/cline/blob/ea16751d6ae3ae1e443681994906bf29cbc45039/sdk/packages/agents/src/agent-runtime.ts#L1796",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "SteeringInput",
@@ -737,6 +960,43 @@
           "note": "Provider-aware prompt-cache key resolution.",
           "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/run_internal/prompt_cache_key.py#L17",
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/tests/test_prompt_cache_key.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "src/agents/run_internal/prompt_cache_key.py",
+          "line": 17,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/run_internal/prompt_cache_key.py#L17",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-local-inference/src/lib.rs",
+          "line": 814,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-local-inference/src/lib.rs#L814",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/ito-baskets/scripts/ito-baskets.js",
+          "line": 158,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/ito-baskets/scripts/ito-baskets.js#L158",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/db/singlestore/singlestore.py",
+          "line": 258,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/db/singlestore/singlestore.py#L258",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/coders/base_coder.py",
+          "line": 426,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/base_coder.py#L426",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -845,6 +1105,43 @@
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/tests/models/test_reasoning_content.py#L25"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "src/agents/models/interface.py",
+          "line": 150,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/models/interface.py#L150",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/bin/build_canonical_models.rs",
+          "line": 102,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/bin/build_canonical_models.rs#L102",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/db/in_memory/utils.py",
+          "line": 107,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/db/in_memory/utils.py#L107",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/ai/src/ai-client.ts",
+          "line": 4,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/ai/src/ai-client.ts#L4",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "browser-use/browser-use",
+          "path": "browser_use/agent/service.py",
+          "line": 2242,
+          "url": "https://github.com/browser-use/browser-use/blob/b49a68e4060acb226da8f784194fef301c53a6d7/browser_use/agent/service.py#L2242",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Client",
@@ -949,6 +1246,43 @@
           "note": "Hosted tool-search surface for deferred tools.",
           "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/tool.py#L1641",
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/tests/test_run_internal_items.py#L279"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "src/agents/tool.py",
+          "line": 1641,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/tool.py#L1641",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-mcp/src/autovisualiser/templates/assets/mermaid.min.js",
+          "line": 13,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-mcp/src/autovisualiser/templates/assets/mermaid.min.js#L13",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/continuous-learning-v2/scripts/instinct-cli.py",
+          "line": 137,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/continuous-learning-v2/scripts/instinct-cli.py#L137",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/fs/db.py",
+          "line": 763,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/fs/db.py#L763",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/main.py",
+          "line": 1257,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/main.py#L1257",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -1059,6 +1393,43 @@
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/tests/sandbox/test_token_truncation.py#L1"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "src/agents/sandbox/util/token_truncation.py",
+          "line": 73,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/sandbox/util/token_truncation.py#L73",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/handoff.rs",
+          "line": 6,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/handoff.rs#L6",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/continuous-learning-v2/scripts/instinct-cli.py",
+          "line": 1228,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/continuous-learning-v2/scripts/instinct-cli.py#L1228",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/client/os.py",
+          "line": 2028,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/client/os.py#L2028",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/repomap.py",
+          "line": 781,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/repomap.py#L781",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "ToolExecutor",
@@ -1163,6 +1534,43 @@
           "note": "Workflow definition distinct from tool invocation.",
           "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-tools/openhands/tools/workflow/definition.py#L1",
           "support_url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/tests/tools/workflow/test_workflow_tool.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "openhands-tools/openhands/tools/workflow/definition.py",
+          "line": 1,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-tools/openhands/tools/workflow/definition.py#L1",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/company/declarations.py",
+          "line": 40,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/company/declarations.py#L40",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/packages/harness/deerflow/subagents/builtins/bash_agent.py",
+          "line": 15,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/packages/harness/deerflow/subagents/builtins/bash_agent.py#L15",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "crewAIInc/crewAI",
+          "path": "lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_adapter.py",
+          "line": 171,
+          "url": "https://github.com/crewAIInc/crewAI/blob/7abc196a176a5552c35c6e7a16817aa115f10655/lib/crewai/src/crewai/agents/agent_adapters/langgraph/langgraph_adapter.py#L171",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Darwin-Agent/HarnessX",
+          "path": "extensions/plugins/workflow/_core/extractor.py",
+          "line": 64,
+          "url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/extensions/plugins/workflow/_core/extractor.py#L64",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -1289,6 +1697,43 @@
           "support_url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/tests/sdk/subagent/test_subagent_registry.py#L1"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "openhands-sdk/openhands/sdk/subagent/schema.py",
+          "line": 202,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-sdk/openhands/sdk/subagent/schema.py#L202",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/handoff.rs",
+          "line": 1,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/handoff.rs#L1",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/council-multi-model/scripts/review-with-codex.js",
+          "line": 116,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/council-multi-model/scripts/review-with-codex.js#L116",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/context/fs/provider.py",
+          "line": 86,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/context/fs/provider.py#L86",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/run_cmd.py",
+          "line": 13,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/run_cmd.py#L13",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Coordinator",
@@ -1395,6 +1840,43 @@
           "note": "Persistent event table doubles as a poller-consumed work queue.",
           "url": "https://github.com/OpenHands/automation/blob/3ddfee594d2177ab368772bc03c25f2dda103c9b/openhands/automation/models.py#L222",
           "support_url": "https://github.com/OpenHands/automation/blob/3ddfee594d2177ab368772bc03c25f2dda103c9b/tests/test_scheduler.py#L703"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/automation",
+          "path": "openhands/automation/models.py",
+          "line": 222,
+          "url": "https://github.com/OpenHands/automation/blob/3ddfee594d2177ab368772bc03c25f2dda103c9b/openhands/automation/models.py#L222",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/videodb/scripts/ws_listener.py",
+          "line": 114,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/videodb/scripts/ws_listener.py#L114",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/agents/base.py",
+          "line": 2581,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/agents/base.py#L2581",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/ai/src/schema/events.ts",
+          "line": 472,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/ai/src/schema/events.ts#L472",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "browser-use/browser-use",
+          "path": "browser_use/agent/service.py",
+          "line": 4019,
+          "url": "https://github.com/browser-use/browser-use/blob/b49a68e4060acb226da8f784194fef301c53a6d7/browser_use/agent/service.py#L4019",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -1505,6 +1987,43 @@
           "support_url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/tests/sdk/conversation/local/test_state_serialization.py#L234"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "openhands-sdk/openhands/sdk/conversation/state.py",
+          "line": 342,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-sdk/openhands/sdk/conversation/state.py#L342",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-mcp/src/autovisualiser/templates/assets/d3.min.js",
+          "line": 2,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-mcp/src/autovisualiser/templates/assets/d3.min.js#L2",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/db/base.py",
+          "line": 56,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/db/base.py#L56",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/website/assets/asciinema/asciinema-player.min.js",
+          "line": 1,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/website/assets/asciinema/asciinema-player.min.js#L1",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/ai/src/route/client.ts",
+          "line": 594,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/ai/src/route/client.ts#L594",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "EventLog",
@@ -1611,6 +2130,43 @@
           "note": "Skill manifest and SKILL.md loader.",
           "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-sdk/openhands/sdk/skills/skill.py#L179",
           "support_url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/tests/sdk/skills/test_skill_md_convention.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "openhands-sdk/openhands/sdk/skills/skill.py",
+          "line": 179,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-sdk/openhands/sdk/skills/skill.py#L179",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/server/onboarding.rs",
+          "line": 313,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/server/onboarding.rs#L313",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/ck/commands/forget.mjs",
+          "line": 10,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/ck/commands/forget.mjs#L10",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/agents/antigravity/agent.py",
+          "line": 177,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/agents/antigravity/agent.py#L177",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/core/src/config/plugin/skill-file.ts",
+          "line": 45,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/config/plugin/skill-file.ts#L45",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -1721,6 +2277,43 @@
           "support_url": "https://github.com/microsoft/agent-framework/blob/71e56792f5dbe401a52360141ea138d613cf65b1/python/packages/core/tests/core/test_agent_hooks.py#L189"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "microsoft/agent-framework",
+          "path": "python/packages/core/agent_framework/_agent_hooks.py",
+          "line": 3,
+          "url": "https://github.com/microsoft/agent-framework/blob/71e56792f5dbe401a52360141ea138d613cf65b1/python/packages/core/agent_framework/_agent_hooks.py#L3",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/provider.rs",
+          "line": 777,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/provider.rs#L777",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/taste-application/scripts/falapi.py",
+          "line": 263,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/taste-application/scripts/falapi.py#L263",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/os/event_streams/base.py",
+          "line": 21,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/os/event_streams/base.py#L21",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/cli/src/acp/catalog.ts",
+          "line": 67,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/cli/src/acp/catalog.ts#L67",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Runtime",
@@ -1825,6 +2418,43 @@
           "note": "Task-end self-verification processor.",
           "url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/harnessx/processors/control/self_verify.py#L95",
           "support_url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/tests/unit/test_processor_triggers.py#L336"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "Darwin-Agent/HarnessX",
+          "path": "harnessx/processors/control/self_verify.py",
+          "line": 95,
+          "url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/harnessx/processors/control/self_verify.py#L95",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/os/routers/schedules/router.py",
+          "line": 61,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/os/routers/schedules/router.py#L61",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "mastra-ai/mastra",
+          "path": "packages/core/src/stream/base/output.ts",
+          "line": 253,
+          "url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/core/src/stream/base/output.ts#L253",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "openclaw/openclaw",
+          "path": "src/agents/embedded-agent-runner/run/attempt-stream-prepare.ts",
+          "line": 105,
+          "url": "https://github.com/openclaw/openclaw/blob/60a2e23d542227f0abc73760a25d1b50f3d13915/src/agents/embedded-agent-runner/run/attempt-stream-prepare.ts#L105",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "stablyai/orca",
+          "path": "src/main/native-chat/agent-session-wire/recovery/structured-agent-session-restart-resume-host.ts",
+          "line": 294,
+          "url": "https://github.com/stablyai/orca/blob/0f6448adf63bdf84d43db64b8dd829310e7213a0/src/main/native-chat/agent-session-wire/recovery/structured-agent-session-restart-resume-host.ts#L294",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -1939,6 +2569,43 @@
           "support_url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/tests/unit/test_processor_triggers.py#L135"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "Darwin-Agent/HarnessX",
+          "path": "harnessx/processors/control/loop_detection.py",
+          "line": 38,
+          "url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/harnessx/processors/control/loop_detection.py#L38",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/core/src/v1/config/permission.ts",
+          "line": 27,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/v1/config/permission.ts#L27",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "browser-use/browser-use",
+          "path": "browser_use/agent/service.py",
+          "line": 440,
+          "url": "https://github.com/browser-use/browser-use/blob/b49a68e4060acb226da8f784194fef301c53a6d7/browser_use/agent/service.py#L440",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/packages/harness/deerflow/agents/factory.py",
+          "line": 230,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/packages/harness/deerflow/agents/factory.py#L230",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "cline/cline",
+          "path": "apps/cli/src/runtime/interactive/session-config.ts",
+          "line": 20,
+          "url": "https://github.com/cline/cline/blob/ea16751d6ae3ae1e443681994906bf29cbc45039/apps/cli/src/runtime/interactive/session-config.ts#L20",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Agent",
@@ -2043,6 +2710,43 @@
           "note": "Maximum-step terminal policy.",
           "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/session/runner/max-steps.ts#L1",
           "support_url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/test/session-runner.test.ts#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/core/src/session/runner/max-steps.ts",
+          "line": 1,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/session/runner/max-steps.ts#L1",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-local-inference/src/llamacpp/inference_engine.rs",
+          "line": 467,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-local-inference/src/llamacpp/inference_engine.rs#L467",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/app/channels/manager.py",
+          "line": 577,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/app/channels/manager.py#L577",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "china-qijizhifeng/agentic-harness-engineering",
+          "path": "evolve.py",
+          "line": 4157,
+          "url": "https://github.com/china-qijizhifeng/agentic-harness-engineering/blob/5298a2519ec2f65dd014a576474831c58b06e9c9/evolve.py#L4157",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "cline/cline",
+          "path": "sdk/packages/core/src/extensions/context/compaction-shared.ts",
+          "line": 391,
+          "url": "https://github.com/cline/cline/blob/ea16751d6ae3ae1e443681994906bf29cbc45039/sdk/packages/core/src/extensions/context/compaction-shared.ts#L391",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -2153,6 +2857,43 @@
           "support_url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/tests/sdk/agent/test_iterative_refinement.py#L111"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "examples/01_standalone_sdk/31_iterative_refinement.py",
+          "line": 370,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/examples/01_standalone_sdk/31_iterative_refinement.py#L370",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/council-multi-model/scripts/review-with-codex.js",
+          "line": 46,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/council-multi-model/scripts/review-with-codex.js#L46",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/db/base.py",
+          "line": 396,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/db/base.py#L396",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/io.py",
+          "line": 1081,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/io.py#L1081",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/app/channels/service.py",
+          "line": 771,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/app/channels/service.py#L771",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Agent",
@@ -2251,6 +2992,22 @@
           "note": "Tree-sitter shell parse before policy evaluation.",
           "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-sdk/openhands/sdk/security/shell_parser.py#L58",
           "support_url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/tests/sdk/security/test_shell_parser.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "openhands-sdk/openhands/sdk/security/shell_parser.py",
+          "line": 58,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-sdk/openhands/sdk/security/shell_parser.py#L58",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "mastra-ai/mastra",
+          "path": "packages/core/src/workspace/tools/ast-edit.ts",
+          "line": 5,
+          "url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/core/src/workspace/tools/ast-edit.ts#L5",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -2357,6 +3114,43 @@
           "note": "Missing agent permissions resolve to deny-all, then merge with session policy.",
           "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/permission.ts#L20",
           "support_url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/test/permission.test.ts#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/core/src/permission.ts",
+          "line": 20,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/permission.ts#L20",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "src/agents/sandbox/sandboxes/unix_local.py",
+          "line": 982,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/sandbox/sandboxes/unix_local.py#L982",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "QwenLM/qwen-code",
+          "path": "packages/core/src/config/config.ts",
+          "line": 8672,
+          "url": "https://github.com/QwenLM/qwen-code/blob/da30adcc2e2b3e1ceb9c88be1f2ae7a4becf8147/packages/core/src/config/config.ts#L8672",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "docs/ECC-PRO-SECURITY-ROADMAP.md",
+          "line": 250,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/docs/ECC-PRO-SECURITY-ROADMAP.md#L250",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "deepseek-ai/deepseek-harness",
+          "path": "docs/upgrade-guide/v0.2.1-rc.2/headless-policy-composition/guide.i18n.yaml",
+          "line": 4,
+          "url": "https://github.com/deepseek-ai/deepseek-harness/blob/fcc0ad462172522aaf5c93a7b2e01f6b9f0b0159/docs/upgrade-guide/v0.2.1-rc.2/headless-policy-composition/guide.i18n.yaml#L4",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -2471,6 +3265,43 @@
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/tests/sandbox/test_mount_security.py#L1"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "src/agents/sandbox/sandbox_agent.py",
+          "line": 31,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/sandbox/sandbox_agent.py#L31",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/provider.rs",
+          "line": 4292,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/provider.rs#L4292",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/council-multi-model/scripts/review-with-codex.js",
+          "line": 104,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/council-multi-model/scripts/review-with-codex.js#L104",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/sandbox/base.py",
+          "line": 1,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/sandbox/base.py#L1",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/coders/editblock_fenced_prompts.py",
+          "line": 113,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/editblock_fenced_prompts.py#L113",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Agent",
@@ -2575,6 +3406,43 @@
           "note": "Tool approval interruption and on-approval handler.",
           "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/tool.py#L1498",
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/tests/test_function_tool_approval_arguments.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "src/agents/tool.py",
+          "line": 1498,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/tool.py#L1498",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/agents/state_machine/tool_approval.rs",
+          "line": 97,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/agents/state_machine/tool_approval.rs#L97",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/core/src/aisdk.ts",
+          "line": 752,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/aisdk.ts#L752",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "cline/cline",
+          "path": "sdk/packages/core/src/hub/runtime-host/hub-runtime-host.ts",
+          "line": 1769,
+          "url": "https://github.com/cline/cline/blob/ea16751d6ae3ae1e443681994906bf29cbc45039/sdk/packages/core/src/hub/runtime-host/hub-runtime-host.ts#L1769",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Darwin-Agent/HarnessX",
+          "path": "harnessx/processors/tools/tool_whitelist.py",
+          "line": 27,
+          "url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/harnessx/processors/tools/tool_whitelist.py#L27",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -2689,6 +3557,43 @@
           "support_url": "https://github.com/openclaw/openclaw/blob/60a2e23d542227f0abc73760a25d1b50f3d13915/src/shared/operator-scope-compat.test.ts#L64"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "openclaw/openclaw",
+          "path": "src/gateway/method-scopes.ts",
+          "line": 215,
+          "url": "https://github.com/openclaw/openclaw/blob/60a2e23d542227f0abc73760a25d1b50f3d13915/src/gateway/method-scopes.ts#L215",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/common.rs",
+          "line": 69,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/common.rs#L69",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/agent-self-evaluation/scripts/evaluate.py",
+          "line": 112,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/agent-self-evaluation/scripts/evaluate.py#L112",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/db/singlestore/utils.py",
+          "line": 157,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/db/singlestore/utils.py#L157",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/args.py",
+          "line": 420,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/args.py#L420",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Agent",
@@ -2793,6 +3698,43 @@
           "note": "Fork conversation at a stable event boundary.",
           "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py#L861",
           "support_url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/tests/sdk/conversation/local/test_conversation_tree.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py",
+          "line": 861,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py#L861",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-cli/src/session/streaming_buffer.rs",
+          "line": 227,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-cli/src/session/streaming_buffer.rs#L227",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/sandbox/base.py",
+          "line": 11,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/sandbox/base.py#L11",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/ai/src/index.ts",
+          "line": 227,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/ai/src/index.ts#L227",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/packages/extension-api/deerflow_extension_api/agent_runs.py",
+          "line": 116,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/packages/extension-api/deerflow_extension_api/agent_runs.py#L116",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -2907,6 +3849,43 @@
           "support_url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/test/session-native-compaction.test.ts#L213"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/core/src/session/compaction.ts",
+          "line": 298,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/session/compaction.ts#L298",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/examples/agent.rs",
+          "line": 65,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/examples/agent.rs#L65",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/agent-self-evaluation/scripts/evaluate.py",
+          "line": 267,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/agent-self-evaluation/scripts/evaluate.py#L267",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/db/base.py",
+          "line": 2284,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/db/base.py#L2284",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/args.py",
+          "line": 189,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/args.py#L189",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "HistoryLog",
@@ -3011,6 +3990,43 @@
           "note": "Observation, reflection, and persistence pipeline.",
           "url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/memory/src/processors/observational-memory/observational-memory.ts#L423",
           "support_url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/memory/src/processors/observational-memory/__tests__/observational-memory.test.ts#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "mastra-ai/mastra",
+          "path": "packages/memory/src/processors/observational-memory/observational-memory.ts",
+          "line": 423,
+          "url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/memory/src/processors/observational-memory/observational-memory.ts#L423",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-cli/src/commands/configure.rs",
+          "line": 1217,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-cli/src/commands/configure.rs#L1217",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/skill-comply/scripts/spec_generator.py",
+          "line": 39,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/skill-comply/scripts/spec_generator.py#L39",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/memory/manager.py",
+          "line": 41,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/memory/manager.py#L41",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/cli/src/index.ts",
+          "line": 105,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/cli/src/index.ts#L105",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -3127,6 +4143,43 @@
           "support_url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/tests/sdk/agent/test_acp_agent.py#L1"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "openhands-sdk/openhands/sdk/agent/acp_agent.py",
+          "line": 1815,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/openhands-sdk/openhands/sdk/agent/acp_agent.py#L1815",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/common.rs",
+          "line": 4,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/common.rs#L4",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/fs/base.py",
+          "line": 150,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/fs/base.py#L150",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/cli/src/acp/agent.ts",
+          "line": 11,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/cli/src/acp/agent.ts#L11",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "browser-use/browser-use",
+          "path": "browser_use/actor/page.py",
+          "line": 22,
+          "url": "https://github.com/browser-use/browser-use/blob/b49a68e4060acb226da8f784194fef301c53a6d7/browser_use/actor/page.py#L22",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "HarnessInterface",
@@ -3231,6 +4284,43 @@
           "note": "SequentialAgent passes output through ordered sub-agents.",
           "url": "https://github.com/google/adk-python/blob/946ca77224d5b3e1bf7c5a1dd0a39e9b17c3e655/src/google/adk/agents/sequential_agent.py#L91",
           "support_url": "https://github.com/google/adk-python/blob/946ca77224d5b3e1bf7c5a1dd0a39e9b17c3e655/tests/unittests/agents/test_sequential_agent.py#L80"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "google/adk-python",
+          "path": "src/google/adk/agents/sequential_agent.py",
+          "line": 91,
+          "url": "https://github.com/google/adk-python/blob/946ca77224d5b3e1bf7c5a1dd0a39e9b17c3e655/src/google/adk/agents/sequential_agent.py#L91",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "documentation/docs/guides/sessions/in-session-actions.md",
+          "line": 123,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/documentation/docs/guides/sessions/in-session-actions.md#L123",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/autonomous-loops/SKILL.md",
+          "line": 32,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/autonomous-loops/SKILL.md#L32",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/tests/unit/db/test_reserved_run_metadata.py",
+          "line": 117,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/tests/unit/db/test_reserved_run_metadata.py#L117",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "microsoft/agent-framework",
+          "path": "python/packages/devui/tests/devui/conftest.py",
+          "line": 460,
+          "url": "https://github.com/microsoft/agent-framework/blob/71e56792f5dbe401a52360141ea138d613cf65b1/python/packages/devui/tests/devui/conftest.py#L460",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -3345,6 +4435,43 @@
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/examples/agent_patterns/README.md#L21"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "examples/agent_patterns/routing.py",
+          "line": 10,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/examples/agent_patterns/routing.py#L10",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/examples/tetrate_auth.rs",
+          "line": 1,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/examples/tetrate_auth.rs#L1",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/agent-self-evaluation/scripts/evaluate.py",
+          "line": 103,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/agent-self-evaluation/scripts/evaluate.py#L103",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/context/mcp/provider.py",
+          "line": 179,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/context/mcp/provider.py#L179",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/coders/udiff_prompts.py",
+          "line": 51,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/udiff_prompts.py#L51",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Input",
@@ -3457,6 +4584,43 @@
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/examples/agent_patterns/README.md#L45"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "examples/agent_patterns/parallelization.py",
+          "line": 7,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/examples/agent_patterns/parallelization.py#L7",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-cli/src/commands/review/orchestrator.rs",
+          "line": 302,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-cli/src/commands/review/orchestrator.rs#L302",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/knowledge/page/types.py",
+          "line": 16,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/knowledge/page/types.py#L16",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/core/src/git.ts",
+          "line": 1287,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/git.ts#L1287",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/app/channels/manager.py",
+          "line": 1680,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/app/channels/manager.py#L1680",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "TaskPartitioner",
@@ -3561,6 +4725,43 @@
           "note": "Primary agent delegates to registered subagents.",
           "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/examples/01_standalone_sdk/42_file_based_subagents.py#L24",
           "support_url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/tests/sdk/subagent/test_subagent_registry.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "examples/01_standalone_sdk/42_file_based_subagents.py",
+          "line": 24,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/examples/01_standalone_sdk/42_file_based_subagents.py#L24",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-cli/src/cli.rs",
+          "line": 1136,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-cli/src/cli.rs#L1136",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/eval/accuracy.py",
+          "line": 302,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/eval/accuracy.py#L302",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/app/gateway/auth/oidc.py",
+          "line": 429,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/app/gateway/auth/oidc.py#L429",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "china-qijizhifeng/agentic-harness-engineering",
+          "path": "evolve.py",
+          "line": 3715,
+          "url": "https://github.com/china-qijizhifeng/agentic-harness-engineering/blob/182ea06e578df7b1d503eca537503c1e4c5a8a58/evolve.py#L3715",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -3671,6 +4872,43 @@
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/examples/agent_patterns/README.md#L1"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "examples/agent_patterns/llm_as_a_judge.py",
+          "line": 47,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/examples/agent_patterns/llm_as_a_judge.py#L47",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/manim-video/assets/network_graph_scene.py",
+          "line": 6,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/manim-video/assets/network_graph_scene.py#L6",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "browser-use/browser-use",
+          "path": "browser_use/llm/mistral/schema.py",
+          "line": 1,
+          "url": "https://github.com/browser-use/browser-use/blob/b49a68e4060acb226da8f784194fef301c53a6d7/browser_use/llm/mistral/schema.py#L1",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/app/gateway/routers/input_polish.py",
+          "line": 41,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/app/gateway/routers/input_polish.py#L41",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "crewAIInc/crewAI",
+          "path": "lib/crewai/src/crewai/rag/qdrant/client.py",
+          "line": 80,
+          "url": "https://github.com/crewAIInc/crewAI/blob/7abc196a176a5552c35c6e7a16817aa115f10655/lib/crewai/src/crewai/rag/qdrant/client.py#L80",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Artifact",
@@ -3775,6 +5013,43 @@
           "note": "Hierarchical process creates a manager agent.",
           "url": "https://github.com/crewAIInc/crewAI/blob/7abc196a176a5552c35c6e7a16817aa115f10655/lib/crewai/src/crewai/crew.py#L1533",
           "support_url": "https://github.com/crewAIInc/crewAI/blob/7abc196a176a5552c35c6e7a16817aa115f10655/lib/crewai/tests/test_crew.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "crewAIInc/crewAI",
+          "path": "lib/crewai/src/crewai/crew.py",
+          "line": 1533,
+          "url": "https://github.com/crewAIInc/crewAI/blob/7abc196a176a5552c35c6e7a16817aa115f10655/lib/crewai/src/crewai/crew.py#L1533",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/sandbox/agentcore/server.py",
+          "line": 86,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/sandbox/agentcore/server.py#L86",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/core/src/instance.ts",
+          "line": 33,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/instance.ts#L33",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/app/channels/runtime_config_store.py",
+          "line": 15,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/app/channels/runtime_config_store.py#L15",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "cline/cline",
+          "path": "apps/cli/src/commands/connect.ts",
+          "line": 122,
+          "url": "https://github.com/cline/cline/blob/ea16751d6ae3ae1e443681994906bf29cbc45039/apps/cli/src/commands/connect.ts#L122",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -3883,6 +5158,43 @@
           "support_url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/tests/test_handoff_tool.py#L1"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "openai/openai-agents-python",
+          "path": "src/agents/handoffs/__init__.py",
+          "line": 127,
+          "url": "https://github.com/openai/openai-agents-python/blob/86bd29878b30062757fdb4f32fb95eb8eccc7e36/src/agents/handoffs/__init__.py#L127",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-agent/src/inference.rs",
+          "line": 496,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-agent/src/inference.rs#L496",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/taste-application/scripts/blender_prop.py",
+          "line": 10,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/taste-application/scripts/blender_prop.py#L10",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/company/execution.py",
+          "line": 15,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/company/execution.py#L15",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/ai/src/route/transport/websocket.ts",
+          "line": 209,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/ai/src/route/transport/websocket.ts#L209",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "ActiveAgent",
@@ -3987,6 +5299,43 @@
           "note": "Group chat manager mediates participant messages.",
           "url": "https://github.com/microsoft/autogen/blob/d07c667a3239ea4ab7af62a53b0f4ff205a1f23d/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_base_group_chat_manager.py#L25",
           "support_url": "https://github.com/microsoft/autogen/blob/d07c667a3239ea4ab7af62a53b0f4ff205a1f23d/python/packages/autogen-agentchat/tests/test_group_chat.py#L1"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "microsoft/autogen",
+          "path": "python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_base_group_chat_manager.py",
+          "line": 25,
+          "url": "https://github.com/microsoft/autogen/blob/d07c667a3239ea4ab7af62a53b0f4ff205a1f23d/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_base_group_chat_manager.py#L25",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "documentation/blog/2025-12-04-mcp-sampling/index.md",
+          "line": 72,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/documentation/blog/2025-12-04-mcp-sampling/index.md#L72",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "continuedev/continue",
+          "path": "docs/docs/languages/vb.net.md",
+          "line": 42,
+          "url": "https://github.com/continuedev/continue/blob/9de7f2440030feded5f172b4f899db7d248e8bc3/docs/docs/languages/vb.net.md#L42",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "pydantic/pydantic-ai",
+          "path": "tests/graph/builder/test_graph_execution.py",
+          "line": 397,
+          "url": "https://github.com/pydantic/pydantic-ai/blob/f71a438baead64c2e0d09be105f1107e8c750348/tests/graph/builder/test_graph_execution.py#L397",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "QwenLM/qwen-code",
+          "path": "docs/design/2026-05-27-daemon-workspace-service-design.md",
+          "line": 266,
+          "url": "https://github.com/QwenLM/qwen-code/blob/da30adcc2e2b3e1ceb9c88be1f2ae7a4becf8147/docs/design/2026-05-27-daemon-workspace-service-design.md#L266",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -4101,6 +5450,43 @@
           "support_url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/core/src/events/unix-socket-pubsub-solo.test.ts#L54"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "mastra-ai/mastra",
+          "path": "packages/core/src/events/event-emitter/index.ts",
+          "line": 21,
+          "url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/core/src/events/event-emitter/index.ts#L21",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-mcp/src/autovisualiser/templates/assets/leaflet.min.js",
+          "line": 5,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-mcp/src/autovisualiser/templates/assets/leaflet.min.js#L5",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/continuous-learning-v2/scripts/instinct-cli.py",
+          "line": 307,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/continuous-learning-v2/scripts/instinct-cli.py#L307",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/knowledge/knowledge.py",
+          "line": 366,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/knowledge/knowledge.py#L366",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/ai/src/protocols/open-responses-channel.ts",
+          "line": 51,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/ai/src/protocols/open-responses-channel.ts#L51",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Observer",
@@ -4209,6 +5595,43 @@
           "support_url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/core/src/events/subscribe-start-position.test.ts#L25"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "mastra-ai/mastra",
+          "path": "packages/core/src/events/pubsub.ts",
+          "line": 19,
+          "url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/core/src/events/pubsub.ts#L19",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/acp/provider.rs",
+          "line": 3687,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/acp/provider.rs#L3687",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/os/event_streams/in_memory.py",
+          "line": 24,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/os/event_streams/in_memory.py#L24",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/core/src/config/plugin/skill.ts",
+          "line": 8,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/config/plugin/skill.ts#L8",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/packages/harness/deerflow/client.py",
+          "line": 969,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/packages/harness/deerflow/client.py#L969",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Publisher",
@@ -4313,6 +5736,43 @@
           "note": "Cross-process broker discovery and forwarding.",
           "url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/core/src/events/unix-socket-pubsub.ts#L325",
           "support_url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/core/src/events/unix-socket-pubsub-codec.test.ts#L62"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "mastra-ai/mastra",
+          "path": "packages/core/src/events/unix-socket-pubsub.ts",
+          "line": 325,
+          "url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/core/src/events/unix-socket-pubsub.ts#L325",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose/src/agents/provider_manager.rs",
+          "line": 10,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose/src/agents/provider_manager.rs#L10",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "src/llm/__init__.py",
+          "line": 18,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/src/llm/__init__.py#L18",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/os/app.py",
+          "line": 449,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/os/app.py#L449",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/packages/harness/deerflow/community/aio_sandbox/aio_sandbox.py",
+          "line": 97,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/packages/harness/deerflow/community/aio_sandbox/aio_sandbox.py#L97",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -4433,6 +5893,43 @@
           "support_url": "https://github.com/huggingface/smolagents/blob/96f33faaf028479119ec8d34507b47694cf14e34/tests/test_agents.py#L217"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "huggingface/smolagents",
+          "path": "src/smolagents/agents.py",
+          "line": 270,
+          "url": "https://github.com/huggingface/smolagents/blob/96f33faaf028479119ec8d34507b47694cf14e34/src/smolagents/agents.py#L270",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "crates/goose-cli/src/session/elicitation.rs",
+          "line": 13,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/crates/goose-cli/src/session/elicitation.rs#L13",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "skills/agent-self-evaluation/scripts/evaluate.py",
+          "line": 242,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/skills/agent-self-evaluation/scripts/evaluate.py#L242",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/company/execution.py",
+          "line": 610,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/company/execution.py#L610",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Aider-AI/aider",
+          "path": "aider/coders/patch_coder.py",
+          "line": 642,
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/patch_coder.py#L642",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Agent",
@@ -4541,6 +6038,15 @@
           "support_url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/memory/src/processors/observational-memory/__tests__/observational-memory.test.ts#L10564"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "mastra-ai/mastra",
+          "path": "packages/memory/src/processors/observational-memory/reflector-agent.ts",
+          "line": 50,
+          "url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/packages/memory/src/processors/observational-memory/reflector-agent.ts#L50",
+          "kind": "canonical source"
+        }
+      ],
       "interactions": [
         [
           "Attempt",
@@ -4641,6 +6147,43 @@
           "note": "Concrete Agent specializes BaseAgent.",
           "url": "https://github.com/crewAIInc/crewAI/blob/7abc196a176a5552c35c6e7a16817aa115f10655/lib/crewai/src/crewai/agent/core.py#L223",
           "support_url": "https://github.com/crewAIInc/crewAI/blob/7abc196a176a5552c35c6e7a16817aa115f10655/lib/crewai/tests/test_crew.py#L4770"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "crewAIInc/crewAI",
+          "path": "lib/crewai/src/crewai/agent/core.py",
+          "line": 223,
+          "url": "https://github.com/crewAIInc/crewAI/blob/7abc196a176a5552c35c6e7a16817aa115f10655/lib/crewai/src/crewai/agent/core.py#L223",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "src/llm/tools/executor.py",
+          "line": 123,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/src/llm/tools/executor.py#L123",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "agno-agi/agno",
+          "path": "libs/agno/agno/agent/agent.py",
+          "line": 82,
+          "url": "https://github.com/agno-agi/agno/blob/f45ccee83dcd332c6a2cf46b0a0add3e7f7d3e68/libs/agno/agno/agent/agent.py#L82",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "anomalyco/opencode",
+          "path": "packages/cli/src/acp/agent.ts",
+          "line": 59,
+          "url": "https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/cli/src/acp/agent.ts#L59",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "browser-use/browser-use",
+          "path": "browser_use/agent/cloud_events.py",
+          "line": 18,
+          "url": "https://github.com/browser-use/browser-use/blob/b49a68e4060acb226da8f784194fef301c53a6d7/browser_use/agent/cloud_events.py#L18",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -4747,6 +6290,43 @@
           "note": "Proposal, probe/evaluation, and composition rounds.",
           "url": "https://github.com/google-research/harness2/blob/6868817518876de8fd170c6a8354daca273b6191/harness2/core/recursion.py#L360",
           "support_url": "https://github.com/google-research/harness2/blob/6868817518876de8fd170c6a8354daca273b6191/tests/test_workflow.py#L139"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "google-research/harness2",
+          "path": "harness2/core/recursion.py",
+          "line": 360,
+          "url": "https://github.com/google-research/harness2/blob/6868817518876de8fd170c6a8354daca273b6191/harness2/core/recursion.py#L360",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "langflow-ai/langflow",
+          "path": "src/lfx/src/lfx/services/settings/groups/runtime.py",
+          "line": 216,
+          "url": "https://github.com/langflow-ai/langflow/blob/60999cc9a7350e44dde3ef641baae864e10861f0/src/lfx/src/lfx/services/settings/groups/runtime.py#L216",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "QwenLM/qwen-code",
+          "path": "packages/cli/src/serve/routes/health.ts",
+          "line": 32,
+          "url": "https://github.com/QwenLM/qwen-code/blob/da30adcc2e2b3e1ceb9c88be1f2ae7a4becf8147/packages/cli/src/serve/routes/health.ts#L32",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "path": "docs/design/context-profile-ai-evaluation.md",
+          "line": 94,
+          "url": "https://github.com/affaan-m/ECC/blob/b38be6a7f6350964d59328b52f0624e1d1d552d1/docs/design/context-profile-ai-evaluation.md#L94",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/tests/support/compose.py",
+          "line": 24,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/tests/support/compose.py#L24",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -4857,6 +6437,43 @@
           "support_url": "https://github.com/google-research/rrsi/blob/be50316e1db05914068a973f322770ef08ed7ba1/tests/test_core.py#L128"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "google-research/rrsi",
+          "path": "rrsi/critic.py",
+          "line": 28,
+          "url": "https://github.com/google-research/rrsi/blob/be50316e1db05914068a973f322770ef08ed7ba1/rrsi/critic.py#L28",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "bytedance/deer-flow",
+          "path": "backend/scripts/eval_memory_prescreen.py",
+          "line": 69,
+          "url": "https://github.com/bytedance/deer-flow/blob/2a16b26960cb953cd3283702d018bd7dce6b80b7/backend/scripts/eval_memory_prescreen.py#L69",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Darwin-Agent/HarnessX",
+          "path": "extensions/skills/skill-creator/scripts/generate_report.py",
+          "line": 19,
+          "url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/extensions/skills/skill-creator/scripts/generate_report.py#L19",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "mingju-c/HarnessForge",
+          "path": "LlamaFactory/src/llamafactory/data/mm_plugin.py",
+          "line": 258,
+          "url": "https://github.com/mingju-c/HarnessForge/blob/8bef9488c35a21ef510a6f069476305025ba5519/LlamaFactory/src/llamafactory/data/mm_plugin.py#L258",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "documentation/blog/2025-08-04-mcp-jupyter-server/index.md",
+          "line": 73,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/documentation/blog/2025-08-04-mcp-jupyter-server/index.md#L73",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "CandidateHarness",
@@ -4963,6 +6580,43 @@
           "note": "Pareto-front harness selection over quality and cost objectives.",
           "url": "https://github.com/mingju-c/HarnessForge/blob/8bef9488c35a21ef510a6f069476305025ba5519/HarnessForge_4B/tools/half_select_harnesses.py#L108",
           "support_url": "https://github.com/mingju-c/HarnessForge/blob/8bef9488c35a21ef510a6f069476305025ba5519/HarnessForge_4B/registries/README.md#L48"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "mingju-c/HarnessForge",
+          "path": "HarnessForge_4B/tools/half_select_harnesses.py",
+          "line": 108,
+          "url": "https://github.com/mingju-c/HarnessForge/blob/8bef9488c35a21ef510a6f069476305025ba5519/HarnessForge_4B/tools/half_select_harnesses.py#L108",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "cline/cline",
+          "path": "sdk/packages/llms/src/catalog/catalog.generated.ts",
+          "line": 11221,
+          "url": "https://github.com/cline/cline/blob/ea16751d6ae3ae1e443681994906bf29cbc45039/sdk/packages/llms/src/catalog/catalog.generated.ts#L11221",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "Darwin-Agent/HarnessX",
+          "path": "harnessx/meta_harness/agent.py",
+          "line": 765,
+          "url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/harnessx/meta_harness/agent.py#L765",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "mastra-ai/mastra",
+          "path": "docs/src/content/en/models/sidebars.js",
+          "line": 834,
+          "url": "https://github.com/mastra-ai/mastra/blob/899383db98e03a91a7ba59596e845efeb800ccf9/docs/src/content/en/models/sidebars.js#L834",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "OpenHands/software-agent-sdk",
+          "path": "examples/01_standalone_sdk/59_route_task_to_model.py",
+          "line": 126,
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/5c524ad65d8164bf0a967bf5a4dbe3c3eb62253d/examples/01_standalone_sdk/59_route_task_to_model.py#L126",
+          "kind": "retrieval cue"
         }
       ],
       "interactions": [
@@ -5073,6 +6727,22 @@
           "support_url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/tests/unit/test_builder.py#L1"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "Darwin-Agent/HarnessX",
+          "path": "harnessx/core/builder.py",
+          "line": 73,
+          "url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/harnessx/core/builder.py#L73",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "langflow-ai/langflow",
+          "path": "src/backend/base/langflow/agentic/mcp/server.py",
+          "line": 28,
+          "url": "https://github.com/langflow-ai/langflow/blob/60999cc9a7350e44dde3ef641baae864e10861f0/src/backend/base/langflow/agentic/mcp/server.py#L28",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "ComponentLibrary",
@@ -5177,6 +6847,15 @@
           "note": "Curated harness-policy pairs.",
           "url": "https://github.com/mingju-c/HarnessForge/blob/8bef9488c35a21ef510a6f069476305025ba5519/HarnessForge_4B/evolved_pairs/pairs.yaml#L1",
           "support_url": "https://github.com/mingju-c/HarnessForge/blob/8bef9488c35a21ef510a6f069476305025ba5519/README.md#L15"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "mingju-c/HarnessForge",
+          "path": "HarnessForge_4B/evolved_pairs/pairs.yaml",
+          "line": 1,
+          "url": "https://github.com/mingju-c/HarnessForge/blob/8bef9488c35a21ef510a6f069476305025ba5519/HarnessForge_4B/evolved_pairs/pairs.yaml#L1",
+          "kind": "canonical source"
         }
       ],
       "interactions": [
@@ -5287,6 +6966,29 @@
           "support_url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/tests/unit/test_gaia_gating.py#L1"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "Darwin-Agent/HarnessX",
+          "path": "recipe/gaia_evolver/run_meta.py",
+          "line": 437,
+          "url": "https://github.com/Darwin-Agent/HarnessX/blob/ccb411691343d06b4a5c44c4e11104d694318e8f/recipe/gaia_evolver/run_meta.py#L437",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "stablyai/orca",
+          "path": "src/main/native-chat/structured-agent-command-resolution.ts",
+          "line": 108,
+          "url": "https://github.com/stablyai/orca/blob/0f6448adf63bdf84d43db64b8dd829310e7213a0/src/main/native-chat/structured-agent-command-resolution.ts#L108",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "aaif-goose/goose",
+          "path": "documentation/src/pages/grants.md",
+          "line": 28,
+          "url": "https://github.com/aaif-goose/goose/blob/4facf56cbab049142809d9afa4648ebe6823ba80/documentation/src/pages/grants.md#L28",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "ProgramGenerator",
@@ -5388,6 +7090,7 @@
           "note": "AdaRSI paper describes choosing harness adaptation versus policy training."
         }
       ],
+      "repo_files": [],
       "interactions": [
         [
           "TaskState",
@@ -5502,6 +7205,29 @@
           "support_url": "https://github.com/JIA-Lab-research/CarryOn/blob/02c97b80987c4a1a125ae98d3eae8b40e60d0289/README.md#L43"
         }
       ],
+      "repo_files": [
+        {
+          "repo": "JIA-Lab-research/CarryOn",
+          "path": "src/carryon/main.py",
+          "line": 176,
+          "url": "https://github.com/JIA-Lab-research/CarryOn/blob/02c97b80987c4a1a125ae98d3eae8b40e60d0289/src/carryon/main.py#L176",
+          "kind": "canonical source"
+        },
+        {
+          "repo": "crewAIInc/crewAI",
+          "path": "lib/crewai/tests/cassettes/agents/TestResponseFormatWithKickoff.test_kickoff_response_format_with_planning_and_tools.yaml",
+          "line": 1222,
+          "url": "https://github.com/crewAIInc/crewAI/blob/7abc196a176a5552c35c6e7a16817aa115f10655/lib/crewai/tests/cassettes/agents/TestResponseFormatWithKickoff.test_kickoff_response_format_with_planning_and_tools.yaml#L1222",
+          "kind": "retrieval cue"
+        },
+        {
+          "repo": "mingju-c/HarnessForge",
+          "path": "HarnessForge_4B/harness_factory/rounds/round_00_base/harness3/Description.md",
+          "line": 8,
+          "url": "https://github.com/mingju-c/HarnessForge/blob/8bef9488c35a21ef510a6f069476305025ba5519/HarnessForge_4B/harness_factory/rounds/round_00_base/harness3/Description.md#L8",
+          "kind": "retrieval cue"
+        }
+      ],
       "interactions": [
         [
           "Planner",
@@ -5608,6 +7334,15 @@
           "note": "Evaluate, analyze traces, improve harness, repeat.",
           "url": "https://github.com/china-qijizhifeng/agentic-harness-engineering/blob/182ea06e578df7b1d503eca537503c1e4c5a8a58/evolve.py#L5",
           "support_url": "https://github.com/china-qijizhifeng/agentic-harness-engineering/blob/182ea06e578df7b1d503eca537503c1e4c5a8a58/README.md#L169"
+        }
+      ],
+      "repo_files": [
+        {
+          "repo": "china-qijizhifeng/agentic-harness-engineering",
+          "path": "evolve.py",
+          "line": 5,
+          "url": "https://github.com/china-qijizhifeng/agentic-harness-engineering/blob/182ea06e578df7b1d503eca537503c1e4c5a8a58/evolve.py#L5",
+          "kind": "canonical source"
         }
       ],
       "interactions": [
