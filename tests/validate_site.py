@@ -203,7 +203,7 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertIn("coverage is not confirmed prevalence", text.lower())
 
     def test_page_metadata_and_accessibility_shell(self) -> None:
-        pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "agent.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
+        pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "agent.html", ROOT / "method.html", ROOT / "paper.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
         for page in pages:
             with self.subTest(page=page.relative_to(ROOT)):
                 text, parser = parse_document(page)
@@ -221,7 +221,7 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertIn("About me", text)
 
     def test_all_local_html_references_resolve(self) -> None:
-        pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "agent.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
+        pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "agent.html", ROOT / "method.html", ROOT / "paper.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
         for page in pages:
             _, parser = parse_document(page)
             for reference in parser.references:
@@ -273,8 +273,73 @@ class SiteIntegrityTests(unittest.TestCase):
         ):
             self.assertIn(phrase, text)
         self.assertIn("assets/paper/pohe-position.pdf", text)
+        self.assertIn('href="paper.html#research-agenda"', text)
+        self.assertNotIn('class="hypothesis-card', text)
+        self.assertIn("h1–h3 are prospective", text)
         self.assertGreaterEqual(len(self.data.get("source_hashes", {})), 6)
         self.assertRegex(self.data["study_revision"], r"^[0-9a-f]{40}$")
+
+    def test_research_agenda_hypotheses_and_protocol(self) -> None:
+        text, parser = parse_document(ROOT / "paper.html")
+        self.assertTrue(parser.has_main)
+        self.assertIn('id="research-agenda"', text)
+        self.assertEqual(len(re.findall(r'class="hypothesis-card\b', text)), 3)
+        for hypothesis_id in ("h1-asset", "h2-agency", "h3-controlled-variation"):
+            self.assertIn(f'id="{hypothesis_id}"', text)
+        for field in ("Claim", "Metrics", "Evidence status", "Open / falsification boundary"):
+            self.assertEqual(text.count(f"<h4>{field}</h4>"), 3, field)
+        visible_text = html.unescape(re.sub(r"<[^>]+>", "", text))
+        for phrase in (
+            "pointcut + contract + permitted variation + test obligation + negative control",
+            "Contract retention", "Contract drift", "causal utility remains open",
+            "docs/comments alone are not constraints", "E-family records are candidate mechanisms",
+            "Comparative causal benefit remains open",
+            "lower contract drift", "lower regression rate", "faster failure recovery",
+            "clearer change attribution", "Prospective / causal-open",
+            "bounded and unconstrained self-modification", "repeated rounds",
+            "planning cohort of 12 harnesses", "matched randomization", "ten revision rounds",
+            "feature adaptation", "tool/schema change", "failure recovery", "permission/acceptance change",
+            "frozen task distribution", "No completed experiment is claimed",
+            "Planning only", "no causal result",
+        ):
+            self.assertIn(phrase, visible_text)
+        self.assertIn('href="assets/paper/pohe-position.pdf" download', text)
+        self.assertIn('href="paper.html" aria-current="page"', text)
+        self.assertIn("Harness Design Patterns and the A² Taxonomy", text)
+        self.assertIn("Three Major Hypotheses", text)
+        self.assertIn("Future Work: Prospective Tests of the Three Hypotheses", text)
+        self.assertNotIn("pohe-position.pdf#", text)
+
+    def test_research_agenda_svg_is_local_and_accessible(self) -> None:
+        text = (ROOT / "paper.html").read_text(encoding="utf-8")
+        match = re.search(r'<svg class="research-agenda-svg"([^>]*)>(.*?)</svg>', text, re.S)
+        self.assertIsNotNone(match)
+        attributes, svg = match.groups()
+        self.assertIn('role="img"', attributes)
+        self.assertIn('aria-labelledby="research-map-title research-map-description"', attributes)
+        self.assertIn('<title id="research-map-title">', svg)
+        self.assertIn('<desc id="research-map-description">', svg)
+        self.assertIn("Activities × Assets", svg)
+        for hypothesis in ("H1", "H2", "H3"):
+            self.assertIn(hypothesis, svg)
+        self.assertNotIn("<image", svg)
+        self.assertNotRegex(svg, r'(?:href|src)="(?:https?:|//)')
+
+    def test_primary_navigation_has_exactly_four_approved_entries(self) -> None:
+        for page in ROOT.rglob("*.html"):
+            with self.subTest(page=page.relative_to(ROOT)):
+                text = page.read_text(encoding="utf-8")
+                match = re.search(r'<nav class="site-nav".*?</nav>', text, re.S)
+                self.assertIsNotNone(match)
+                labels = []
+                for anchor in re.findall(r"<a\b[^>]*>(.*?)</a>", match.group(0), re.S):
+                    anchor = re.sub(r"<(sup|span)\b.*?</\1>", "", anchor, flags=re.S)
+                    labels.append(html.unescape(re.sub(r"<[^>]+>", "", anchor)).strip())
+                self.assertEqual(labels, ["Catalog", "Agent", "Paper", "About me"])
+                paper_link = re.search(r'<a class="paper-link" href="([^"]+)"', match.group(0))
+                self.assertIsNotNone(paper_link)
+                expected_paper_href = "paper.html" if page.parent == ROOT else "../../paper.html"
+                self.assertEqual(paper_link.group(1), expected_paper_href)
 
     def test_support_files_and_javascript_wiring(self) -> None:
         for relative in (

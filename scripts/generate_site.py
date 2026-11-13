@@ -181,7 +181,7 @@ def nav(prefix: str, current: str) -> str:
   <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
     <a href="{prefix}./#catalog"{' aria-current="page"' if current == 'catalog' else ''}>Catalog <sup>52</sup></a>
     <a href="{prefix}agent.html"{' aria-current="page"' if current == 'agent' else ''}>Agent</a>
-    <a class="paper-link" href="{prefix}assets/paper/pohe-position.pdf">Paper <span aria-hidden="true">↗</span></a>
+    <a class="paper-link" href="{prefix}paper.html"{' aria-current="page"' if current == 'paper' else ''}>Paper</a>
     <a class="personal-link" href="https://xhyccc.github.io/">About me <span aria-hidden="true">↗</span></a>
   </nav>
 </header>""".strip()
@@ -636,11 +636,86 @@ def render_detail(p: dict, previous_id: str, next_id: str) -> str:
     return shell(f"{p['id']} · {p['name']} — POHE", f"{p['id']} {p['name']}: proposed harness pattern pointcut, contract, variation, interaction model, and source evidence.", body, prefix="../../", canonical=f"patterns/{p['id']}/")
 
 
+def research_agenda() -> str:
+    """Render the shared H1–H3 agenda without collapsing its evidence boundaries."""
+    return """
+  <section class="method-section research-agenda" id="research-agenda" aria-labelledby="research-agenda-title"><div class="method-section-number">01</div><div>
+    <span class="section-index">RESEARCH AGENDA / H1—H3</span>
+    <h2 id="research-agenda-title">From position to testable hypotheses.</h2>
+    <p class="method-lead">Three connected hypotheses ask what remains stable, how agency is constrained, and whether explicit variation boundaries improve self-modification. Each claim keeps its evidence and falsification boundary in view.</p>
+    <p class="research-manuscript-context"><a class="text-link" href="assets/paper/pohe-position.pdf">Read the paper PDF <span aria-hidden="true">↗</span></a><span>Manuscript context: §3, “Harness Design Patterns and the A² Taxonomy”; §4, “Three Major Hypotheses”; and §6, “Future Work: Prospective Tests of the Three Hypotheses.” The hypotheses below are an agenda, not completed results.</span></p>
+
+    <figure class="research-map">
+      <svg class="research-agenda-svg" viewBox="0 0 760 500" role="img" aria-labelledby="research-map-title research-map-description">
+        <title id="research-map-title">H1–H3 in the A² research agenda</title>
+        <desc id="research-map-description">A² means Activities × Assets. H1 locates stable, inspectable design commitments on the Assets axis. H2 spans activities and assets with mechanized guards, gates, checkpoints, rollback, and evaluation. H3 sits in A3, Maintenance and evolution, and proposes repeated-round comparisons of bounded and unconstrained self-modification.</desc>
+        <rect class="map-frame" x="20" y="58" width="720" height="410" rx="3"/>
+        <text class="map-title" x="28" y="36">A² = Activities × Assets</text>
+        <path class="map-column-rule" d="M260 58V468M500 58V468"/>
+        <text class="map-activity" x="140" y="91" text-anchor="middle">A1 / DESIGN</text>
+        <text class="map-activity" x="380" y="91" text-anchor="middle">A2 / VERIFY</text>
+        <text class="map-activity" x="620" y="91" text-anchor="middle">A3 / EVOLVE</text>
+        <rect class="map-h1" x="40" y="120" width="680" height="100" rx="3"/>
+        <text class="map-hypothesis" x="60" y="150">H1 / ASSETS</text>
+        <text class="map-copy" x="60" y="180">Stable assets = inspectable design commitments</text>
+        <text class="map-detail" x="60" y="204">pointcut · contract · variation · tests · negative control</text>
+        <rect class="map-h2" x="40" y="242" width="680" height="100" rx="3"/>
+        <text class="map-hypothesis" x="60" y="272">H2 / ACTIVITIES × ASSETS</text>
+        <text class="map-copy" x="60" y="302">Mechanize separation across the lifecycle</text>
+        <text class="map-detail" x="60" y="326">guards · gates · checkpoints · rollback · evaluation</text>
+        <rect class="map-h3" x="510" y="364" width="210" height="82" rx="3"/>
+        <text class="map-hypothesis" x="526" y="390">H3 / A3</text>
+        <text class="map-copy" x="526" y="416">Bounded ↔ unconstrained</text>
+        <text class="map-detail" x="526" y="438">repeated rounds</text>
+      </svg>
+      <figcaption><span>FIG. R / RESEARCH MAP</span><p>H1 identifies the asset to preserve. H2 makes separation operational across A². H3 turns the A3 evolution seam into a prospective comparison—not an observed benefit.</p></figcaption>
+    </figure>
+
+    <div class="hypothesis-grid">
+      <article class="hypothesis-card hypothesis-h1" id="h1-asset">
+        <header class="hypothesis-head"><span class="hypothesis-code">H1</span><div><span class="hypothesis-kicker">ASSET HYPOTHESIS</span><h3>Stable assets are design commitments.</h3></div></header>
+        <div class="hypothesis-block"><h4>Claim</h4><p>Under rapid prompt/code rewriting, stable assets are inspectable design commitments—not code or prompts: <strong>pointcut + contract + permitted variation + test obligation + negative control</strong>.</p></div>
+        <div class="hypothesis-block"><h4>Metrics</h4><ul><li><strong>Contract retention:</strong> protected obligations that remain explicit and satisfied after rewriting.</li><li><strong>Contract drift:</strong> unauthorized semantic change across successive versions.</li></ul></div>
+        <div class="hypothesis-evidence"><h4>Evidence status</h4><p><strong>Conceptual + exploratory detection/source evidence.</strong> Existing support can motivate and locate commitments; it does not establish their utility.</p></div>
+        <div class="hypothesis-boundary"><h4>Open / falsification boundary</h4><p>The causal utility remains open. The hypothesis would be weakened if matched mechanism-only descriptions retained contracts as well and drifted no more under the same rewriting regime.</p></div>
+      </article>
+
+      <article class="hypothesis-card hypothesis-h2" id="h2-agency">
+        <header class="hypothesis-head"><span class="hypothesis-code">H2</span><div><span class="hypothesis-kicker">AGENCY HYPOTHESIS</span><h3>Separation must be mechanized.</h3></div></header>
+        <div class="hypothesis-block"><h4>Claim</h4><p>When agents evolve their own harness, separation of concerns must be mechanized through <strong>guards, gates, checkpoints, rollback, and evaluation gates</strong>; docs/comments alone are not constraints.</p></div>
+        <div class="hypothesis-block"><h4>Metrics</h4><ul><li>Unauthorized-variation escape rate and violation containment.</li><li>Checkpoint recovery and rollback success, latency, and evaluation-gate rejection of known violations.</li></ul></div>
+        <div class="hypothesis-evidence"><h4>Evidence status</h4><p><strong>Analytical/source support only.</strong> <a href="./?family=E#catalog">E-family records</a> are candidate mechanisms, not a demonstrated comparative advantage.</p></div>
+        <div class="hypothesis-boundary"><h4>Open / falsification boundary</h4><p><strong>Comparative causal benefit remains open.</strong> A controlled comparison that finds no improvement over documentation/comment guidance in containment, recovery, or violation detection would challenge the claim.</p></div>
+      </article>
+
+      <article class="hypothesis-card hypothesis-h3" id="h3-controlled-variation">
+        <header class="hypothesis-head"><span class="hypothesis-code">H3</span><div><span class="hypothesis-kicker">CONTROLLED-VARIATION HYPOTHESIS</span><h3>Bound the change to clarify the outcome.</h3></div></header>
+        <div class="hypothesis-block"><h4>Claim</h4><p>Self-modification with explicit variation boundaries should yield <strong>lower contract drift, lower regression rate, faster failure recovery, and clearer change attribution</strong> than unconstrained self-modification.</p></div>
+        <div class="hypothesis-block"><h4>Metrics</h4><ul><li>Contract drift and regression rate per modification round.</li><li>Time to successful recovery and completeness of change attribution.</li></ul></div>
+        <div class="hypothesis-evidence"><h4>Evidence status</h4><p><strong>Prospective / causal-open.</strong> There is no current experimental evidence for this predicted comparison.</p></div>
+        <div class="hypothesis-boundary"><h4>Open / falsification boundary</h4><p>The entire causal claim is open. Equivalent or worse outcomes for bounded modification would falsify the predicted benefit under the tested conditions; mixed results would narrow, not confirm, its scope.</p></div>
+      </article>
+    </div>
+
+    <aside class="research-protocol" aria-labelledby="research-protocol-title"><div><span class="section-index">PROTOCOL TEASER / PROSPECTIVE</span><h3 id="research-protocol-title">Bounded versus unconstrained, round by round.</h3></div><div><p>H3 compares bounded and unconstrained self-modification in a planning cohort of 12 harnesses. The design uses matched randomization to bounded or unconstrained arms for ten revision rounds. The frozen task distribution covers feature adaptation, tool/schema change, failure recovery, and permission/acceptance change. Contract, regression, recovery, and attribution measures should be predeclared, with comparable tasks, models, and budgets.</p><p class="research-protocol-status"><strong>Planning only: no causal result.</strong> No completed experiment is claimed; this teaser specifies a comparison to run, not a result to cite.</p></div></aside>
+  </div></section>"""
+
+
+def render_paper() -> str:
+    body = f"""
+<main id="main-content" class="method-page paper-page">
+  <header class="method-hero paper-hero"><span class="section-index">PAPER / POSITION / PROSPECTIVE TESTS</span><h1>Agent harnesses need<br><em>a pattern discipline.</em></h1><p>Scaling alone cannot absorb their system responsibilities. The position paper develops the A² taxonomy, three major hypotheses, and the prospective tests that could falsify them.</p><div class="method-actions"><a class="button button-primary" href="assets/paper/pohe-position.pdf" download>Download the paper PDF <span aria-hidden="true">↓</span></a><a class="text-link" href="assets/paper/pohe-position.pdf">Open the PDF <span aria-hidden="true">↗</span></a><a class="text-link" href="#research-agenda">Research agenda <span aria-hidden="true">↓</span></a></div><p class="paper-hero-note">Unpublished manuscript. Hypotheses and protocols are prospective; no causal result is claimed.</p></header>
+
+{research_agenda()}
+</main>"""
+    return shell("Paper & research agenda — POHE", "The POHE position paper and its H1–H3 research agenda: stable assets, mechanized agency, controlled variation, and prospective falsification protocols.", body, current="paper", canonical="paper.html")
+
+
 def render_method(data: dict) -> str:
     hash_rows = "".join(f"<tr><td><code>{esc(path)}</code></td><td><code class=\"hash\">{esc(digest)}</code></td></tr>" for path, digest in data["source_hashes"].items())
     body = f"""
 <main id="main-content" class="method-page">
-  <header class="method-hero"><span class="section-index">METHOD / EVIDENCE / REPRODUCIBILITY</span><h1>Claims should carry<br><em>their own boundaries.</em></h1><p>This site is a static rendering of a proposed pattern discipline and an exploratory repository audit. It deliberately separates a useful record from the evidence that supports it.</p><div class="method-actions"><a class="button button-primary" href="assets/paper/pohe-position.pdf">Read the complete paper <span aria-hidden="true">↗</span></a><a class="text-link" href="./#catalog">Return to the catalog</a></div></header>
+  <header class="method-hero"><span class="section-index">METHOD / EVIDENCE / REPRODUCIBILITY</span><h1>Claims should carry<br><em>their own boundaries.</em></h1><p>This site is a static rendering of a proposed pattern discipline and an exploratory repository audit. It deliberately separates a useful record from the evidence that supports it.</p><div class="method-actions"><a class="button button-primary" href="paper.html">Open the paper <span aria-hidden="true">↗</span></a><a class="text-link" href="paper.html#research-agenda">Research agenda <span aria-hidden="true">↓</span></a><a class="text-link" href="./#catalog">Return to the catalog</a></div></header>
 
   <section class="method-section" id="evidence-key"><div class="method-section-number">01</div><div><h2>Evidence key</h2><p class="method-lead">A pattern label, a lexical cue, a source-located mechanism, and a reviewed contract are not interchangeable.</p><div class="evidence-ladder"><div><span>E0 / PROPOSED</span><h3>Pattern specification</h3><p>The context, trigger, structure, effect, contract, variation, test obligation, and negative control define a candidate mechanism. A specification does not assert repository conformance.</p></div><div><span>E1 / RETRIEVAL</span><h3>Exploratory retrieval cue</h3><p>A frozen regular expression or structural matcher finds a place to inspect. A hit is not a confirmed implementation. Coverage counts any available evidence layer and is not a prevalence estimate.</p></div><div><span>E2 / SOURCE</span><h3>Source-located exemplar</h3><p>A repository, immutable commit, and implementation locator identify a concrete example. The atlas holds at most one canonical exemplar per candidate, so it cannot measure cross-repository contract depth.</p></div><div><span>E3 / CONTRACT</span><h3>Executable or contract support</h3><p>Ordering, errors, or boundaries need additional executable or contract evidence. The field guide does not infer E3 from the presence of a source anchor.</p></div></div><aside class="review-boundary"><h3>Human / AI review boundary</h3><p>The study used owner-authorized AI-assisted annotation. Its 200 role-conditioned profiles cover only 16 exact structural candidates and measure one model’s consistency, not independent human agreement. Six pointcuts received majority support, eight were rejected, and two remained unresolved in that bounded sensitivity analysis. Independent human validation remains open.</p></aside></div></section>
 
@@ -670,7 +745,9 @@ make coverage-funnel</code></pre><h3>Rebuild this field guide</h3><pre class="co
 python3 -I tests/validate_site.py
 python3 -m http.server 8000</code></pre><p>The generator uses PyYAML with a stdlib fallback and expects <code>../pattern-mining-study</code> and <code>../POHE_complete/main.pdf</code> by default; <code>--study</code> and <code>--paper</code> override those paths.</p><h3>Source repository</h3><p>The supplied study checkout has no configured public remote. This field guide therefore does not invent an external study-repository URL. Canonical source anchors link directly to the named public implementation repository at the recorded commit. The complete local paper is available as <a href="assets/paper/pohe-position.pdf">the companion PDF</a>.</p></div></section>
 
-  <section class="method-section limitations-section"><div class="method-section-number">06</div><div><h2>Limitations</h2><ul class="limitations-list"><li>The 52 records are a scoped candidate inventory, not 52 disjoint or universally established mechanisms.</li><li>Current cue coverage is descriptive retrieval in a selected frozen panel, <strong>not a prevalence denominator</strong> or confirmed prevalence.</li><li>Locating a source-backed exemplar for 51 of 52 records does not establish frequency, generality, or contract conformance elsewhere. E08 remains specification-only.</li><li>Lexical detectors have false-positive and construction-leakage risks. Exact structural matching and one-model profile coding do not replace independent adjudication. The post-freeze <a href="https://github.com/xhyccc/pohe-agent/blob/main/docs/calibration.md">scope-anchored calibration</a> is an instrument audit; its <code>source_matched</code> verdict is not E2/E3.</li><li>A² is a proposed analytical lens, not a validated lifecycle model. Recording a contract does not enforce it.</li><li>H1 and H2 are prospective, design-only studies. No causal performance, safety, cost, or reliability benefit follows from repository association.</li><li>The complete paper PDF is an unpublished, untagged preview, not an accessibility-compliant publication file.</li></ul></div></section>
+  <section class="method-section limitations-section"><div class="method-section-number">06</div><div><h2>Limitations</h2><ul class="limitations-list"><li>The 52 records are a scoped candidate inventory, not 52 disjoint or universally established mechanisms.</li><li>Current cue coverage is descriptive retrieval in a selected frozen panel, <strong>not a prevalence denominator</strong> or confirmed prevalence.</li><li>Locating a source-backed exemplar for 51 of 52 records does not establish frequency, generality, or contract conformance elsewhere. E08 remains specification-only.</li><li>Lexical detectors have false-positive and construction-leakage risks. Exact structural matching and one-model profile coding do not replace independent adjudication. The post-freeze <a href="https://github.com/xhyccc/pohe-agent/blob/main/docs/calibration.md">scope-anchored calibration</a> is an instrument audit; its <code>source_matched</code> verdict is not E2/E3.</li><li>A² is a proposed analytical lens, not a validated lifecycle model. Recording a contract does not enforce it.</li><li>H1–H3 are prospective, design-only studies. No causal performance, safety, cost, or reliability benefit follows from repository association.</li><li>The complete paper PDF is an unpublished, untagged preview, not an accessibility-compliant publication file.</li></ul></div></section>
+
+  <section class="method-section research-agenda-pointer"><div class="method-section-number">07</div><div><h2>Research agenda</h2><p>The Paper page carries the full H1–H3 agenda: stable design commitments, mechanized agency, and controlled variation, with evidence and falsification boundaries attached to each claim.</p><a class="text-link" href="paper.html#research-agenda">Read the research agenda on the Paper page <span aria-hidden="true">↗</span></a></div></section>
 
   <section class="method-section colophon-section" id="colophon"><div class="method-section-number">◇</div><div><h2>Colophon: why this field guide exists</h2><p class="colophon-byline">By Haoyi Xiong</p><p class="method-lead">It continues an unpublished master’s research project on design patterns.</p><p>That project asked what this one still asks: when does a recurring solution become a pattern, and what must a record say before anyone else can use it? The vocabulary here is learned from the Gang of Four’s catalog, Roy T. Fielding’s account of architectural styles in network software, and Douglas C. Schmidt’s writing on distributed-computing patterns and the Pattern-Oriented Software Architecture series.</p><p>Those teachers insisted on the discipline this guide tries to keep: name the join point, state the contract, separate what may vary, and show the evidence. The field guide is dedicated to the research that remained unpublished—and to the readers who can carry the question further.</p><ul class="colophon-links"><li><a href="https://roy.gbiv.com/pubs/dissertation/top.htm">Roy T. Fielding, <em>Architectural Styles and the Design of Network-based Software Architectures</em> (2000)</a></li><li><a href="https://www.dre.vanderbilt.edu/~schmidt/">Douglas C. Schmidt</a> — distributed-computing patterns and the POSA series</li><li>Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides, <em>Design Patterns: Elements of Reusable Object-Oriented Software</em> (1994)</li></ul></div></section>
 </main>"""
@@ -831,6 +908,7 @@ def main() -> None:
     write_text(ROOT / "index.html", render_index(data["patterns"]))
     write_text(ROOT / "inventory.html", render_inventory(data))
     write_text(ROOT / "agent.html", render_agent())
+    write_text(ROOT / "paper.html", render_paper())
     write_text(ROOT / "method.html", render_method(data))
     for index, pattern in enumerate(data["patterns"]):
         write_text(ROOT / "patterns" / pattern["id"] / "index.html", render_detail(pattern, EXPECTED_IDS[(index - 1) % 52], EXPECTED_IDS[(index + 1) % 52]))
