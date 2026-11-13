@@ -4094,3 +4094,11 @@ body::before {
   font-size: 10px;
   color: var(--ink-faint);
 }
+
+@media (max-width: 640px) {
+  .agent-install-command .command-block code,
+  .terminal-body code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}
