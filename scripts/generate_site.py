@@ -293,7 +293,7 @@ def render_index(patterns: list[dict]) -> str:
     <div class="hero-kicker"><span>Field guide № 01</span><span>Proposed pattern discipline</span></div>
     <div class="hero-grid">
       <div>
-        <h1 id="hero-title">Pattern-Oriented<br><em>Harness Engineering</em><span class="hero-title-sub">Design Patterns when OOD meets Agentic AI</span></h1>
+        <h1 id="hero-title">Pattern-Oriented<br><em>Harness Engineering<span class="hero-title-colon">:</span></em><span class="hero-title-sub">Design Patterns when OOD meets Agentic AI</span></h1>
         <p class="hero-deck">A field guide to the recurring decisions around AI agents: what may vary, what must hold, and what happens when it does not.</p>
         <div class="hero-actions"><a class="button button-primary" href="#catalog">Browse the 52 records <span aria-hidden="true">↓</span></a><a class="text-link" href="method.html">Read the method <span aria-hidden="true">↗</span></a></div>
       </div>
