@@ -180,6 +180,7 @@ def nav(prefix: str, current: str) -> str:
   <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
     <a href="{prefix}./#catalog"{' aria-current="page"' if current == 'catalog' else ''}>Catalog <sup>52</sup></a>
     <a href="{prefix}method.html"{' aria-current="page"' if current == 'method' else ''}>Method & evidence</a>
+    <a class="personal-link" href="https://xhyccc.github.io/">Website <span aria-hidden="true">↗</span></a>
     <a class="paper-link" href="{prefix}assets/paper/pohe-position.pdf">Read the paper <span aria-hidden="true">↗</span></a>
   </nav>
 </header>""".strip()
@@ -242,7 +243,7 @@ def render_index(patterns: list[dict]) -> str:
     <div class="hero-kicker"><span>Field guide № 01</span><span>Proposed pattern discipline</span></div>
     <div class="hero-grid">
       <div>
-        <h1 id="hero-title">Pattern-Oriented<br><em>Harness Engineering</em></h1>
+        <h1 id="hero-title">Pattern-Oriented<br><em>Harness Engineering</em><span class="hero-title-sub">Design Patterns when OOD meets Agentic AI</span></h1>
         <p class="hero-deck">A field guide to the recurring decisions around AI agents: what may vary, what must hold, and what happens when it does not.</p>
         <div class="hero-actions"><a class="button button-primary" href="#catalog">Browse the 52 records <span aria-hidden="true">↓</span></a><a class="text-link" href="method.html">Read the method <span aria-hidden="true">↗</span></a></div>
       </div>
@@ -303,7 +304,7 @@ def render_index(patterns: list[dict]) -> str:
 
   <aside class="evidence-banner" id="evidence-key"><span class="section-index">READ WITH CARE</span><h2>A cue is a place to look,<br>not a pattern confirmed.</h2><div><p><strong>Proposed specification.</strong> Pointcuts and contracts define what a conforming mechanism would do.</p><p><strong>Exploratory retrieval cue.</strong> A regex or structural match retrieves candidate locations. Any-evidence coverage is not confirmed prevalence.</p><p><strong>Source-located exemplar.</strong> A curator identified a concrete implementation anchor. It does not certify every contract field.</p><p><strong>Human / AI review.</strong> Study annotations are AI-assisted and bounded; independent human validation remains open.</p></div><a class="text-link" href="method.html#evidence-key">Full evidence key and limitations <span aria-hidden="true">↗</span></a></aside>
 </main>"""
-    return shell("POHE — Pattern-Oriented Harness Engineering", "An engineering field guide to 52 candidate patterns for agent harnesses: UML class views, pointcuts, contracts, variation, prompt and code design sketches, evidence, and lifecycle.", body, current="catalog")
+    return shell("POHE — Pattern-Oriented Harness Engineering: Design Patterns when OOD meets Agentic AI", "An engineering field guide to 52 candidate patterns for agent harnesses: UML class views, pointcuts, contracts, variation, prompt and code design sketches, evidence, and lifecycle.", body, current="catalog")
 
 
 def anchor_html(anchor: dict) -> str:

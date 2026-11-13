@@ -141,6 +141,7 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertIn("Activities × Assets", text)
         self.assertIn("Pattern-Oriented", text)
         self.assertIn("Harness Engineering", text)
+        self.assertIn("Design Patterns when OOD meets Agentic AI", text)
         for family in ("P", "W", "C", "R", "E"):
             self.assertIn(f'value="{family}"', text)
         for activity in ("A1", "A2", "A3"):
@@ -164,6 +165,7 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertEqual(parser.external_scripts, [])
                 self.assertIn('id="nav-toggle"', text)
                 self.assertIn('aria-expanded="false"', text)
+                self.assertIn('href="https://xhyccc.github.io/"', text)
 
     def test_all_local_html_references_resolve(self) -> None:
         pages = [ROOT / "index.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
