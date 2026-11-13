@@ -160,7 +160,7 @@ class SiteIntegrityTests(unittest.TestCase):
                     self.assertIn("anchored only in its source specification", text)
         for field in ("Join point", "Source locator", "Lexical cue", "Aliases", "Canonical exemplar", "Negative control"):
             self.assertIn(field, text)
-        self.assertIn('href="inventory.html" aria-current="page"', text)
+        self.assertNotIn('>Inventory</a>', text)
 
     def test_agent_toolkit_page(self) -> None:
         text, parser = parse_document(ROOT / "agent.html")
@@ -179,7 +179,6 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertIn('data-copy="agent-install-code"', text)
         home = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="agent.html"', home)
-        self.assertIn("Point the lens at your own harness.", home)
         for page in (ROOT / "index.html", ROOT / "inventory.html", ROOT / "method.html", ROOT / "patterns" / "P01" / "index.html"):
             self.assertIn("agent.html", page.read_text(encoding="utf-8"))
 
@@ -189,7 +188,7 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertTrue({"pattern-search", "family-filter", "activity-filter", "evidence-filter", "pattern-index", "empty-state"}.issubset(parser.ids))
         self.assertIn('id="empty-state" hidden', text)
         self.assertIn("52", text)
-        self.assertIn("Activities × Assets", text)
+        self.assertIn("A² / THE TAXONOMY", text)
         self.assertIn("Pattern-Oriented", text)
         self.assertIn("Harness Engineering", text)
         self.assertIn("Design needs Patterns, when Agentic AI meets OOD", text)

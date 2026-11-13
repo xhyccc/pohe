@@ -180,11 +180,9 @@ def nav(prefix: str, current: str) -> str:
   <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span>Index</span><i aria-hidden="true"></i></button>
   <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
     <a href="{prefix}./#catalog"{' aria-current="page"' if current == 'catalog' else ''}>Catalog <sup>52</sup></a>
-    <a href="{prefix}inventory.html"{' aria-current="page"' if current == 'inventory' else ''}>Inventory</a>
     <a href="{prefix}agent.html"{' aria-current="page"' if current == 'agent' else ''}>Agent</a>
-    <a href="{prefix}method.html"{' aria-current="page"' if current == 'method' else ''}>Method & evidence</a>
+    <a class="paper-link" href="{prefix}assets/paper/pohe-position.pdf">Paper <span aria-hidden="true">↗</span></a>
     <a class="personal-link" href="https://xhyccc.github.io/">About me <span aria-hidden="true">↗</span></a>
-    <a class="paper-link" href="{prefix}assets/paper/pohe-position.pdf">Read the paper <span aria-hidden="true">↗</span></a>
   </nav>
 </header>""".strip()
 
@@ -445,7 +443,7 @@ pohe-agent scan /path/to/your/harness</code></pre></div>
 
   <aside class="agent-cta">
     <div><span class="section-index">START HERE</span><h2>Read the agent. Then read your harness.</h2><p>The repository contains the instructions, the skills, the catalog, and the CLI. The field guide remains the reference for every record.</p></div>
-    <div class="agent-cta-actions"><a class="button button-primary" href="https://github.com/xhyccc/pohe-agent">GitHub / pohe-agent <span aria-hidden="true">↗</span></a><a class="text-link" href="inventory.html">Browse the 52 records <span aria-hidden="true">↗</span></a></div>
+    <div class="agent-cta-actions"><a class="button button-primary" href="https://github.com/xhyccc/pohe-agent">GitHub / pohe-agent <span aria-hidden="true">↗</span></a><a class="text-link" href="./#catalog">Browse the 52 records <span aria-hidden="true">↗</span></a></div>
   </aside>
 </main>"""
     return shell(
@@ -493,24 +491,6 @@ def render_index(patterns: list[dict]) -> str:
     <div class="inventory-line"><div class="stat"><strong>52</strong><span>candidate records</span></div><div class="stat"><strong>05</strong><span>source families</span></div><div class="stat"><strong>03</strong><span>activity coordinates</span></div><small>Inventory size, not a prevalence claim.</small></div>
   </section>
 
-  <section class="lens-section" aria-labelledby="lens-title">
-    <div class="lens-head"><div class="section-index">A² / THE LENS</div><h2 id="lens-title">Activities × Assets</h2><p>An engineering record gives a design pattern its operational shape. The A² lens asks <strong>when</strong> an obligation is designed, verified, and revisited—and <strong>what</strong> must remain stable while implementations change.</p></div>
-    <div class="a2-matrix" role="img" aria-label="A two-by-three matrix: protected contract and permitted variation across design, verification, and evolution activities.">
-      <div class="a2-corner"><span>A²</span><small>record lens</small></div>
-      <div class="a2-col"><b>A1</b><span>Design</span></div>
-      <div class="a2-col"><b>A2</b><span>Verify</span></div>
-      <div class="a2-col"><b>A3</b><span>Evolve</span></div>
-      <div class="a2-row"><b>Protected contract</b><span>What must hold</span></div>
-      <div class="a2-cell"><strong>Declare</strong> authority, state, and acceptance</div>
-      <div class="a2-cell"><strong>Exercise</strong> the violation path</div>
-      <div class="a2-cell"><strong>Re-generalize</strong> when the seam fails</div>
-      <div class="a2-row"><b>Permitted variation</b><span>What may change</span></div>
-      <div class="a2-cell"><strong>Admit</strong> adapters, policies, providers</div>
-      <div class="a2-cell"><strong>Vary</strong> tests and diagnostics</div>
-      <div class="a2-cell"><strong>Move</strong> the mechanism without losing the contract</div>
-    </div>
-  </section>
-
   <section class="family-section" aria-labelledby="family-title"><div class="section-index">05 / SOURCE FAMILIES</div><h2 id="family-title" class="visually-hidden">Five source families</h2><div class="family-rules">{family_rules}</div><p class="section-footnote">Families record provenance, not another taxonomy axis. E records are research mechanisms, not claims of independently established recurring patterns.</p></section>
 
   <section class="catalog-section" id="catalog" aria-labelledby="catalog-title">
@@ -522,20 +502,12 @@ def render_index(patterns: list[dict]) -> str:
       <div class="select-field"><label for="evidence-filter">Evidence status</label><select id="evidence-filter" name="evidence"><option value="all">Any evidence status</option><option value="source_located">Source-located exemplar</option><option value="specification_only">Specification only</option><option value="current_cue">Current retrieval cue</option><option value="no_current_cue">No current retrieval cue</option></select></div>
       <button class="reset-button" id="reset-filters" type="button">Reset</button>
     </form>
-    <div class="results-meta"><p aria-live="polite">Showing <strong id="result-count">52</strong> of 52 records</p><p><span class="legend-dot"></span> Source anchors are exemplars, not population estimates.</p></div>
+    <div class="results-meta"><p aria-live="polite">Showing <strong id="result-count">52</strong> of 52 records</p><p><span class="legend-dot"></span> Source anchors are exemplars, not population estimates; coverage is not confirmed prevalence.</p></div>
     <div class="pattern-index" id="pattern-index">{rows}</div>
     <div class="empty-state" id="empty-state" hidden><span>∅</span><h3>No records at this intersection.</h3><p>Try a broader term or clear one of the filters. An empty filtered view says nothing about implementations in repositories.</p><button class="button button-primary" type="button" data-reset-filters>Show all 52 records</button></div>
     <noscript><p class="noscript-note">Search and filters require JavaScript. All 52 records remain browsable above without it.</p></noscript>
   </section>
 
-  <aside class="evidence-banner" id="evidence-key"><span class="section-index">READ WITH CARE</span><h2>A cue is a place to look,<br>not a pattern confirmed.</h2><div><p><strong>Proposed specification.</strong> Pointcuts and contracts define what a conforming mechanism would do.</p><p><strong>Exploratory retrieval cue.</strong> A regex or structural match retrieves candidate locations. Any-evidence coverage is not confirmed prevalence.</p><p><strong>Source-located exemplar.</strong> A curator identified a concrete implementation anchor. It does not certify every contract field.</p><p><strong>Human / AI review.</strong> Study annotations are AI-assisted and bounded; independent human validation remains open.</p></div><a class="text-link" href="method.html#evidence-key">Full evidence key and limitations <span aria-hidden="true">↗</span></a></aside>
-
-  <section class="agent-teaser" aria-labelledby="agent-teaser-title">
-    <div class="agent-teaser-copy"><span class="section-index">OPEN PACKAGE / AGENT + CLI</span><h2 id="agent-teaser-title">Point the lens at your own harness.</h2><p>A portable agent package brings the 52 records to an arbitrary repository: scan for cues, pull structural candidates into source review, and plan evolution without losing the protected contract.</p><div class="agent-teaser-actions"><a class="button button-primary" href="agent.html">Explore the agent toolkit <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/xhyccc/pohe-agent">GitHub repository <span aria-hidden="true">↗</span></a></div></div>
-    <div class="agent-teaser-code"><span class="teaser-code-label">TERMINAL</span><pre><code><span class="teaser-prompt">$</span> pohe-agent scan ./harness
-<span class="teaser-prompt">$</span> pohe-agent match ./harness --pattern P01
-<span class="teaser-prompt">$</span> pohe-agent plan ./harness --findings findings.json</code></pre><small>E1 retrieval only. Source review decides what is real.</small></div>
-  </section>
 </main>"""
     return shell("POHE — Pattern-Oriented Harness Engineering: Design needs Patterns, when Agentic AI meets OOD", "An engineering field guide to 52 candidate patterns for agent harnesses: UML class views, pointcuts, contracts, variation, prompt and code design sketches, evidence, and lifecycle.", body, current="catalog")
 
