@@ -4510,3 +4510,204 @@ body::before {
     padding: 24px 22px;
   }
 }
+
+/* ---------- Hypothesis lens (catalog + detail chips) ---------- */
+
+.hypothesis-section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 56px var(--gutter);
+  border-top: 1px solid var(--rule);
+}
+
+.hypothesis-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.hypothesis-intro h2 {
+  margin-top: 12px;
+  font-size: clamp(28px, 4vw, 44px);
+}
+
+.hypothesis-intro > p {
+  margin: 0;
+  justify-self: end;
+  max-width: 62ch;
+  font-size: 13.5px;
+  line-height: 1.62;
+  color: var(--ink-soft);
+}
+
+.hypothesis-band {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.hypothesis-band-card {
+  --hypothesis: var(--blueprint);
+  --hypothesis-soft: var(--blueprint-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--rule);
+  border-top: 4px solid var(--hypothesis);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease;
+}
+
+.hypothesis-band-card.hypothesis-h2 {
+  --hypothesis: var(--mint);
+  --hypothesis-soft: var(--mint-soft);
+}
+
+.hypothesis-band-card.hypothesis-h3 {
+  --hypothesis: var(--accent);
+  --hypothesis-soft: var(--accent-soft);
+}
+
+.hypothesis-band-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--hypothesis);
+}
+
+.hypothesis-band-card header {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.hypothesis-band-card .hypothesis-code {
+  color: var(--hypothesis);
+  font-family: var(--serif);
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.hypothesis-band-card .hypothesis-kicker {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--hypothesis);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hypothesis-band-card h3 {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.hypothesis-band-card > p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.58;
+  color: var(--ink-soft);
+}
+
+.hypothesis-band-card footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 13px;
+  border-top: 1px dashed var(--rule);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.hypothesis-band-card footer strong {
+  color: var(--hypothesis);
+  font-weight: 600;
+}
+
+.hypothesis-section > .text-link {
+  display: inline-block;
+  margin-top: 18px;
+}
+
+.row-hypotheses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.row-hypothesis {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  padding: 3px 5px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  color: var(--ink-faint);
+  background: var(--paper);
+}
+
+.row-hypothesis[data-hypothesis-tag="H1"],
+.record-hypothesis[data-hypothesis-tag="H1"] {
+  color: var(--blueprint);
+  border-color: color-mix(in srgb, var(--blueprint) 45%, transparent);
+}
+
+.row-hypothesis[data-hypothesis-tag="H2"],
+.record-hypothesis[data-hypothesis-tag="H2"] {
+  color: var(--mint);
+  border-color: color-mix(in srgb, var(--mint) 45%, transparent);
+}
+
+.row-hypothesis[data-hypothesis-tag="H3"],
+.record-hypothesis[data-hypothesis-tag="H3"] {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.record-hypothesis {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+
+.record-hypothesis:hover {
+  border-color: currentColor;
+}
+
+@media (max-width: 1000px) {
+  .hypothesis-intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .hypothesis-intro > p {
+    justify-self: start;
+  }
+
+  .hypothesis-band {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

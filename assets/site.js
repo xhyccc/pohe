@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var PARAM_KEYS = ["q", "family", "activity", "evidence"];
+  var PARAM_KEYS = ["q", "family", "activity", "hypothesis", "evidence"];
 
   function ready(callback) {
     if (document.readyState === "loading") {
@@ -60,12 +60,13 @@
     var search = document.getElementById("pattern-search");
     var family = document.getElementById("family-filter");
     var activity = document.getElementById("activity-filter");
+    var hypothesis = document.getElementById("hypothesis-filter");
     var evidence = document.getElementById("evidence-filter");
     var reset = document.getElementById("reset-filters");
     var results = document.getElementById("result-count");
     var empty = document.getElementById("empty-state");
     var index = document.getElementById("pattern-index");
-    if (!search || !family || !activity || !evidence || !index) {
+    if (!search || !family || !activity || !hypothesis || !evidence || !index) {
       return;
     }
 
@@ -84,6 +85,8 @@
           family.value = value;
         } else if (key === "activity") {
           activity.value = value;
+        } else if (key === "hypothesis") {
+          hypothesis.value = value;
         } else if (key === "evidence") {
           evidence.value = value;
         }
@@ -100,6 +103,9 @@
       }
       if (activity.value !== "all") {
         params.set("activity", activity.value);
+      }
+      if (hypothesis.value !== "all") {
+        params.set("hypothesis", hypothesis.value);
       }
       if (evidence.value !== "all") {
         params.set("evidence", evidence.value);
@@ -129,17 +135,20 @@
       var term = normalise(search.value);
       var familyValue = family.value;
       var activityValue = activity.value;
+      var hypothesisValue = hypothesis.value;
       var evidenceValue = evidence.value;
       var visible = 0;
 
       rows.forEach(function (row) {
         var rowFamilies = splitTokens(row.getAttribute("data-family"));
         var rowActivities = splitTokens(row.getAttribute("data-activities"));
+        var rowHypotheses = splitTokens(row.getAttribute("data-hypotheses"));
         var rowEvidence = splitTokens(row.getAttribute("data-evidence"));
         var show =
           matches(row, term) &&
           (familyValue === "all" || rowFamilies.indexOf(familyValue) !== -1) &&
           (activityValue === "all" || rowActivities.indexOf(activityValue) !== -1) &&
+          (hypothesisValue === "all" || rowHypotheses.indexOf(hypothesisValue) !== -1) &&
           (evidenceValue === "all" || rowEvidence.indexOf(evidenceValue) !== -1);
         row.hidden = !show;
         if (show) {
@@ -159,7 +168,7 @@
       }
     }
 
-    [search, family, activity, evidence].forEach(function (control) {
+    [search, family, activity, hypothesis, evidence].forEach(function (control) {
       control.addEventListener("input", apply);
       control.addEventListener("change", apply);
     });
@@ -168,6 +177,7 @@
       search.value = "";
       family.value = "all";
       activity.value = "all";
+      hypothesis.value = "all";
       evidence.value = "all";
       apply();
     }
@@ -190,6 +200,17 @@
         apply();
         if (search) {
           search.focus({ preventScroll: true });
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-hypothesis-link]").forEach(function (link) {
+      link.addEventListener("click", function () {
+        hypothesis.value = link.getAttribute("data-hypothesis-link") || "all";
+        apply();
+        var catalog = document.getElementById("catalog");
+        if (catalog && catalog.scrollIntoView) {
+          catalog.scrollIntoView({ behavior: "smooth" });
         }
       });
     });

@@ -20,8 +20,8 @@ EXPECTED_IDS = (
 )
 REQUIRED_PATTERN_FIELDS = {
     "id", "name", "family", "family_name", "activities", "activity_names",
-    "problem", "join_point", "pointcut", "requires", "ensures", "invariant",
-    "violation", "variation", "negative_control", "test_obligation",
+    "hypotheses", "problem", "join_point", "pointcut", "requires", "ensures",
+    "invariant", "violation", "variation", "negative_control", "test_obligation",
     "evolution_question", "evidence", "anchors", "interactions", "diagram_svg",
     "diagram_pdf", "class_svg", "interaction_svg", "interaction_pdf", "repo_files",
     "aliases", "source_locator", "url",
@@ -187,7 +187,7 @@ class SiteIntegrityTests(unittest.TestCase):
     def test_catalog_search_filters_and_empty_state(self) -> None:
         text, parser = parse_document(ROOT / "index.html")
         self.assertEqual(parser.pattern_rows, 52)
-        self.assertTrue({"pattern-search", "family-filter", "activity-filter", "evidence-filter", "pattern-index", "empty-state"}.issubset(parser.ids))
+        self.assertTrue({"pattern-search", "family-filter", "activity-filter", "hypothesis-filter", "evidence-filter", "pattern-index", "empty-state"}.issubset(parser.ids))
         self.assertIn('id="empty-state" hidden', text)
         self.assertIn("52", text)
         self.assertIn("A² / THE TAXONOMY", text)
@@ -198,9 +198,44 @@ class SiteIntegrityTests(unittest.TestCase):
             self.assertIn(f'value="{family}"', text)
         for activity in ("A1", "A2", "A3"):
             self.assertIn(f'value="{activity}"', text)
+        for hypothesis in ("H1", "H2", "H3"):
+            self.assertIn(f'value="{hypothesis}"', text)
         for status in ("source_located", "specification_only", "current_cue", "no_current_cue"):
             self.assertIn(f'value="{status}"', text)
         self.assertIn("coverage is not confirmed prevalence", text.lower())
+
+    def test_hypothesis_lens_mapping_and_band(self) -> None:
+        mapping = {"A1": "H1", "A2": "H2", "A3": "H3"}
+        counts = {"H1": 0, "H2": 0, "H3": 0}
+        for pattern in self.patterns:
+            with self.subTest(pattern=pattern["id"]):
+                expected = sorted({mapping[a] for a in pattern["activities"]})
+                self.assertEqual(pattern["hypotheses"], expected)
+                self.assertTrue(expected)
+                for hypothesis in expected:
+                    counts[hypothesis] += 1
+        self.assertEqual(counts, {"H1": 31, "H2": 16, "H3": 22})
+
+        index_text, _ = parse_document(ROOT / "index.html")
+        self.assertIn('id="hypothesis-filter"', index_text)
+        self.assertIn('class="hypothesis-band"', index_text)
+        self.assertEqual(len(re.findall(r'class="hypothesis-band-card\b', index_text)), 3)
+        for hypothesis in ("H1", "H2", "H3"):
+            self.assertIn(f'data-hypothesis-link="{hypothesis}"', index_text)
+            self.assertIn(f'hypothesis-{hypothesis.lower()}"', index_text)
+            self.assertIn(f"<strong>{counts[hypothesis]} records</strong>", index_text)
+        self.assertEqual(index_text.count('class="row-hypothesis"'), sum(counts.values()))
+
+        for pattern_id in ("P01", "W01", "C01", "R01", "E01"):
+            with self.subTest(detail=pattern_id):
+                detail_text = (ROOT / "patterns" / pattern_id / "index.html").read_text(encoding="utf-8")
+                pattern = self.by_id[pattern_id]
+                self.assertEqual(
+                    detail_text.count('class="record-hypothesis"'),
+                    len(pattern["hypotheses"]),
+                )
+                self.assertIn("A1 → H1, A2 → H2, A3 → H3", detail_text)
+                self.assertIn('href="../../paper.html#research-agenda"', detail_text)
 
     def test_page_metadata_and_accessibility_shell(self) -> None:
         pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "agent.html", ROOT / "method.html", ROOT / "paper.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
@@ -349,7 +384,7 @@ class SiteIntegrityTests(unittest.TestCase):
         ):
             self.assertTrue((ROOT / relative).is_file(), relative)
         script = (ROOT / "assets/site.js").read_text(encoding="utf-8")
-        for token in ("pattern-search", "family-filter", "activity-filter", "evidence-filter", "empty-state", "nav-toggle", "URLSearchParams", "data-copy", "navigator.clipboard"):
+        for token in ("pattern-search", "family-filter", "activity-filter", "hypothesis-filter", "evidence-filter", "empty-state", "nav-toggle", "URLSearchParams", "data-copy", "navigator.clipboard"):
             self.assertIn(token, script)
         self.assertNotIn("fetch(", script)
         workflow = (ROOT / ".github/workflows/pages.yml").read_text(encoding="utf-8")

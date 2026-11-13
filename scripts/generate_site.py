@@ -37,6 +37,38 @@ ACTIVITIES = {
     "A2": "Testing & verification",
     "A3": "Maintenance & evolution",
 }
+# The three major hypotheses are a reading lens over the A² coordinates, not a
+# fourth taxonomy axis and not a change to any frozen pointcut, contract, cue,
+# or evidence value. A record informs a hypothesis through its frozen activity
+# focus: A1 (design) specifies the durable commitment (H1), A2 (verification)
+# exercises mechanized separation (H2), and A3 (evolution) is where bounded
+# self-modification is tested (H3).
+HYPOTHESES = {
+    "H1": {
+        "kicker": "Asset hypothesis",
+        "title": "Stable assets are design commitments.",
+        "activity": "A1",
+        "summary": "Under rapid prompt/code rewriting, the durable asset is an inspectable design commitment: pointcut, contract, permitted variation, test obligation, negative control.",
+    },
+    "H2": {
+        "kicker": "Agency hypothesis",
+        "title": "Separation must be mechanized.",
+        "activity": "A2",
+        "summary": "Agent-led evolution requires guards, gates, checkpoints, rollback, and evaluation that separate proposal from authorization—documentation alone is not a constraint.",
+    },
+    "H3": {
+        "kicker": "Controlled-variation hypothesis",
+        "title": "Bound the change to clarify the outcome.",
+        "activity": "A3",
+        "summary": "Bounded self-modification should reduce contract drift and regression and improve recovery and attribution relative to unconstrained revision.",
+    },
+}
+HYPOTHESIS_BY_ACTIVITY = {"A1": "H1", "A2": "H2", "A3": "H3"}
+
+
+def derive_hypotheses(activities: list[str]) -> list[str]:
+    """Map frozen A² activity coordinates to the hypotheses they inform."""
+    return [HYPOTHESIS_BY_ACTIVITY[a] for a in activities if a in HYPOTHESIS_BY_ACTIVITY]
 EXPECTED_IDS = (
     [f"P{i:02d}" for i in range(1, 30)]
     + [f"W{i:02d}" for i in range(1, 8)]
@@ -265,17 +297,19 @@ def shell(title: str, description: str, body: str, prefix: str = "", current: st
 
 def catalog_row(p: dict) -> str:
     evidence = [p["evidence"]["status"], "current_cue" if p["evidence"]["current_cue_repositories"] else "no_current_cue"]
-    search = " ".join([p["id"], p["name"], p["problem"], p["join_point"], p["family_name"], *p["activity_names"]]).lower()
+    hypotheses = p["hypotheses"]
+    search = " ".join([p["id"], p["name"], p["problem"], p["join_point"], p["family_name"], *p["activity_names"], *hypotheses]).lower()
     activity = " · ".join(p["activities"])
+    hypothesis_chips = "".join(f'<i class="row-hypothesis" data-hypothesis-tag="{h}">{h}</i>' for h in hypotheses)
     source = "Source-located" if p["evidence"]["status"] == "source_located" else "Specification only"
     observed = p["evidence"]["family_observed"]
     total = p["evidence"]["family_total"]
     coverage = round(100 * p["evidence"]["family_coverage"])
-    return f"""<article class="pattern-row" data-pattern="true" data-family="{p['family']}" data-activities="{' '.join(p['activities'])}" data-evidence="{' '.join(evidence)}" data-search="{esc(search)}">
+    return f"""<article class="pattern-row" data-pattern="true" data-family="{p['family']}" data-activities="{' '.join(p['activities'])}" data-hypotheses="{' '.join(hypotheses)}" data-evidence="{' '.join(evidence)}" data-search="{esc(search)}">
   <a class="pattern-row-link" href="patterns/{p['id']}/" aria-label="{p['id']}: {esc(p['name'])}">
     <span class="pattern-code">{p['id']}</span>
     <span class="pattern-main"><strong>{esc(p['name'])}</strong><span>{esc(p['problem'])}</span></span>
-    <span class="pattern-activity"><b>{activity}</b><small>{source}</small></span>
+    <span class="pattern-activity"><b>{activity}</b><small>{source}</small><span class="row-hypotheses">{hypothesis_chips}</span></span>
     <span class="row-coverage" aria-label="Any-evidence coverage: {observed} of {total} repository families"><span class="coverage-track"><i style="width:{coverage}%"></i></span><small>{observed}<b>/{total}</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
@@ -456,11 +490,22 @@ pohe-agent scan /path/to/your/harness</code></pre></div>
     )
 
 
+def hypothesis_card(key: str, spec: dict, count: int) -> str:
+    return f"""<article class="hypothesis-band-card hypothesis-{key.lower()}" data-hypothesis-link="{key}">
+  <header><span class="hypothesis-code">{key}</span><div><span class="hypothesis-kicker">{esc(spec['kicker'])}</span><h3>{esc(spec['title'])}</h3></div></header>
+  <p>{esc(spec['summary'])}</p>
+  <footer><span>{spec['activity']} · {esc(ACTIVITIES[spec['activity']])}</span><strong>{count} records</strong></footer>
+</article>"""
+
+
 def render_index(patterns: list[dict]) -> str:
     family_options = "".join(f'<option value="{key}">{key} — {esc(value[0])}</option>' for key, value in FAMILIES.items())
     activity_options = "".join(f'<option value="{key}">{key} — {esc(value)}</option>' for key, value in ACTIVITIES.items())
+    hypothesis_options = "".join(f'<option value="{key}">{key} · {esc(value["kicker"])}</option>' for key, value in HYPOTHESES.items())
     family_counts = Counter(p["family"] for p in patterns)
     family_rules = "".join(f"""<a href="#catalog" class="family-rule" data-family="{key}" data-family-link="{key}"><span class="family-code">{key}</span><strong>{esc(value[0])}</strong><small>{esc(value[1])}</small><span class="family-count">{family_counts[key]} records</span></a>""" for key, value in FAMILIES.items())
+    hypothesis_counts = Counter(h for p in patterns for h in p["hypotheses"])
+    hypothesis_cards = "".join(hypothesis_card(key, spec, hypothesis_counts.get(key, 0)) for key, spec in HYPOTHESES.items())
     rows = "\n".join(catalog_row(p) for p in patterns)
     body = f"""
 <main id="main-content">
@@ -494,12 +539,19 @@ def render_index(patterns: list[dict]) -> str:
 
   <section class="family-section" aria-labelledby="family-title"><div class="section-index">05 / SOURCE FAMILIES</div><h2 id="family-title" class="visually-hidden">Five source families</h2><div class="family-rules">{family_rules}</div><p class="section-footnote">Families record provenance, not another taxonomy axis. E records are research mechanisms, not claims of independently established recurring patterns.</p></section>
 
+  <section class="hypothesis-section" aria-labelledby="hypothesis-title">
+    <div class="hypothesis-intro"><div><span class="section-index">H1—H3 / RESEARCH HYPOTHESES</span><h2 id="hypothesis-title">Three hypotheses, one catalog.</h2></div><p>Each record informs a hypothesis through its A² activity coordinate: A1 (design) specifies the durable commitment, A2 (verification) exercises mechanized separation, and A3 (evolution) tests bounded self-modification. This is a reading lens—not a change to any frozen pointcut, contract, cue, or evidence value.</p></div>
+    <div class="hypothesis-band">{hypothesis_cards}</div>
+    <a class="text-link" href="paper.html#research-agenda">Read the hypotheses and their falsification boundaries <span aria-hidden="true">↗</span></a>
+  </section>
+
   <section class="catalog-section" id="catalog" aria-labelledby="catalog-title">
     <div class="catalog-heading"><div><span class="section-index">INDEX / 001—052</span><h2 id="catalog-title">Pattern catalog</h2></div><p>Search by responsibility, mechanism, or join point. Filter without losing the underlying record.</p></div>
     <form class="filters" id="filters" role="search" aria-label="Filter pattern catalog">
       <div class="search-field"><label for="pattern-search">Search the field guide</label><input id="pattern-search" name="q" type="search" placeholder="Try ‘sandbox’, ‘state’, or ‘stop’…" autocomplete="off" spellcheck="false"><span aria-hidden="true">⌕</span></div>
       <div class="select-field"><label for="family-filter">Source family</label><select id="family-filter" name="family"><option value="all">All five families</option>{family_options}</select></div>
       <div class="select-field"><label for="activity-filter">A² activity</label><select id="activity-filter" name="activity"><option value="all">All activities</option>{activity_options}</select></div>
+      <div class="select-field"><label for="hypothesis-filter">Research hypothesis</label><select id="hypothesis-filter" name="hypothesis"><option value="all">All hypotheses</option>{hypothesis_options}</select></div>
       <div class="select-field"><label for="evidence-filter">Evidence status</label><select id="evidence-filter" name="evidence"><option value="all">Any evidence status</option><option value="source_located">Source-located exemplar</option><option value="specification_only">Specification only</option><option value="current_cue">Current retrieval cue</option><option value="no_current_cue">No current retrieval cue</option></select></div>
       <button class="reset-button" id="reset-filters" type="button">Reset</button>
     </form>
@@ -585,6 +637,7 @@ def repo_files_html(files: list[dict]) -> str:
 
 def render_detail(p: dict, previous_id: str, next_id: str) -> str:
     activities = "".join(f'<li><b>{a}</b><span>{esc(ACTIVITIES[a])}</span></li>' for a in p["activities"])
+    hypothesis_labels = "".join(f'<a class="record-hypothesis" data-hypothesis-tag="{h}" href="../../paper.html#research-agenda" aria-label="Research hypothesis {h}: {esc(HYPOTHESES[h]["kicker"])}">{h}</a>' for h in p["hypotheses"])
     pointcut = "".join(f'<div><dt>{label}</dt><dd>{esc(p["pointcut"][key])}</dd></div>' for key, label in (("context", "Context"), ("trigger", "Trigger"), ("structure", "Structure"), ("effect", "Effect")))
     contracts = "".join(f'<div><dt>{label}</dt><dd>{esc(p[key])}</dd></div>' for key, label in (("requires", "Requires"), ("ensures", "Ensures"), ("invariant", "Invariant"), ("violation", "Violation")))
     evidence = p["evidence"]
@@ -605,7 +658,7 @@ def render_detail(p: dict, previous_id: str, next_id: str) -> str:
   <div class="record-breadcrumb"><a href="../../#catalog">Catalog</a><span>/</span><span>{p['family']} family</span><span>/</span><span>{p['id']}</span></div>
   <header class="record-header">
     <div class="record-number" aria-hidden="true">{p['id']}</div>
-    <div class="record-title"><div class="record-labels"><span>Proposed specification</span><span>{esc(status)}</span></div><h1>{esc(p['name'])}</h1><p>{esc(p['problem'])}</p></div>
+    <div class="record-title"><div class="record-labels"><span>Proposed specification</span><span>{esc(status)}</span>{hypothesis_labels}</div><h1>{esc(p['name'])}</h1><p>{esc(p['problem'])}</p></div>
     <div class="record-stamp"><span>JOIN POINT</span><code>{esc(p['join_point'])}</code><span>RECORD STATUS</span><strong>Candidate · v{esc(p['codebook_version'])}</strong></div>
   </header>
 
@@ -619,7 +672,7 @@ def render_detail(p: dict, previous_id: str, next_id: str) -> str:
 
   <section class="record-section contract-section" id="contract"><div class="record-section-label"><span>04</span><h2>Protected contract</h2><p>The obligation that clients, operators, and auditors should be able to rely on.</p></div><dl class="contract-list">{contracts}</dl><div class="negative-control"><h3>Negative control</h3><p>{esc(p['negative_control'])}</p></div></section>
 
-  <section class="record-section variation-section" id="variation"><div class="record-section-label"><span>05</span><h2>Variation & lifecycle</h2><p>The hot spot is admitted only where the protected semantics survive.</p></div><div class="variation-copy"><div><h3>Permitted variation</h3><p>{esc(p['variation'])}</p></div><div><h3>Test obligation</h3><p>{esc(p['test_obligation'])}</p></div><div><h3>Evolution question</h3><p>{esc(p['evolution_question'])}</p></div></div><aside class="a2-coordinates"><h3>A² activity coordinates</h3><ul>{activities}</ul><p>One record may carry multiple activity coordinates. The five source families do not add an axis.</p></aside></section>
+  <section class="record-section variation-section" id="variation"><div class="record-section-label"><span>05</span><h2>Variation & lifecycle</h2><p>The hot spot is admitted only where the protected semantics survive.</p></div><div class="variation-copy"><div><h3>Permitted variation</h3><p>{esc(p['variation'])}</p></div><div><h3>Test obligation</h3><p>{esc(p['test_obligation'])}</p></div><div><h3>Evolution question</h3><p>{esc(p['evolution_question'])}</p></div></div><aside class="a2-coordinates"><h3>A² activity coordinates</h3><ul>{activities}</ul><p>One record may carry multiple activity coordinates. The five source families do not add an axis. These coordinates map to the research hypotheses—A1 → H1, A2 → H2, A3 → H3—on the <a href="../../paper.html#research-agenda">Paper page</a>.</p></aside></section>
 
 
 
@@ -845,6 +898,7 @@ def load_data(study: Path, paper: Path) -> dict:
             "id": pid, "name": spec["name"], "family": family,
             "family_name": FAMILIES[family][0], "codebook_version": candidate["codebook_version"],
             "activities": activities, "activity_names": [ACTIVITIES[a] for a in activities],
+            "hypotheses": derive_hypotheses(activities),
             "problem": candidate["problem_and_purpose"], "join_point": spec["join_point"],
             "pointcut": spec["pointcut"], "requires": spec["requires"], "ensures": spec["ensures"],
             "invariant": spec["invariant"], "violation": spec["violation"], "variation": spec["variation"],

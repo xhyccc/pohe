@@ -31,6 +31,9 @@
       "activity_names": [
         "Design & implementation"
       ],
+      "hypotheses": [
+        "H1"
+      ],
       "problem": "Alternate model turns and action execution.",
       "join_point": "agent_turn_execution",
       "pointcut": {
@@ -181,6 +184,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Overlap output and independent work.",
       "join_point": "parallel_invocation_batch",
@@ -333,6 +339,9 @@
       "activity_names": [
         "Design & implementation"
       ],
+      "hypotheses": [
+        "H1"
+      ],
       "problem": "Make waiting and resumption explicit.",
       "join_point": "asynchronous_wait_and_resume",
       "pointcut": {
@@ -477,6 +486,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Layer behavior around model/tool calls.",
       "join_point": "model_or_tool_call_boundary",
@@ -628,6 +640,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Expose incremental execution events.",
       "join_point": "incremental_event_stream",
@@ -786,6 +801,9 @@
       "activity_names": [
         "Design & implementation"
       ],
+      "hypotheses": [
+        "H1"
+      ],
       "problem": "Separate transitions from live control.",
       "join_point": "transition_core_with_live_input",
       "pointcut": {
@@ -930,6 +948,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Adapt caching to provider-specific interfaces.",
       "join_point": "provider_request_construction",
@@ -1076,6 +1097,9 @@
       "activity_names": [
         "Design & implementation"
       ],
+      "hypotheses": [
+        "H1"
+      ],
       "problem": "Swap model backends.",
       "join_point": "model_backend_resolution",
       "pointcut": {
@@ -1220,6 +1244,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Discover capabilities only when needed.",
       "join_point": "tool_discovery_to_invocation",
@@ -1368,6 +1395,10 @@
         "Design & implementation",
         "Testing & verification"
       ],
+      "hypotheses": [
+        "H1",
+        "H2"
+      ],
       "problem": "Bound observations while enabling recovery.",
       "join_point": "observation_boundary",
       "pointcut": {
@@ -1512,6 +1543,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Distinguish an operation from an orchestration.",
       "join_point": "operation_versus_orchestration",
@@ -1676,6 +1710,9 @@
       "activity_names": [
         "Design & implementation"
       ],
+      "hypotheses": [
+        "H1"
+      ],
       "problem": "Delegate bounded subtasks.",
       "join_point": "delegated_task_spawn",
       "pointcut": {
@@ -1822,6 +1859,10 @@
       "activity_names": [
         "Design & implementation",
         "Maintenance & evolution"
+      ],
+      "hypotheses": [
+        "H1",
+        "H3"
       ],
       "problem": "Drive work from a durable execution record.",
       "join_point": "durable_work_consumption",
@@ -1970,6 +2011,10 @@
         "Design & implementation",
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H1",
+        "H3"
+      ],
       "problem": "Reconstruct state from recorded events.",
       "join_point": "conversation_state_projection",
       "pointcut": {
@@ -2116,6 +2161,10 @@
       "activity_names": [
         "Design & implementation",
         "Maintenance & evolution"
+      ],
+      "hypotheses": [
+        "H1",
+        "H3"
       ],
       "problem": "Package reusable task procedures.",
       "join_point": "reusable_procedure_loading",
@@ -2264,6 +2313,10 @@
         "Design & implementation",
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H1",
+        "H3"
+      ],
       "problem": "Extend behavior at named events.",
       "join_point": "named_lifecycle_event",
       "pointcut": {
@@ -2408,6 +2461,9 @@
       ],
       "activity_names": [
         "Testing & verification"
+      ],
+      "hypotheses": [
+        "H2"
       ],
       "problem": "Check artifacts before accepting completion.",
       "join_point": "terminal_acceptance_interception",
@@ -2566,6 +2622,9 @@
       "activity_names": [
         "Testing & verification"
       ],
+      "hypotheses": [
+        "H2"
+      ],
       "problem": "Detect stalled or repetitive behavior.",
       "join_point": "repetitive_behavior_observation",
       "pointcut": {
@@ -2716,6 +2775,9 @@
       "activity_names": [
         "Testing & verification"
       ],
+      "hypotheses": [
+        "H2"
+      ],
       "problem": "Bound execution resources.",
       "join_point": "resource_accounting_cycle",
       "pointcut": {
@@ -2863,6 +2925,10 @@
         "Testing & verification",
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H2",
+        "H3"
+      ],
       "problem": "Use feedback to revise attempts.",
       "join_point": "failed_attempt_feedback",
       "pointcut": {
@@ -3002,6 +3068,9 @@
       "activity_names": [
         "Testing & verification"
       ],
+      "hypotheses": [
+        "H2"
+      ],
       "problem": "Inspect command structure before execution.",
       "join_point": "command_authorization_boundary",
       "pointcut": {
@@ -3130,6 +3199,9 @@
       ],
       "activity_names": [
         "Testing & verification"
+      ],
+      "hypotheses": [
+        "H2"
       ],
       "problem": "Preserve minimum restrictions across customization.",
       "join_point": "policy_composition",
@@ -3287,6 +3359,9 @@
       "activity_names": [
         "Testing & verification"
       ],
+      "hypotheses": [
+        "H2"
+      ],
       "problem": "Combine policy decisions with execution isolation.",
       "join_point": "authorized_action_environment",
       "pointcut": {
@@ -3431,6 +3506,9 @@
       ],
       "activity_names": [
         "Testing & verification"
+      ],
+      "hypotheses": [
+        "H2"
       ],
       "problem": "Review risky proposed actions.",
       "join_point": "risky_action_escalation",
@@ -3583,6 +3661,9 @@
       "activity_names": [
         "Testing & verification"
       ],
+      "hypotheses": [
+        "H2"
+      ],
       "problem": "Bind capabilities to explicit scopes.",
       "join_point": "capability_resolution",
       "pointcut": {
@@ -3727,6 +3808,9 @@
       ],
       "activity_names": [
         "Maintenance & evolution"
+      ],
+      "hypotheses": [
+        "H3"
       ],
       "problem": "Branch or revisit execution history.",
       "join_point": "conversation_history_branch",
@@ -3879,6 +3963,9 @@
       "activity_names": [
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H3"
+      ],
       "problem": "Bound history while retaining useful state.",
       "join_point": "context_projection",
       "pointcut": {
@@ -4023,6 +4110,9 @@
       ],
       "activity_names": [
         "Maintenance & evolution"
+      ],
+      "hypotheses": [
+        "H3"
       ],
       "problem": "Update reusable task memory.",
       "join_point": "reusable_memory_update",
@@ -4177,6 +4267,10 @@
         "Design & implementation",
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H1",
+        "H3"
+      ],
       "problem": "Preserve an interface while changing its implementation or host.",
       "join_point": "external_harness_compatibility",
       "pointcut": {
@@ -4321,6 +4415,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Pass intermediate results through planned stages.",
       "join_point": "sequential_stage_composition",
@@ -4477,6 +4574,9 @@
       "activity_names": [
         "Design & implementation"
       ],
+      "hypotheses": [
+        "H1"
+      ],
       "problem": "Select a specialized path for an input.",
       "join_point": "input_dispatch",
       "pointcut": {
@@ -4628,6 +4728,9 @@
       "activity_names": [
         "Design & implementation"
       ],
+      "hypotheses": [
+        "H1"
+      ],
       "problem": "Run independent work or alternative judgments concurrently.",
       "join_point": "fan_out_fan_in",
       "pointcut": {
@@ -4772,6 +4875,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Generate and delegate subtasks dynamically.",
       "join_point": "dynamic_task_decomposition",
@@ -4920,6 +5026,10 @@
         "Testing & verification",
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H2",
+        "H3"
+      ],
       "problem": "Revise an artifact using iterative feedback.",
       "join_point": "generate_evaluate_revise",
       "pointcut": {
@@ -5064,6 +5174,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Keep a coordinating agent in control of specialists.",
       "join_point": "manager_owned_specialist_work",
@@ -5210,6 +5323,9 @@
       "activity_names": [
         "Design & implementation"
       ],
+      "hypotheses": [
+        "H1"
+      ],
       "problem": "Transfer control to another specialized agent.",
       "join_point": "peer_control_transfer",
       "pointcut": {
@@ -5354,6 +5470,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Coordinate interactions through an intermediary.",
       "join_point": "participant_interaction_coordination",
@@ -5510,6 +5629,9 @@
       "activity_names": [
         "Design & implementation"
       ],
+      "hypotheses": [
+        "H1"
+      ],
       "problem": "Notify registered dependents of changes.",
       "join_point": "subject_change_notification",
       "pointcut": {
@@ -5657,6 +5779,10 @@
         "Design & implementation",
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H1",
+        "H3"
+      ],
       "problem": "Decouple producers from consumers.",
       "join_point": "topic_based_event_delivery",
       "pointcut": {
@@ -5801,6 +5927,9 @@
       ],
       "activity_names": [
         "Design & implementation"
+      ],
+      "hypotheses": [
+        "H1"
       ],
       "problem": "Mediate discovery and invocation across boundaries.",
       "join_point": "service_discovery_invocation",
@@ -5959,6 +6088,9 @@
       "activity_names": [
         "Design & implementation"
       ],
+      "hypotheses": [
+        "H1"
+      ],
       "problem": "Interleave reasoning and external actions.",
       "join_point": "interleaved_reasoning_and_action",
       "pointcut": {
@@ -6106,6 +6238,10 @@
         "Testing & verification",
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H2",
+        "H3"
+      ],
       "problem": "Reuse feedback across attempts.",
       "join_point": "feedback_reuse_across_attempts",
       "pointcut": {
@@ -6223,6 +6359,10 @@
       "activity_names": [
         "Design & implementation",
         "Maintenance & evolution"
+      ],
+      "hypotheses": [
+        "H1",
+        "H3"
       ],
       "problem": "Specialize related harnesses.",
       "join_point": "harness_specialization_via_subtype",
@@ -6368,6 +6508,9 @@
       ],
       "activity_names": [
         "Maintenance & evolution"
+      ],
+      "hypotheses": [
+        "H3"
       ],
       "problem": "Improve a harness using contrastive probes.",
       "join_point": "harness_edit_cycle",
@@ -6520,6 +6663,10 @@
         "Testing & verification",
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H2",
+        "H3"
+      ],
       "problem": "Limit overfitting during repeated edits.",
       "join_point": "repeated_acceptance_decision",
       "pointcut": {
@@ -6666,6 +6813,10 @@
       "activity_names": [
         "Testing & verification",
         "Maintenance & evolution"
+      ],
+      "hypotheses": [
+        "H2",
+        "H3"
       ],
       "problem": "Search among competing objectives.",
       "join_point": "candidate_harness_selection",
@@ -6819,6 +6970,10 @@
         "Design & implementation",
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H1",
+        "H3"
+      ],
       "problem": "Construct and evolve reusable harness components.",
       "join_point": "harness_component_build_and_evaluate",
       "pointcut": {
@@ -6948,6 +7103,9 @@
       "activity_names": [
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H3"
+      ],
       "problem": "Adapt runtime structure and policy together.",
       "join_point": "coadaptive_training_loop",
       "pointcut": {
@@ -7071,6 +7229,10 @@
       "activity_names": [
         "Testing & verification",
         "Maintenance & evolution"
+      ],
+      "hypotheses": [
+        "H2",
+        "H3"
       ],
       "problem": "Evolve executable candidates.",
       "join_point": "executable_candidate_generation",
@@ -7208,6 +7370,9 @@
       "activity_names": [
         "Maintenance & evolution"
       ],
+      "hypotheses": [
+        "H3"
+      ],
       "problem": "Choose harness versus weight adaptation.",
       "join_point": "embodied_adaptation_decision",
       "pointcut": {
@@ -7324,6 +7489,10 @@
       "activity_names": [
         "Design & implementation",
         "Maintenance & evolution"
+      ],
+      "hypotheses": [
+        "H1",
+        "H3"
       ],
       "problem": "Separate planning and execution feedback.",
       "join_point": "planner_executor_feedback_link",
@@ -7462,6 +7631,10 @@
       "activity_names": [
         "Testing & verification",
         "Maintenance & evolution"
+      ],
+      "hypotheses": [
+        "H2",
+        "H3"
       ],
       "problem": "Use traces to guide candidate changes.",
       "join_point": "trace_to_harness_change",
