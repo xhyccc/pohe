@@ -128,6 +128,8 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertIn("Aliases", text)
                 self.assertIn("Canonical exemplar", text)
                 self.assertIn("class=\"detection-regex\"", text)
+                self.assertIn("Scope-anchored review", text)
+                self.assertIn(f"pohe-agent analyze &lt;repo&gt; --pattern {pattern_id}", text)
                 if pattern["repo_files"]:
                     self.assertIn('class="repo-file"', text)
                     self.assertIn("https://github.com/", text)
