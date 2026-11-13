@@ -170,7 +170,8 @@ class SiteIntegrityTests(unittest.TestCase):
             "pohe-pattern-matching", "pohe-harness-evolution",
             "pohe-agent scan", "pohe-agent match",
             "pohe-agent plan", "E1", "E2", "E3",
-            "not a confirmed implementation",
+            "not a confirmed implementation", "98.55%", "172,832",
+            "docs/reproduction.md",
         ):
             self.assertIn(phrase, text)
         self.assertIn("https://github.com/xhyccc/pohe-agent", text)

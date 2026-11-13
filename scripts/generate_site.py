@@ -410,6 +410,17 @@ pohe-agent scan /path/to/your/harness</code></pre></div>
     </div>
   </section>
 
+  <section class="agent-repro" aria-labelledby="repro-title">
+    <div class="agent-section-head"><span class="section-index">VALIDATION / 41 REPOSITORIES</span><h2 id="repro-title">Run on the study's own checkouts.</h2><p>Not only the bundled example: 52 records against 41 frozen repositories, compared cell by cell with the published cue matrix.</p></div>
+    <div class="repro-grid">
+      <div><b>172,832</b><span>candidate files scanned</span></div>
+      <div><b>2,132</b><span>repository × record cells</span></div>
+      <div><b>98.55%</b><span>exact agreement</span></div>
+      <div><b>99.60%</b><span>recall over study-positive cells</span></div>
+    </div>
+    <p class="repro-note">All five misses are files the scanner excludes by design: four above the 2 MB limit and one minified third-party asset. Most extra cells are cells where re-running the study's own detector retrieves cues the frozen matrix omits. This is cue-level agreement, not a claim that every match is an implemented pattern. <a class="text-link" href="https://github.com/xhyccc/pohe-agent/blob/main/docs/reproduction.md">Method and per-cell differences <span aria-hidden="true">↗</span></a></p>
+  </section>
+
   <section class="agent-boundary" aria-labelledby="boundary-title">
     <div class="agent-boundary-copy"><span class="section-index">EVIDENCE LADDER</span><h2 id="boundary-title">Cues are leads.<br>Contracts are claims.</h2><p>The tool can produce E1 on its own. E2 and E3 require reading the source, the tests, or a runtime check. The package keeps that boundary visible in every report.</p><a class="text-link" href="method.html#evidence-key">Read the full evidence key <span aria-hidden="true">↗</span></a></div>
     <ol class="agent-ladder">
