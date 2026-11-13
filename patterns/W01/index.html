@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="W01 Prompt chaining: proposed harness pattern pointcut, contract, variation, interaction model, and source evidence.">
+  <meta name="theme-color" content="#f2eee4">
+  <title>W01 · Prompt chaining — POHE</title>
+  <link rel="canonical" href="https://xhyccc.github.io/pohe/patterns/W01/">
+  <link rel="stylesheet" href="../../assets/styles.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <a class="wordmark" href="../.././" aria-label="POHE field guide home">
+    <svg class="mark" viewBox="0 0 42 42" aria-hidden="true"><path d="M4 4h34v34H4zM4 14h34M14 4v34M14 14l12 12M26 14v12H14"/><circle cx="14" cy="14" r="2.5"/><circle cx="26" cy="26" r="2.5"/></svg>
+    <span><strong>POHE</strong><small>Engineering field guide</small></span>
+  </a>
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span>Index</span><i aria-hidden="true"></i></button>
+  <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+    <a href="../.././#catalog">Catalog <sup>52</sup></a>
+    <a href="../../method.html">Method & evidence</a>
+    <a class="paper-link" href="../../assets/paper/pohe-position.pdf">Read the paper <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
+
+<main id="main-content" class="record-page">
+  <div class="record-breadcrumb"><a href="../../#catalog">Catalog</a><span>/</span><span>W family</span><span>/</span><span>W01</span></div>
+  <header class="record-header">
+    <div class="record-number" aria-hidden="true">W01</div>
+    <div class="record-title"><div class="record-labels"><span>Proposed specification</span><span>Source-located exemplar</span></div><h1>Prompt chaining</h1><p>Pass intermediate results through planned stages.</p></div>
+    <div class="record-stamp"><span>JOIN POINT</span><code>sequential_stage_composition</code><span>RECORD STATUS</span><strong>Candidate · v0.1.0</strong></div>
+  </header>
+
+  <nav class="record-toc" aria-label="On this page"><span>On this record</span><a href="#pointcut">Pointcut</a><a href="#contract">Contract</a><a href="#variation">Variation</a><a href="#interaction">Interaction</a><a href="#evidence">Evidence</a></nav>
+
+  <section class="record-section pointcut-section" id="pointcut"><div class="record-section-label"><span>01</span><h2>Pointcut</h2><p>Where the mechanism applies. All four dimensions belong to the proposed match, not just its vocabulary.</p></div><dl class="pointcut-grid"><div><dt>Context</dt><dd>A task is decomposed into ordered agent or prompt stages.</dd></div><div><dt>Trigger</dt><dd>One stage produces an intermediate result consumed by the next.</dd></div><div><dt>Structure</dt><dd>Stage graph, typed handoff payload, validation, and terminal output.</dd></div><div><dt>Effect</dt><dd>Stages execute in order and downstream input is attributable to upstream output.</dd></div></dl></section>
+
+  <section class="record-section contract-section" id="contract"><div class="record-section-label"><span>02</span><h2>Protected contract</h2><p>The obligation that clients, operators, and auditors should be able to rely on.</p></div><dl class="contract-list"><div><dt>Requires</dt><dd>Stage order and handoff schema are defined.</dd></div><div><dt>Ensures</dt><dd>Every stage receives validated input and the final output identifies its stage lineage.</dd></div><div><dt>Invariant</dt><dd>A later stage cannot execute before its prerequisites complete.</dd></div><div><dt>Violation</dt><dd>A stage failure stops, retries, or branches according to declared policy.</dd></div></dl><div class="negative-control"><h3>Negative control</h3><p>Independent prompts with no intermediate-result dependency do not count.</p></div></section>
+
+  <section class="record-section variation-section" id="variation"><div class="record-section-label"><span>03</span><h2>Variation & lifecycle</h2><p>The hot spot is admitted only where the protected semantics survive.</p></div><div class="variation-copy"><div><h3>Permitted variation</h3><p>Sequential agents, prompt templates, pipelines, and transform nodes.</p></div><div><h3>Test obligation</h3><p>Test order, input propagation, stage failure, and branching.</p></div><div><h3>Evolution question</h3><p>Did chains add typed handoffs and explicit failure propagation?</p></div></div><aside class="a2-coordinates"><h3>A² activity coordinates</h3><ul><li><b>A1</b><span>Design &amp; implementation</span></li></ul><p>One record may carry multiple activity coordinates. The five source families do not add an axis.</p></aside></section>
+
+  <section class="record-section interaction-section" id="interaction"><div class="record-section-label"><span>04</span><h2>Analytical interaction model</h2><p>A readable arrangement of roles and messages derived from the proposed specification.</p></div><figure class="interaction-figure"><a href="../../assets/diagrams/W01.svg" aria-label="Open full-size SVG diagram for W01"><img src="../../assets/diagrams/W01.svg" alt="Object-interaction diagram for Prompt chaining, showing analytical roles and message flow" loading="lazy"></a><figcaption><span>FIG. W01 / OBJECT INTERACTION</span><p>This is an analytical model, <strong>not an observed trace</strong> and not evidence of implementation. Edge order is not a universal execution timeline.</p><a class="download-link" href="../../assets/diagrams/W01.pdf" download>Download diagram PDF <span aria-hidden="true">↓</span></a></figcaption></figure></section>
+
+  <section class="record-section evidence-section" id="evidence"><div class="record-section-label"><span>05</span><h2>Evidence & provenance</h2><p>Each layer answers a different question. Do not substitute retrieval for review.</p></div><div class="evidence-content"><div class="evidence-status"><span class="status-mark"></span><h3>Source-located exemplar</h3><p>A concrete source anchor is available for this proposed record. It is one exemplar, not evidence that all repositories—or every contract field—conform.</p><p class="review-note"><strong>Review boundary:</strong> this candidate and its specification come from an AI-assisted study. Independent human validation remains open.</p></div><div class="coverage-figure"><span>ANY-EVIDENCE FAMILY COVERAGE</span><strong>6<i>/36</i></strong><p>16.7% of repository families in the frozen panel have at least one current cue, historical cue, or canonical source layer. <strong>This is not confirmed prevalence.</strong></p><small>Current lexical-cue repositories: 7 / 41</small></div></div><div class="anchors"><div class="source-anchor"><span class="anchor-kind">Canonical source anchor</span><a class="repo-name" href="https://github.com/google/adk-python/blob/946ca77224d5b3e1bf7c5a1dd0a39e9b17c3e655/src/google/adk/agents/sequential_agent.py#L91">google/adk-python <span aria-hidden="true">↗</span></a><code class="commit">946ca77224d5</code><a class="locator" href="https://github.com/google/adk-python/blob/946ca77224d5b3e1bf7c5a1dd0a39e9b17c3e655/src/google/adk/agents/sequential_agent.py#L91"><code>src/google/adk/agents/sequential_agent.py:91</code></a><div class="support-line"><span>Supporting surface</span><a href="https://github.com/google/adk-python/blob/946ca77224d5b3e1bf7c5a1dd0a39e9b17c3e655/tests/unittests/agents/test_sequential_agent.py#L80"><code>tests/unittests/agents/test_sequential_agent.py:80</code></a></div><p>SequentialAgent passes output through ordered sub-agents.</p></div></div><details class="retrieval-cue"><summary>Exploratory retrieval cue <span>Regex / v0.1.0</span></summary><div><code>(?i)\b(?:prompt[_-]?chain(?:ing)?|chain[_-]?(?:prompt|agent)|sequential[_-]?(?:workflow|pipeline))\b</code><p>This expression is a discovery instrument only. A match is a retrieval cue—not a confirmed implementation, pointcut match, or contract proof.</p></div></details></section>
+
+  <nav class="record-pagination" aria-label="Adjacent pattern records"><a class="previous-record" href="../P29/"><span>← Previous record</span><strong>P29</strong></a><a href="../../#catalog" class="all-records">All 52</a><a class="next-record" href="../W02/"><span>Next record →</span><strong>W02</strong></a></nav>
+</main>
+<footer class="site-footer">
+  <div><strong>POHE</strong> / Pattern-Oriented Harness Engineering</div>
+  <p>A proposed discipline for recurring harness decisions. Specifications and analytical diagrams do not certify implementations.</p>
+  <a href="../../method.html#evidence-key">How to read the evidence</a>
+</footer>
+</body>
+</html>

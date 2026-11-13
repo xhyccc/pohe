@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="P27 Lineage and threshold compaction: proposed harness pattern pointcut, contract, variation, interaction model, and source evidence.">
+  <meta name="theme-color" content="#f2eee4">
+  <title>P27 · Lineage and threshold compaction — POHE</title>
+  <link rel="canonical" href="https://xhyccc.github.io/pohe/patterns/P27/">
+  <link rel="stylesheet" href="../../assets/styles.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <a class="wordmark" href="../.././" aria-label="POHE field guide home">
+    <svg class="mark" viewBox="0 0 42 42" aria-hidden="true"><path d="M4 4h34v34H4zM4 14h34M14 4v34M14 14l12 12M26 14v12H14"/><circle cx="14" cy="14" r="2.5"/><circle cx="26" cy="26" r="2.5"/></svg>
+    <span><strong>POHE</strong><small>Engineering field guide</small></span>
+  </a>
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span>Index</span><i aria-hidden="true"></i></button>
+  <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+    <a href="../.././#catalog">Catalog <sup>52</sup></a>
+    <a href="../../method.html">Method & evidence</a>
+    <a class="paper-link" href="../../assets/paper/pohe-position.pdf">Read the paper <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
+
+<main id="main-content" class="record-page">
+  <div class="record-breadcrumb"><a href="../../#catalog">Catalog</a><span>/</span><span>P family</span><span>/</span><span>P27</span></div>
+  <header class="record-header">
+    <div class="record-number" aria-hidden="true">P27</div>
+    <div class="record-title"><div class="record-labels"><span>Proposed specification</span><span>Source-located exemplar</span></div><h1>Lineage and threshold compaction</h1><p>Bound history while retaining useful state.</p></div>
+    <div class="record-stamp"><span>JOIN POINT</span><code>context_projection</code><span>RECORD STATUS</span><strong>Candidate · v0.1.0</strong></div>
+  </header>
+
+  <nav class="record-toc" aria-label="On this page"><span>On this record</span><a href="#pointcut">Pointcut</a><a href="#contract">Contract</a><a href="#variation">Variation</a><a href="#interaction">Interaction</a><a href="#evidence">Evidence</a></nav>
+
+  <section class="record-section pointcut-section" id="pointcut"><div class="record-section-label"><span>01</span><h2>Pointcut</h2><p>Where the mechanism applies. All four dimensions belong to the proposed match, not just its vocabulary.</p></div><dl class="pointcut-grid"><div><dt>Context</dt><dd>History approaches a context or count threshold before a model call.</dd></div><div><dt>Trigger</dt><dd>A compaction policy activates.</dd></div><div><dt>Structure</dt><dd>Threshold, selection strategy, summarizer or truncator, and lineage metadata.</dd></div><div><dt>Effect</dt><dd>Model input is reduced while retained and removed evidence remains attributable.</dd></div></dl></section>
+
+  <section class="record-section contract-section" id="contract"><div class="record-section-label"><span>02</span><h2>Protected contract</h2><p>The obligation that clients, operators, and auditors should be able to rely on.</p></div><dl class="contract-list"><div><dt>Requires</dt><dd>Context usage, protected items, and eviction policy are available.</dd></div><div><dt>Ensures</dt><dd>The replacement fits the target and records what replaced which history.</dd></div><div><dt>Invariant</dt><dd>Required system, safety, or current-task evidence is not silently evicted.</dd></div><div><dt>Violation</dt><dd>Summary failure, threshold conflict, or empty projection falls back explicitly.</dd></div></dl><div class="negative-control"><h3>Negative control</h3><p>A generic text truncate utility is not compaction without lineage.</p></div></section>
+
+  <section class="record-section variation-section" id="variation"><div class="record-section-label"><span>03</span><h2>Variation & lifecycle</h2><p>The hot spot is admitted only where the protected semantics survive.</p></div><div class="variation-copy"><div><h3>Permitted variation</h3><p>Message count, token budget, oldest-first, protected groups, remote or local.</p></div><div><h3>Test obligation</h3><p>Test threshold edge, protected item, failure, lineage, and post-compaction facts.</p></div><div><h3>Evolution question</h3><p>Did summarization become thresholded and lineage-aware?</p></div></div><aside class="a2-coordinates"><h3>A² activity coordinates</h3><ul><li><b>A3</b><span>Maintenance &amp; evolution</span></li></ul><p>One record may carry multiple activity coordinates. The five source families do not add an axis.</p></aside></section>
+
+  <section class="record-section interaction-section" id="interaction"><div class="record-section-label"><span>04</span><h2>Analytical interaction model</h2><p>A readable arrangement of roles and messages derived from the proposed specification.</p></div><figure class="interaction-figure"><a href="../../assets/diagrams/P27.svg" aria-label="Open full-size SVG diagram for P27"><img src="../../assets/diagrams/P27.svg" alt="Object-interaction diagram for Lineage and threshold compaction, showing analytical roles and message flow" loading="lazy"></a><figcaption><span>FIG. P27 / OBJECT INTERACTION</span><p>This is an analytical model, <strong>not an observed trace</strong> and not evidence of implementation. Edge order is not a universal execution timeline.</p><a class="download-link" href="../../assets/diagrams/P27.pdf" download>Download diagram PDF <span aria-hidden="true">↓</span></a></figcaption></figure></section>
+
+  <section class="record-section evidence-section" id="evidence"><div class="record-section-label"><span>05</span><h2>Evidence & provenance</h2><p>Each layer answers a different question. Do not substitute retrieval for review.</p></div><div class="evidence-content"><div class="evidence-status"><span class="status-mark"></span><h3>Source-located exemplar</h3><p>A concrete source anchor is available for this proposed record. It is one exemplar, not evidence that all repositories—or every contract field—conform.</p><p class="review-note"><strong>Review boundary:</strong> this candidate and its specification come from an AI-assisted study. Independent human validation remains open.</p></div><div class="coverage-figure"><span>ANY-EVIDENCE FAMILY COVERAGE</span><strong>35<i>/36</i></strong><p>97.2% of repository families in the frozen panel have at least one current cue, historical cue, or canonical source layer. <strong>This is not confirmed prevalence.</strong></p><small>Current lexical-cue repositories: 39 / 41</small></div></div><div class="anchors"><div class="source-anchor"><span class="anchor-kind">Canonical source anchor</span><a class="repo-name" href="https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/session/compaction.ts#L298">anomalyco/opencode <span aria-hidden="true">↗</span></a><code class="commit">885df74024b6</code><a class="locator" href="https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/src/session/compaction.ts#L298"><code>packages/core/src/session/compaction.ts:298</code></a><div class="support-line"><span>Supporting surface</span><a href="https://github.com/anomalyco/opencode/blob/885df74024b6b540b63bfd487014252227713ea7/packages/core/test/session-native-compaction.test.ts#L213"><code>packages/core/test/session-native-compaction.test.ts:213</code></a></div><p>Threshold, background, and native compaction.</p></div></div><details class="retrieval-cue"><summary>Exploratory retrieval cue <span>Regex / v0.1.0</span></summary><div><code>(?i)\b(?:compact(?:ion|ed|or)?|summari[sz](?:e|ation)|truncate[_-]?history|token[_-]?limited[_-]?history)\b</code><p>This expression is a discovery instrument only. A match is a retrieval cue—not a confirmed implementation, pointcut match, or contract proof.</p></div></details></section>
+
+  <nav class="record-pagination" aria-label="Adjacent pattern records"><a class="previous-record" href="../P26/"><span>← Previous record</span><strong>P26</strong></a><a href="../../#catalog" class="all-records">All 52</a><a class="next-record" href="../P28/"><span>Next record →</span><strong>P28</strong></a></nav>
+</main>
+<footer class="site-footer">
+  <div><strong>POHE</strong> / Pattern-Oriented Harness Engineering</div>
+  <p>A proposed discipline for recurring harness decisions. Specifications and analytical diagrams do not certify implementations.</p>
+  <a href="../../method.html#evidence-key">How to read the evidence</a>
+</footer>
+</body>
+</html>
