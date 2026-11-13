@@ -105,7 +105,7 @@
         params.set("evidence", evidence.value);
       }
       var query = params.toString();
-      var hash = window.location.hash || "#catalog";
+      var hash = window.location.hash;
       var next = window.location.pathname + (query ? "?" + query : "") + hash;
       if (window.history && window.history.replaceState) {
         window.history.replaceState(null, "", next);
@@ -125,7 +125,7 @@
         });
     }
 
-    function apply() {
+    function apply(persist) {
       var term = normalise(search.value);
       var familyValue = family.value;
       var activityValue = activity.value;
@@ -154,7 +154,9 @@
         empty.hidden = visible !== 0;
       }
       index.hidden = visible === 0;
-      writeUrl();
+      if (persist !== false) {
+        writeUrl();
+      }
     }
 
     [search, family, activity, evidence].forEach(function (control) {
@@ -193,11 +195,36 @@
     });
 
     readUrl();
-    apply();
+    apply(false);
+  }
+
+
+  function setupCopyButtons() {
+    var buttons = document.querySelectorAll("[data-copy]");
+    Array.prototype.forEach.call(buttons, function (button) {
+      button.addEventListener("click", function () {
+        var target = document.getElementById(button.getAttribute("data-copy") || "");
+        if (!target) {
+          return;
+        }
+        var text = target.textContent;
+        var done = function () {
+          var original = button.textContent;
+          button.textContent = "Copied";
+          window.setTimeout(function () {
+            button.textContent = original;
+          }, 1400);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, function () {});
+        }
+      });
+    });
   }
 
   ready(function () {
     setupNavigation();
     setupCatalog();
+    setupCopyButtons();
   });
 })();

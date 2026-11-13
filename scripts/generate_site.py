@@ -14,10 +14,16 @@ import json
 import re
 import shutil
 import subprocess
+import sys
+
+sys.dont_write_bytecode = True
+from collections import Counter
 from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from pattern_examples import EXAMPLES  # noqa: E402
 FAMILIES = {
     "P": ("Coding-agent mechanisms", "Execution loops, tools, authority, durable state, and stop-time checks."),
     "W": ("Workflows & coordination", "Named workflows and coordination forms from official agent guides."),
@@ -196,9 +202,10 @@ def shell(title: str, description: str, body: str, prefix: str = "", current: st
 {nav(prefix, current)}
 {body}
 <footer class="site-footer">
-  <div><strong>POHE</strong> / Pattern-Oriented Harness Engineering</div>
+  <div><strong>POHE</strong> / Pattern-Oriented Harness Engineering<br><span class="footer-author">Haoyi Xiong</span></div>
   <p>A proposed discipline for recurring harness decisions. Specifications and analytical diagrams do not certify implementations.</p>
   <div class="footer-links"><a href="{prefix}method.html#evidence-key">How to read the evidence</a><a href="{prefix}method.html#colophon">Colophon</a></div>
+  <p class="footer-disclosure">Analytical diagrams, prompt sketches, and code designs describe proposed contracts. They are not observed traces, repository class declarations, or evidence that any implementation conforms.</p>
 </footer>
 </body>
 </html>"""
@@ -209,11 +216,15 @@ def catalog_row(p: dict) -> str:
     search = " ".join([p["id"], p["name"], p["problem"], p["join_point"], p["family_name"], *p["activity_names"]]).lower()
     activity = " · ".join(p["activities"])
     source = "Source-located" if p["evidence"]["status"] == "source_located" else "Specification only"
+    observed = p["evidence"]["family_observed"]
+    total = p["evidence"]["family_total"]
+    coverage = round(100 * p["evidence"]["family_coverage"])
     return f"""<article class="pattern-row" data-pattern="true" data-family="{p['family']}" data-activities="{' '.join(p['activities'])}" data-evidence="{' '.join(evidence)}" data-search="{esc(search)}">
   <a class="pattern-row-link" href="patterns/{p['id']}/" aria-label="{p['id']}: {esc(p['name'])}">
     <span class="pattern-code">{p['id']}</span>
     <span class="pattern-main"><strong>{esc(p['name'])}</strong><span>{esc(p['problem'])}</span></span>
-    <span class="pattern-activity">{activity}<small>{source}</small></span>
+    <span class="pattern-activity"><b>{activity}</b><small>{source}</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: {observed} of {total} repository families"><span class="coverage-track"><i style="width:{coverage}%"></i></span><small>{observed}<b>/{total}</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>""".strip()
@@ -222,7 +233,8 @@ def catalog_row(p: dict) -> str:
 def render_index(patterns: list[dict]) -> str:
     family_options = "".join(f'<option value="{key}">{key} — {esc(value[0])}</option>' for key, value in FAMILIES.items())
     activity_options = "".join(f'<option value="{key}">{key} — {esc(value)}</option>' for key, value in ACTIVITIES.items())
-    family_rules = "".join(f"""<a href="#catalog" class="family-rule" data-family-link="{key}"><span>{key}</span><strong>{esc(value[0])}</strong><small>{esc(value[1])}</small></a>""" for key, value in FAMILIES.items())
+    family_counts = Counter(p["family"] for p in patterns)
+    family_rules = "".join(f"""<a href="#catalog" class="family-rule" data-family="{key}" data-family-link="{key}"><span class="family-code">{key}</span><strong>{esc(value[0])}</strong><small>{esc(value[1])}</small><span class="family-count">{family_counts[key]} records</span></a>""" for key, value in FAMILIES.items())
     rows = "\n".join(catalog_row(p) for p in patterns)
     body = f"""
 <main id="main-content">
@@ -230,24 +242,46 @@ def render_index(patterns: list[dict]) -> str:
     <div class="hero-kicker"><span>Field guide № 01</span><span>Proposed pattern discipline</span></div>
     <div class="hero-grid">
       <div>
-        <h1 id="hero-title">The harness is<br><em>the software.</em></h1>
+        <h1 id="hero-title">Pattern-Oriented<br><em>Harness Engineering</em></h1>
         <p class="hero-deck">A field guide to the recurring decisions around AI agents: what may vary, what must hold, and what happens when it does not.</p>
         <div class="hero-actions"><a class="button button-primary" href="#catalog">Browse the 52 records <span aria-hidden="true">↓</span></a><a class="text-link" href="method.html">Read the method <span aria-hidden="true">↗</span></a></div>
       </div>
       <aside class="hero-note" aria-label="Position statement">
         <span class="note-label">Position / 001</span>
         <p>Scaling alone cannot absorb a harness’s system responsibilities. Name the join point. Protect the contract. Test the violation path. Record the lifecycle.</p>
-        <div class="coordinate-sketch" aria-hidden="true"><span>A1</span><span>A2</span><span>A3</span><i></i><b>Protected contract<br>×<br>Permitted variation</b></div>
+        <a class="note-map-link" href="#a2-map"><span>A² taxonomy</span><strong>See the two-axis map</strong><i aria-hidden="true">↓</i></a>
       </aside>
     </div>
-    <div class="inventory-line"><strong>52</strong><span>candidate records</span><strong>05</strong><span>source families</span><strong>03</strong><span>activity coordinates</span><small>Inventory size, not a prevalence claim.</small></div>
+    <figure class="hero-map" id="a2-map">
+      <a class="hero-map-frame" href="assets/a2/taxonomy-a2.svg" aria-label="Open the full A² taxonomy map as SVG">
+        <img src="assets/a2/taxonomy-a2.svg" width="1120" height="690" alt="A-squared taxonomy: three activities—design, verification, and evolution—cross protected contracts and permitted variation, with an authorized re-generalization return from maintenance to design." loading="lazy">
+      </a>
+      <figcaption>
+        <span class="map-kicker">A² / THE TAXONOMY</span>
+        <h3>Two axes, one record.</h3>
+        <p>Activities ask when an obligation is designed, verified, and revisited. Assets ask what must hold and what may change. The dashed return is re-generalization: the contract itself is reopened.</p>
+        <div class="map-links"><a class="button button-ghost" href="assets/a2/taxonomy-a2.svg">Open the full map <span aria-hidden="true">↗</span></a><a class="text-link" href="assets/a2/taxonomy-a2.pdf" download>Download PDF <span aria-hidden="true">↓</span></a></div>
+      </figcaption>
+    </figure>
+    <div class="inventory-line"><div class="stat"><strong>52</strong><span>candidate records</span></div><div class="stat"><strong>05</strong><span>source families</span></div><div class="stat"><strong>03</strong><span>activity coordinates</span></div><small>Inventory size, not a prevalence claim.</small></div>
   </section>
 
   <section class="lens-section" aria-labelledby="lens-title">
-    <div class="section-index">A² / THE LENS</div>
-    <div class="lens-copy"><h2 id="lens-title">Activities × Assets</h2><p>A pattern name is not yet an engineering record. The A² lens asks <strong>when</strong> an obligation is designed, verified, and revisited—and <strong>what</strong> must remain stable while implementations change.</p></div>
-    <div class="lens-axis"><h3>Activities</h3><p><b>A1</b> Design & implementation</p><p><b>A2</b> Testing & verification</p><p><b>A3</b> Maintenance & evolution</p></div>
-    <div class="lens-axis"><h3>Assets</h3><p><b>Protected contract</b><br>Authority, state, invocation, and acceptance semantics clients can rely on.</p><p><b>Permitted variation</b><br>Adapters, policies, providers, and projections that can change without breaking that contract.</p></div>
+    <div class="lens-head"><div class="section-index">A² / THE LENS</div><h2 id="lens-title">Activities × Assets</h2><p>A pattern name is not yet an engineering record. The A² lens asks <strong>when</strong> an obligation is designed, verified, and revisited—and <strong>what</strong> must remain stable while implementations change.</p></div>
+    <div class="a2-matrix" role="img" aria-label="A two-by-three matrix: protected contract and permitted variation across design, verification, and evolution activities.">
+      <div class="a2-corner"><span>A²</span><small>record lens</small></div>
+      <div class="a2-col"><b>A1</b><span>Design</span></div>
+      <div class="a2-col"><b>A2</b><span>Verify</span></div>
+      <div class="a2-col"><b>A3</b><span>Evolve</span></div>
+      <div class="a2-row"><b>Protected contract</b><span>What must hold</span></div>
+      <div class="a2-cell"><strong>Declare</strong> authority, state, and acceptance</div>
+      <div class="a2-cell"><strong>Exercise</strong> the violation path</div>
+      <div class="a2-cell"><strong>Re-generalize</strong> when the seam fails</div>
+      <div class="a2-row"><b>Permitted variation</b><span>What may change</span></div>
+      <div class="a2-cell"><strong>Admit</strong> adapters, policies, providers</div>
+      <div class="a2-cell"><strong>Vary</strong> tests and diagnostics</div>
+      <div class="a2-cell"><strong>Move</strong> the mechanism without losing the contract</div>
+    </div>
   </section>
 
   <section class="family-section" aria-labelledby="family-title"><div class="section-index">05 / SOURCE FAMILIES</div><h2 id="family-title" class="visually-hidden">Five source families</h2><div class="family-rules">{family_rules}</div><p class="section-footnote">Families record provenance, not another taxonomy axis. E records are research mechanisms, not claims of independently established recurring patterns.</p></section>
@@ -269,7 +303,7 @@ def render_index(patterns: list[dict]) -> str:
 
   <aside class="evidence-banner" id="evidence-key"><span class="section-index">READ WITH CARE</span><h2>A cue is a place to look,<br>not a pattern confirmed.</h2><div><p><strong>Proposed specification.</strong> Pointcuts and contracts define what a conforming mechanism would do.</p><p><strong>Exploratory retrieval cue.</strong> A regex or structural match retrieves candidate locations. Any-evidence coverage is not confirmed prevalence.</p><p><strong>Source-located exemplar.</strong> A curator identified a concrete implementation anchor. It does not certify every contract field.</p><p><strong>Human / AI review.</strong> Study annotations are AI-assisted and bounded; independent human validation remains open.</p></div><a class="text-link" href="method.html#evidence-key">Full evidence key and limitations <span aria-hidden="true">↗</span></a></aside>
 </main>"""
-    return shell("POHE — Pattern-Oriented Harness Engineering", "An engineering field guide to 52 candidate patterns for agent harnesses: pointcuts, contracts, variation, evidence, and lifecycle.", body, current="catalog")
+    return shell("POHE — Pattern-Oriented Harness Engineering", "An engineering field guide to 52 candidate patterns for agent harnesses: UML class views, pointcuts, contracts, variation, prompt and code design sketches, evidence, and lifecycle.", body, current="catalog")
 
 
 def anchor_html(anchor: dict) -> str:
@@ -280,6 +314,24 @@ def anchor_html(anchor: dict) -> str:
     if anchor.get("support"):
         support = f"""<div class="support-line"><span>Supporting surface</span><a href="{esc(anchor['support_url'])}"><code>{esc(anchor['support'])}</code></a></div>"""
     return f"""<div class="source-anchor"><span class="anchor-kind">Canonical source anchor</span><a class="repo-name" href="{esc(anchor['url'])}">{esc(anchor['repo_slug'])} <span aria-hidden="true">↗</span></a><code class="commit">{esc(anchor['commit_sha'][:12])}</code><a class="locator" href="{esc(anchor['url'])}"><code>{implementation}</code></a>{support}<p>{esc(anchor['note'])}</p></div>"""
+
+
+
+def example_section(p: dict) -> str:
+    example = EXAMPLES[p["id"]]
+    prompt = esc(example["prompt"])
+    code = esc(example["code"])
+    note = esc(example["note"])
+    prompt_id = f"prompt-{p['id']}"
+    code_id = f"code-{p['id']}"
+    return f"""
+  <section class="record-section prompt-code-section" id="prompt-code"><div class="record-section-label"><span>06</span><h2>Prompt + code design</h2><p>An illustrative prompt and a small design sketch for the proposed contract. Names and APIs are invented; this is not a repository excerpt.</p></div>
+    <div class="design-grid">
+      <article class="design-card"><div class="design-card-head"><span>PROMPT SKETCH</span><button class="copy-button" type="button" data-copy="{prompt_id}">Copy</button></div><pre class="prompt-block" id="{prompt_id}"><code>{prompt}</code></pre></article>
+      <article class="design-card"><div class="design-card-head"><span>CODE DESIGN / PYTHON</span><button class="copy-button" type="button" data-copy="{code_id}">Copy</button></div><pre class="code-block" id="{code_id}"><code>{code}</code></pre></article>
+    </div>
+    <p class="design-note"><strong>Illustrative design sketch.</strong> {note} This example is a teaching aid, not implementation evidence or a conformance claim.</p>
+  </section>"""
 
 
 def render_detail(p: dict, previous_id: str, next_id: str) -> str:
@@ -300,7 +352,7 @@ def render_detail(p: dict, previous_id: str, next_id: str) -> str:
     percent = round(100 * evidence["family_coverage"], 1)
     regex = esc(p["retrieval_cue"]["regex"])
     body = f"""
-<main id="main-content" class="record-page">
+<main id="main-content" class="record-page" data-family="{p['family']}">
   <div class="record-breadcrumb"><a href="../../#catalog">Catalog</a><span>/</span><span>{p['family']} family</span><span>/</span><span>{p['id']}</span></div>
   <header class="record-header">
     <div class="record-number" aria-hidden="true">{p['id']}</div>
@@ -308,17 +360,23 @@ def render_detail(p: dict, previous_id: str, next_id: str) -> str:
     <div class="record-stamp"><span>JOIN POINT</span><code>{esc(p['join_point'])}</code><span>RECORD STATUS</span><strong>Candidate · v{esc(p['codebook_version'])}</strong></div>
   </header>
 
-  <nav class="record-toc" aria-label="On this page"><span>On this record</span><a href="#pointcut">Pointcut</a><a href="#contract">Contract</a><a href="#variation">Variation</a><a href="#interaction">Interaction</a><a href="#evidence">Evidence</a></nav>
+  <section class="record-section uml-section" id="uml-view"><div class="record-section-label"><span>01</span><h2>UML class view</h2><p>The proposed contract drawn as participant roles, received calls, and numbered dependencies.</p></div><figure class="interaction-figure"><a href="../../{p['class_svg']}" aria-label="Open full-size UML class view for {p['id']}"><img src="../../{p['class_svg']}" alt="UML class view for {esc(p['name'])}, showing participant roles, received calls, and analytical dependencies" loading="lazy"></a><figcaption><span>FIG. {p['id']} / UML CLASS VIEW</span><div class="figure-links"><a href="../../{p['class_svg']}">Open full SVG <span aria-hidden="true">↗</span></a><a class="download-link" href="../../{p['diagram_pdf']}" download>Download PDF <span aria-hidden="true">↓</span></a></div></figcaption></figure></section>
 
-  <section class="record-section pointcut-section" id="pointcut"><div class="record-section-label"><span>01</span><h2>Pointcut</h2><p>Where the mechanism applies. All four dimensions belong to the proposed match, not just its vocabulary.</p></div><dl class="pointcut-grid">{pointcut}</dl></section>
+  <section class="record-section interaction-section" id="interactions"><div class="record-section-label"><span>02</span><h2>Object interactions</h2><p>The same roles and calls as a class collaboration and a numbered message sequence.</p></div><figure class="interaction-figure"><a href="../../{p['interaction_svg']}" aria-label="Open full-size object interaction diagram for {p['id']}"><img src="../../{p['interaction_svg']}" alt="Object interaction diagram for {esc(p['name'])}, showing role collaboration and a numbered message sequence" loading="lazy"></a><figcaption><span>FIG. {p['id']} / OBJECT INTERACTIONS</span><div class="figure-links"><a href="../../{p['interaction_svg']}">Open full SVG <span aria-hidden="true">↗</span></a><a class="download-link" href="../../{p['interaction_pdf']}" download>Download PDF <span aria-hidden="true">↓</span></a></div></figcaption></figure></section>
 
-  <section class="record-section contract-section" id="contract"><div class="record-section-label"><span>02</span><h2>Protected contract</h2><p>The obligation that clients, operators, and auditors should be able to rely on.</p></div><dl class="contract-list">{contracts}</dl><div class="negative-control"><h3>Negative control</h3><p>{esc(p['negative_control'])}</p></div></section>
+  <nav class="record-toc" aria-label="On this page"><span>On this record</span><a href="#uml-view">UML view</a><a href="#interactions">Object interactions</a><a href="#pointcut">Pointcut</a><a href="#contract">Contract</a><a href="#variation">Variation</a><a href="#prompt-code">Prompt + code</a><a href="#evidence">Evidence</a></nav>
 
-  <section class="record-section variation-section" id="variation"><div class="record-section-label"><span>03</span><h2>Variation & lifecycle</h2><p>The hot spot is admitted only where the protected semantics survive.</p></div><div class="variation-copy"><div><h3>Permitted variation</h3><p>{esc(p['variation'])}</p></div><div><h3>Test obligation</h3><p>{esc(p['test_obligation'])}</p></div><div><h3>Evolution question</h3><p>{esc(p['evolution_question'])}</p></div></div><aside class="a2-coordinates"><h3>A² activity coordinates</h3><ul>{activities}</ul><p>One record may carry multiple activity coordinates. The five source families do not add an axis.</p></aside></section>
+  <section class="record-section pointcut-section" id="pointcut"><div class="record-section-label"><span>03</span><h2>Pointcut</h2><p>Where the mechanism applies. All four dimensions belong to the proposed match, not just its vocabulary.</p></div><dl class="pointcut-grid">{pointcut}</dl></section>
 
-  <section class="record-section interaction-section" id="interaction"><div class="record-section-label"><span>04</span><h2>Analytical interaction model</h2><p>A readable arrangement of roles and messages derived from the proposed specification.</p></div><figure class="interaction-figure"><a href="../../{p['diagram_svg']}" aria-label="Open full-size SVG diagram for {p['id']}"><img src="../../{p['diagram_svg']}" alt="Object-interaction diagram for {esc(p['name'])}, showing analytical roles and message flow" loading="lazy"></a><figcaption><span>FIG. {p['id']} / OBJECT INTERACTION</span><p>This is an analytical model, <strong>not an observed trace</strong> and not evidence of implementation. Edge order is not a universal execution timeline.</p><a class="download-link" href="../../{p['diagram_pdf']}" download>Download diagram PDF <span aria-hidden="true">↓</span></a></figcaption></figure></section>
+  <section class="record-section contract-section" id="contract"><div class="record-section-label"><span>04</span><h2>Protected contract</h2><p>The obligation that clients, operators, and auditors should be able to rely on.</p></div><dl class="contract-list">{contracts}</dl><div class="negative-control"><h3>Negative control</h3><p>{esc(p['negative_control'])}</p></div></section>
 
-  <section class="record-section evidence-section" id="evidence"><div class="record-section-label"><span>05</span><h2>Evidence & provenance</h2><p>Each layer answers a different question. Do not substitute retrieval for review.</p></div><div class="evidence-content"><div class="evidence-status"><span class="status-mark"></span><h3>{esc(status)}</h3><p>{esc(evidence_note)}</p><p class="review-note"><strong>Review boundary:</strong> this candidate and its specification come from an AI-assisted study. Independent human validation remains open.</p></div><div class="coverage-figure"><span>ANY-EVIDENCE FAMILY COVERAGE</span><strong>{coverage}<i>/{family_total}</i></strong><p>{percent}% of repository families in the frozen panel have at least one current cue, historical cue, or canonical source layer. <strong>This is not confirmed prevalence.</strong></p><small>Current lexical-cue repositories: {current} / {evidence['repository_total']}</small></div></div><div class="anchors">{anchors}</div><details class="retrieval-cue"><summary>Exploratory retrieval cue <span>Regex / v{esc(p['retrieval_cue']['version'])}</span></summary><div><code>{regex}</code><p>This expression is a discovery instrument only. A match is a retrieval cue—not a confirmed implementation, pointcut match, or contract proof.</p></div></details></section>
+  <section class="record-section variation-section" id="variation"><div class="record-section-label"><span>05</span><h2>Variation & lifecycle</h2><p>The hot spot is admitted only where the protected semantics survive.</p></div><div class="variation-copy"><div><h3>Permitted variation</h3><p>{esc(p['variation'])}</p></div><div><h3>Test obligation</h3><p>{esc(p['test_obligation'])}</p></div><div><h3>Evolution question</h3><p>{esc(p['evolution_question'])}</p></div></div><aside class="a2-coordinates"><h3>A² activity coordinates</h3><ul>{activities}</ul><p>One record may carry multiple activity coordinates. The five source families do not add an axis.</p></aside></section>
+
+
+
+{example_section(p)}
+
+  <section class="record-section evidence-section" id="evidence"><div class="record-section-label"><span>07</span><h2>Evidence & provenance</h2><p>Each layer answers a different question. Do not substitute retrieval for review.</p></div><div class="evidence-content"><div class="evidence-status"><span class="status-mark"></span><h3>{esc(status)}</h3><p>{esc(evidence_note)}</p><p class="review-note"><strong>Review boundary:</strong> this candidate and its specification come from an AI-assisted study. Independent human validation remains open.</p></div><div class="coverage-figure"><span>ANY-EVIDENCE FAMILY COVERAGE</span><strong>{coverage}<i>/{family_total}</i></strong><div class="coverage-bar" aria-hidden="true"><i style="width:{percent}%"></i></div><p>{percent}% of repository families in the frozen panel have at least one current cue, historical cue, or canonical source layer. <strong>This is not confirmed prevalence.</strong></p><small>Current lexical-cue repositories: {current} / {evidence['repository_total']}</small></div></div><div class="anchors">{anchors}</div><details class="retrieval-cue"><summary>Exploratory retrieval cue <span>Regex / v{esc(p['retrieval_cue']['version'])}</span></summary><div><code>{regex}</code><p>This expression is a discovery instrument only. A match is a retrieval cue—not a confirmed implementation, pointcut match, or contract proof.</p></div></details></section>
 
   <nav class="record-pagination" aria-label="Adjacent pattern records"><a class="previous-record" href="../{previous_id}/"><span>← Previous record</span><strong>{previous_id}</strong></a><a href="../../#catalog" class="all-records">All 52</a><a class="next-record" href="../{next_id}/"><span>Next record →</span><strong>{next_id}</strong></a></nav>
 </main>"""
@@ -361,7 +419,7 @@ python3 -m http.server 8000</code></pre><p>The generator uses PyYAML with a stdl
 
   <section class="method-section limitations-section"><div class="method-section-number">06</div><div><h2>Limitations</h2><ul class="limitations-list"><li>The 52 records are a scoped candidate inventory, not 52 disjoint or universally established mechanisms.</li><li>Current cue coverage is descriptive retrieval in a selected frozen panel, <strong>not a prevalence denominator</strong> or confirmed prevalence.</li><li>Locating a source-backed exemplar for 51 of 52 records does not establish frequency, generality, or contract conformance elsewhere. E08 remains specification-only.</li><li>Lexical detectors have false-positive and construction-leakage risks. Exact structural matching and one-model profile coding do not replace independent adjudication.</li><li>A² is a proposed analytical lens, not a validated lifecycle model. Recording a contract does not enforce it.</li><li>H1 and H2 are prospective, design-only studies. No causal performance, safety, cost, or reliability benefit follows from repository association.</li><li>The complete paper PDF is an unpublished, untagged preview, not an accessibility-compliant publication file.</li></ul></div></section>
 
-  <section class="method-section colophon-section" id="colophon"><div class="method-section-number">◇</div><div><h2>Colophon: why this field guide exists</h2><p class="method-lead">It continues an unpublished master’s research project on design patterns.</p><p>That project asked what this one still asks: when does a recurring solution become a pattern, and what must a record say before anyone else can use it? The vocabulary here is learned from the Gang of Four’s catalog, Roy T. Fielding’s account of architectural styles in network software, and Douglas C. Schmidt’s writing on distributed-computing patterns and the Pattern-Oriented Software Architecture series.</p><p>Those teachers insisted on the discipline this guide tries to keep: name the join point, state the contract, separate what may vary, and show the evidence. The field guide is dedicated to the research that remained unpublished—and to the readers who can carry the question further.</p><ul class="colophon-links"><li><a href="https://roy.gbiv.com/pubs/dissertation/top.htm">Roy T. Fielding, <em>Architectural Styles and the Design of Network-based Software Architectures</em> (2000)</a></li><li><a href="https://www.dre.vanderbilt.edu/~schmidt/">Douglas C. Schmidt</a> — distributed-computing patterns and the POSA series</li><li>Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides, <em>Design Patterns: Elements of Reusable Object-Oriented Software</em> (1994)</li></ul></div></section>
+  <section class="method-section colophon-section" id="colophon"><div class="method-section-number">◇</div><div><h2>Colophon: why this field guide exists</h2><p class="colophon-byline">By Haoyi Xiong</p><p class="method-lead">It continues an unpublished master’s research project on design patterns.</p><p>That project asked what this one still asks: when does a recurring solution become a pattern, and what must a record say before anyone else can use it? The vocabulary here is learned from the Gang of Four’s catalog, Roy T. Fielding’s account of architectural styles in network software, and Douglas C. Schmidt’s writing on distributed-computing patterns and the Pattern-Oriented Software Architecture series.</p><p>Those teachers insisted on the discipline this guide tries to keep: name the join point, state the contract, separate what may vary, and show the evidence. The field guide is dedicated to the research that remained unpublished—and to the readers who can carry the question further.</p><ul class="colophon-links"><li><a href="https://roy.gbiv.com/pubs/dissertation/top.htm">Roy T. Fielding, <em>Architectural Styles and the Design of Network-based Software Architectures</em> (2000)</a></li><li><a href="https://www.dre.vanderbilt.edu/~schmidt/">Douglas C. Schmidt</a> — distributed-computing patterns and the POSA series</li><li>Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides, <em>Design Patterns: Elements of Reusable Object-Oriented Software</em> (1994)</li></ul></div></section>
 </main>"""
     return shell("Method & evidence — POHE", "How the POHE field guide separates proposed specifications, retrieval cues, source exemplars, and review; frozen inputs, hashes, commands, overlays, and limitations.", body, current="method", canonical="method.html")
 
@@ -421,6 +479,8 @@ def load_data(study: Path) -> dict:
             "anchors": anchors, "interactions": diagrams[pid]["interactions"],
             "retrieval_cue": {"regex": detector[pid]["regex"], "version": detector_doc["version"], "frozen_at": detector_doc["frozen_at"], "role": "exploratory_retrieval_only"},
             "diagram_svg": f"assets/diagrams/{pid}.svg", "diagram_pdf": f"assets/diagrams/{pid}.pdf",
+            "class_svg": f"assets/diagrams/{pid}-class.svg",
+            "interaction_svg": f"assets/interactions/{pid}.svg", "interaction_pdf": f"assets/interactions/{pid}.pdf",
             "url": f"patterns/{pid}/",
         }
         records.append(record)
@@ -453,6 +513,10 @@ def main() -> None:
     data = load_data(study)
     if data["record_count"] != 52 or [p["id"] for p in data["patterns"]] != EXPECTED_IDS:
         raise ValueError("Catalog must contain exactly P01–P29, W01–W07, C01–C04, R01–R02, E01–E10")
+    if set(EXAMPLES) != set(EXPECTED_IDS):
+        missing = sorted(set(EXPECTED_IDS) - set(EXAMPLES))
+        extra = sorted(set(EXAMPLES) - set(EXPECTED_IDS))
+        raise ValueError(f"Examples must cover every record; missing={missing}, extra={extra}")
     write_text(ROOT / "data/patterns.json", json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     write_text(ROOT / "index.html", render_index(data["patterns"]))
     write_text(ROOT / "method.html", render_method(data))
@@ -461,6 +525,16 @@ def main() -> None:
         for suffix in ("svg", "pdf"):
             source = study / "reports/pattern_diagrams" / suffix / f"{pattern['id']}.{suffix}"
             target = ROOT / "assets/diagrams" / f"{pattern['id']}.{suffix}"
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if not target.exists() or sha256(source) != sha256(target):
+                shutil.copyfile(source, target)
+        class_source = study / "reports/pattern_diagrams" / "svg" / f"{pattern['id']}-class.svg"
+        class_target = ROOT / "assets/diagrams" / f"{pattern['id']}-class.svg"
+        if not class_target.exists() or sha256(class_source) != sha256(class_target):
+            shutil.copyfile(class_source, class_target)
+        for suffix in ("svg", "pdf"):
+            source = study / "reports/pattern_interactions" / suffix / f"{pattern['id']}.{suffix}"
+            target = ROOT / "assets/interactions" / f"{pattern['id']}.{suffix}"
             target.parent.mkdir(parents=True, exist_ok=True)
             if not target.exists() or sha256(source) != sha256(target):
                 shutil.copyfile(source, target)

@@ -2,6 +2,7 @@
 """Stdlib integrity checks for the generated POHE static site."""
 from __future__ import annotations
 
+import html
 import json
 import re
 import unittest
@@ -22,7 +23,7 @@ REQUIRED_PATTERN_FIELDS = {
     "problem", "join_point", "pointcut", "requires", "ensures", "invariant",
     "violation", "variation", "negative_control", "test_obligation",
     "evolution_question", "evidence", "anchors", "interactions", "diagram_svg",
-    "diagram_pdf", "url",
+    "diagram_pdf", "class_svg", "interaction_svg", "interaction_pdf", "url",
 }
 
 
@@ -111,8 +112,18 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertIn("Structure", text)
                 self.assertIn("Effect", text)
                 self.assertIn("Negative control", text)
-                self.assertIn("Analytical interaction model", text)
-                self.assertIn("not an observed trace", text)
+                self.assertIn("UML class view", text)
+                self.assertIn("Object interactions", text)
+                self.assertIn(f'id="interactions"', text)
+                self.assertIn(f"assets/interactions/{pattern_id}.svg", text)
+                self.assertIn(f"assets/interactions/{pattern_id}.pdf", text)
+                self.assertIn("Prompt + code design", text)
+                self.assertIn("PROMPT SKETCH", text)
+                self.assertIn("CODE DESIGN / PYTHON", text)
+                self.assertIn(f'id="prompt-{pattern_id}"', text)
+                self.assertIn(f'id="code-{pattern_id}"', text)
+                self.assertIn(f'data-copy="prompt-{pattern_id}"', text)
+                self.assertIn("not observed traces, repository class declarations", text)
                 self.assertIn("retrieval cue", text.lower())
                 self.assertIn("download", text.lower())
                 self.assertTrue(parser.has_main)
@@ -128,6 +139,8 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertIn('id="empty-state" hidden', text)
         self.assertIn("52", text)
         self.assertIn("Activities × Assets", text)
+        self.assertIn("Pattern-Oriented", text)
+        self.assertIn("Harness Engineering", text)
         for family in ("P", "W", "C", "R", "E"):
             self.assertIn(f'value="{family}"', text)
         for activity in ("A1", "A2", "A3"):
@@ -174,11 +187,20 @@ class SiteIntegrityTests(unittest.TestCase):
         for pattern in self.patterns:
             with self.subTest(pattern=pattern["id"]):
                 svg = ROOT / pattern["diagram_svg"]
+                class_svg = ROOT / pattern["class_svg"]
                 pdf = ROOT / pattern["diagram_pdf"]
+                interaction_svg = ROOT / pattern["interaction_svg"]
+                interaction_pdf = ROOT / pattern["interaction_pdf"]
                 self.assertTrue(svg.is_file())
+                self.assertTrue(class_svg.is_file())
                 self.assertTrue(pdf.is_file())
+                self.assertTrue(interaction_svg.is_file())
+                self.assertTrue(interaction_pdf.is_file())
                 self.assertIn("<svg", svg.read_text(encoding="utf-8")[:2000])
+                self.assertIn("<svg", class_svg.read_text(encoding="utf-8")[:2000])
+                self.assertIn("<svg", interaction_svg.read_text(encoding="utf-8")[:2000])
                 self.assertEqual(pdf.read_bytes()[:4], b"%PDF")
+                self.assertEqual(interaction_pdf.read_bytes()[:4], b"%PDF")
                 self.assertTrue(all(len(edge) == 4 for edge in pattern["interactions"]))
 
     def test_method_and_reproducibility_boundaries(self) -> None:
@@ -196,11 +218,12 @@ class SiteIntegrityTests(unittest.TestCase):
     def test_support_files_and_javascript_wiring(self) -> None:
         for relative in (
             ".nojekyll", ".github/workflows/pages.yml", "README.md",
-            "scripts/generate_site.py", "assets/styles.css", "assets/site.js",
+            "scripts/generate_site.py", "scripts/pattern_examples.py",
+            "assets/styles.css", "assets/site.js",
         ):
             self.assertTrue((ROOT / relative).is_file(), relative)
         script = (ROOT / "assets/site.js").read_text(encoding="utf-8")
-        for token in ("pattern-search", "family-filter", "activity-filter", "evidence-filter", "empty-state", "nav-toggle", "URLSearchParams"):
+        for token in ("pattern-search", "family-filter", "activity-filter", "evidence-filter", "empty-state", "nav-toggle", "URLSearchParams", "data-copy", "navigator.clipboard"):
             self.assertIn(token, script)
         self.assertNotIn("fetch(", script)
         workflow = (ROOT / ".github/workflows/pages.yml").read_text(encoding="utf-8")
@@ -208,10 +231,43 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertIn("actions/deploy-pages", workflow)
         self.assertIn("path: .", workflow)
 
+    def test_every_record_has_a_prompt_and_code_sketch(self) -> None:
+        import sys
+        sys.dont_write_bytecode = True
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from pattern_examples import EXAMPLES
+
+        self.assertEqual(set(EXAMPLES), set(EXPECTED_IDS))
+        for pattern_id, example in EXAMPLES.items():
+            with self.subTest(pattern=pattern_id):
+                self.assertGreaterEqual(len(example["prompt"].split()), 18)
+                self.assertGreaterEqual(len(example["code"].splitlines()), 4)
+                self.assertTrue(example["note"])
+                page = html.unescape((ROOT / "patterns" / pattern_id / "index.html").read_text(encoding="utf-8"))
+                self.assertIn(example["note"], page)
+                self.assertIn(example["prompt"].splitlines()[0], page)
+
+    def test_hero_a2_map_assets_and_links(self) -> None:
+        svg = ROOT / "assets" / "a2" / "taxonomy-a2.svg"
+        pdf = ROOT / "assets" / "a2" / "taxonomy-a2.pdf"
+        self.assertTrue(svg.is_file(), svg)
+        self.assertTrue(pdf.is_file(), pdf)
+        self.assertIn("<svg", svg.read_text(encoding="utf-8")[:400])
+        self.assertEqual(pdf.read_bytes()[:4], b"%PDF")
+        text = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn('id="a2-map"', text)
+        self.assertIn('class="hero-map"', text)
+        self.assertIn("assets/a2/taxonomy-a2.svg", text)
+        self.assertIn("assets/a2/taxonomy-a2.pdf", text)
+        self.assertIn("Open the full map", text)
+        self.assertIn('href="#a2-map"', text)
+
     def test_colophon_and_influences(self) -> None:
         text = (ROOT / "method.html").read_text(encoding="utf-8")
         self.assertIn('id="colophon"', text)
         self.assertIn("Colophon", text)
+        self.assertIn("By Haoyi Xiong", text)
+        self.assertNotIn("Affiliation", text)
         for phrase in (
             "unpublished master’s research project on design patterns",
             "Gang of Four",

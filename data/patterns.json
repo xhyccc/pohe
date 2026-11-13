@@ -125,6 +125,9 @@
       },
       "diagram_svg": "assets/diagrams/P01.svg",
       "diagram_pdf": "assets/diagrams/P01.pdf",
+      "class_svg": "assets/diagrams/P01-class.svg",
+      "interaction_svg": "assets/interactions/P01.svg",
+      "interaction_pdf": "assets/interactions/P01.pdf",
       "url": "patterns/P01/"
     },
     {
@@ -234,6 +237,9 @@
       },
       "diagram_svg": "assets/diagrams/P02.svg",
       "diagram_pdf": "assets/diagrams/P02.pdf",
+      "class_svg": "assets/diagrams/P02-class.svg",
+      "interaction_svg": "assets/interactions/P02.svg",
+      "interaction_pdf": "assets/interactions/P02.pdf",
       "url": "patterns/P02/"
     },
     {
@@ -337,6 +343,9 @@
       },
       "diagram_svg": "assets/diagrams/P03.svg",
       "diagram_pdf": "assets/diagrams/P03.pdf",
+      "class_svg": "assets/diagrams/P03-class.svg",
+      "interaction_svg": "assets/interactions/P03.svg",
+      "interaction_pdf": "assets/interactions/P03.pdf",
       "url": "patterns/P03/"
     },
     {
@@ -446,6 +455,9 @@
       },
       "diagram_svg": "assets/diagrams/P04.svg",
       "diagram_pdf": "assets/diagrams/P04.pdf",
+      "class_svg": "assets/diagrams/P04-class.svg",
+      "interaction_svg": "assets/interactions/P04.svg",
+      "interaction_pdf": "assets/interactions/P04.pdf",
       "url": "patterns/P04/"
     },
     {
@@ -561,6 +573,9 @@
       },
       "diagram_svg": "assets/diagrams/P05.svg",
       "diagram_pdf": "assets/diagrams/P05.pdf",
+      "class_svg": "assets/diagrams/P05-class.svg",
+      "interaction_svg": "assets/interactions/P05.svg",
+      "interaction_pdf": "assets/interactions/P05.pdf",
       "url": "patterns/P05/"
     },
     {
@@ -664,6 +679,9 @@
       },
       "diagram_svg": "assets/diagrams/P06.svg",
       "diagram_pdf": "assets/diagrams/P06.pdf",
+      "class_svg": "assets/diagrams/P06-class.svg",
+      "interaction_svg": "assets/interactions/P06.svg",
+      "interaction_pdf": "assets/interactions/P06.pdf",
       "url": "patterns/P06/"
     },
     {
@@ -767,6 +785,9 @@
       },
       "diagram_svg": "assets/diagrams/P07.svg",
       "diagram_pdf": "assets/diagrams/P07.pdf",
+      "class_svg": "assets/diagrams/P07-class.svg",
+      "interaction_svg": "assets/interactions/P07.svg",
+      "interaction_pdf": "assets/interactions/P07.pdf",
       "url": "patterns/P07/"
     },
     {
@@ -870,6 +891,9 @@
       },
       "diagram_svg": "assets/diagrams/P08.svg",
       "diagram_pdf": "assets/diagrams/P08.pdf",
+      "class_svg": "assets/diagrams/P08-class.svg",
+      "interaction_svg": "assets/interactions/P08.svg",
+      "interaction_pdf": "assets/interactions/P08.pdf",
       "url": "patterns/P08/"
     },
     {
@@ -973,6 +997,9 @@
       },
       "diagram_svg": "assets/diagrams/P09.svg",
       "diagram_pdf": "assets/diagrams/P09.pdf",
+      "class_svg": "assets/diagrams/P09-class.svg",
+      "interaction_svg": "assets/interactions/P09.svg",
+      "interaction_pdf": "assets/interactions/P09.pdf",
       "url": "patterns/P09/"
     },
     {
@@ -1078,6 +1105,9 @@
       },
       "diagram_svg": "assets/diagrams/P10.svg",
       "diagram_pdf": "assets/diagrams/P10.pdf",
+      "class_svg": "assets/diagrams/P10-class.svg",
+      "interaction_svg": "assets/interactions/P10.svg",
+      "interaction_pdf": "assets/interactions/P10.pdf",
       "url": "patterns/P10/"
     },
     {
@@ -1199,6 +1229,9 @@
       },
       "diagram_svg": "assets/diagrams/P11.svg",
       "diagram_pdf": "assets/diagrams/P11.pdf",
+      "class_svg": "assets/diagrams/P11-class.svg",
+      "interaction_svg": "assets/interactions/P11.svg",
+      "interaction_pdf": "assets/interactions/P11.pdf",
       "url": "patterns/P11/"
     },
     {
@@ -1302,6 +1335,9 @@
       },
       "diagram_svg": "assets/diagrams/P12.svg",
       "diagram_pdf": "assets/diagrams/P12.pdf",
+      "class_svg": "assets/diagrams/P12-class.svg",
+      "interaction_svg": "assets/interactions/P12.svg",
+      "interaction_pdf": "assets/interactions/P12.pdf",
       "url": "patterns/P12/"
     },
     {
@@ -1407,6 +1443,9 @@
       },
       "diagram_svg": "assets/diagrams/P13.svg",
       "diagram_pdf": "assets/diagrams/P13.pdf",
+      "class_svg": "assets/diagrams/P13-class.svg",
+      "interaction_svg": "assets/interactions/P13.svg",
+      "interaction_pdf": "assets/interactions/P13.pdf",
       "url": "patterns/P13/"
     },
     {
@@ -1512,6 +1551,9 @@
       },
       "diagram_svg": "assets/diagrams/P14.svg",
       "diagram_pdf": "assets/diagrams/P14.pdf",
+      "class_svg": "assets/diagrams/P14-class.svg",
+      "interaction_svg": "assets/interactions/P14.svg",
+      "interaction_pdf": "assets/interactions/P14.pdf",
       "url": "patterns/P14/"
     },
     {
@@ -1617,6 +1659,9 @@
       },
       "diagram_svg": "assets/diagrams/P15.svg",
       "diagram_pdf": "assets/diagrams/P15.pdf",
+      "class_svg": "assets/diagrams/P15-class.svg",
+      "interaction_svg": "assets/interactions/P15.svg",
+      "interaction_pdf": "assets/interactions/P15.pdf",
       "url": "patterns/P15/"
     },
     {
@@ -1722,6 +1767,9 @@
       },
       "diagram_svg": "assets/diagrams/P16.svg",
       "diagram_pdf": "assets/diagrams/P16.pdf",
+      "class_svg": "assets/diagrams/P16-class.svg",
+      "interaction_svg": "assets/interactions/P16.svg",
+      "interaction_pdf": "assets/interactions/P16.pdf",
       "url": "patterns/P16/"
     },
     {
@@ -1831,6 +1879,9 @@
       },
       "diagram_svg": "assets/diagrams/P17.svg",
       "diagram_pdf": "assets/diagrams/P17.pdf",
+      "class_svg": "assets/diagrams/P17-class.svg",
+      "interaction_svg": "assets/interactions/P17.svg",
+      "interaction_pdf": "assets/interactions/P17.pdf",
       "url": "patterns/P17/"
     },
     {
@@ -1934,6 +1985,9 @@
       },
       "diagram_svg": "assets/diagrams/P18.svg",
       "diagram_pdf": "assets/diagrams/P18.pdf",
+      "class_svg": "assets/diagrams/P18-class.svg",
+      "interaction_svg": "assets/interactions/P18.svg",
+      "interaction_pdf": "assets/interactions/P18.pdf",
       "url": "patterns/P18/"
     },
     {
@@ -2037,6 +2091,9 @@
       },
       "diagram_svg": "assets/diagrams/P19.svg",
       "diagram_pdf": "assets/diagrams/P19.pdf",
+      "class_svg": "assets/diagrams/P19-class.svg",
+      "interaction_svg": "assets/interactions/P19.svg",
+      "interaction_pdf": "assets/interactions/P19.pdf",
       "url": "patterns/P19/"
     },
     {
@@ -2136,6 +2193,9 @@
       },
       "diagram_svg": "assets/diagrams/P20.svg",
       "diagram_pdf": "assets/diagrams/P20.pdf",
+      "class_svg": "assets/diagrams/P20-class.svg",
+      "interaction_svg": "assets/interactions/P20.svg",
+      "interaction_pdf": "assets/interactions/P20.pdf",
       "url": "patterns/P20/"
     },
     {
@@ -2239,6 +2299,9 @@
       },
       "diagram_svg": "assets/diagrams/P21.svg",
       "diagram_pdf": "assets/diagrams/P21.pdf",
+      "class_svg": "assets/diagrams/P21-class.svg",
+      "interaction_svg": "assets/interactions/P21.svg",
+      "interaction_pdf": "assets/interactions/P21.pdf",
       "url": "patterns/P21/"
     },
     {
@@ -2348,6 +2411,9 @@
       },
       "diagram_svg": "assets/diagrams/P22.svg",
       "diagram_pdf": "assets/diagrams/P22.pdf",
+      "class_svg": "assets/diagrams/P22-class.svg",
+      "interaction_svg": "assets/interactions/P22.svg",
+      "interaction_pdf": "assets/interactions/P22.pdf",
       "url": "patterns/P22/"
     },
     {
@@ -2451,6 +2517,9 @@
       },
       "diagram_svg": "assets/diagrams/P23.svg",
       "diagram_pdf": "assets/diagrams/P23.pdf",
+      "class_svg": "assets/diagrams/P23-class.svg",
+      "interaction_svg": "assets/interactions/P23.svg",
+      "interaction_pdf": "assets/interactions/P23.pdf",
       "url": "patterns/P23/"
     },
     {
@@ -2560,6 +2629,9 @@
       },
       "diagram_svg": "assets/diagrams/P24.svg",
       "diagram_pdf": "assets/diagrams/P24.pdf",
+      "class_svg": "assets/diagrams/P24-class.svg",
+      "interaction_svg": "assets/interactions/P24.svg",
+      "interaction_pdf": "assets/interactions/P24.pdf",
       "url": "patterns/P24/"
     },
     {
@@ -2663,6 +2735,9 @@
       },
       "diagram_svg": "assets/diagrams/P25.svg",
       "diagram_pdf": "assets/diagrams/P25.pdf",
+      "class_svg": "assets/diagrams/P25-class.svg",
+      "interaction_svg": "assets/interactions/P25.svg",
+      "interaction_pdf": "assets/interactions/P25.pdf",
       "url": "patterns/P25/"
     },
     {
@@ -2772,6 +2847,9 @@
       },
       "diagram_svg": "assets/diagrams/P26.svg",
       "diagram_pdf": "assets/diagrams/P26.pdf",
+      "class_svg": "assets/diagrams/P26-class.svg",
+      "interaction_svg": "assets/interactions/P26.svg",
+      "interaction_pdf": "assets/interactions/P26.pdf",
       "url": "patterns/P26/"
     },
     {
@@ -2875,6 +2953,9 @@
       },
       "diagram_svg": "assets/diagrams/P27.svg",
       "diagram_pdf": "assets/diagrams/P27.pdf",
+      "class_svg": "assets/diagrams/P27-class.svg",
+      "interaction_svg": "assets/interactions/P27.svg",
+      "interaction_pdf": "assets/interactions/P27.pdf",
       "url": "patterns/P27/"
     },
     {
@@ -2984,6 +3065,9 @@
       },
       "diagram_svg": "assets/diagrams/P28.svg",
       "diagram_pdf": "assets/diagrams/P28.pdf",
+      "class_svg": "assets/diagrams/P28-class.svg",
+      "interaction_svg": "assets/interactions/P28.svg",
+      "interaction_pdf": "assets/interactions/P28.pdf",
       "url": "patterns/P28/"
     },
     {
@@ -3089,6 +3173,9 @@
       },
       "diagram_svg": "assets/diagrams/P29.svg",
       "diagram_pdf": "assets/diagrams/P29.pdf",
+      "class_svg": "assets/diagrams/P29-class.svg",
+      "interaction_svg": "assets/interactions/P29.svg",
+      "interaction_pdf": "assets/interactions/P29.pdf",
       "url": "patterns/P29/"
     },
     {
@@ -3198,6 +3285,9 @@
       },
       "diagram_svg": "assets/diagrams/W01.svg",
       "diagram_pdf": "assets/diagrams/W01.pdf",
+      "class_svg": "assets/diagrams/W01-class.svg",
+      "interaction_svg": "assets/interactions/W01.svg",
+      "interaction_pdf": "assets/interactions/W01.pdf",
       "url": "patterns/W01/"
     },
     {
@@ -3307,6 +3397,9 @@
       },
       "diagram_svg": "assets/diagrams/W02.svg",
       "diagram_pdf": "assets/diagrams/W02.pdf",
+      "class_svg": "assets/diagrams/W02-class.svg",
+      "interaction_svg": "assets/interactions/W02.svg",
+      "interaction_pdf": "assets/interactions/W02.pdf",
       "url": "patterns/W02/"
     },
     {
@@ -3410,6 +3503,9 @@
       },
       "diagram_svg": "assets/diagrams/W03.svg",
       "diagram_pdf": "assets/diagrams/W03.pdf",
+      "class_svg": "assets/diagrams/W03-class.svg",
+      "interaction_svg": "assets/interactions/W03.svg",
+      "interaction_pdf": "assets/interactions/W03.pdf",
       "url": "patterns/W03/"
     },
     {
@@ -3513,6 +3609,9 @@
       },
       "diagram_svg": "assets/diagrams/W04.svg",
       "diagram_pdf": "assets/diagrams/W04.pdf",
+      "class_svg": "assets/diagrams/W04-class.svg",
+      "interaction_svg": "assets/interactions/W04.svg",
+      "interaction_pdf": "assets/interactions/W04.pdf",
       "url": "patterns/W04/"
     },
     {
@@ -3618,6 +3717,9 @@
       },
       "diagram_svg": "assets/diagrams/W05.svg",
       "diagram_pdf": "assets/diagrams/W05.pdf",
+      "class_svg": "assets/diagrams/W05-class.svg",
+      "interaction_svg": "assets/interactions/W05.svg",
+      "interaction_pdf": "assets/interactions/W05.pdf",
       "url": "patterns/W05/"
     },
     {
@@ -3721,6 +3823,9 @@
       },
       "diagram_svg": "assets/diagrams/W06.svg",
       "diagram_pdf": "assets/diagrams/W06.pdf",
+      "class_svg": "assets/diagrams/W06-class.svg",
+      "interaction_svg": "assets/interactions/W06.svg",
+      "interaction_pdf": "assets/interactions/W06.pdf",
       "url": "patterns/W06/"
     },
     {
@@ -3824,6 +3929,9 @@
       },
       "diagram_svg": "assets/diagrams/W07.svg",
       "diagram_pdf": "assets/diagrams/W07.pdf",
+      "class_svg": "assets/diagrams/W07-class.svg",
+      "interaction_svg": "assets/interactions/W07.svg",
+      "interaction_pdf": "assets/interactions/W07.pdf",
       "url": "patterns/W07/"
     },
     {
@@ -3933,6 +4041,9 @@
       },
       "diagram_svg": "assets/diagrams/C01.svg",
       "diagram_pdf": "assets/diagrams/C01.pdf",
+      "class_svg": "assets/diagrams/C01-class.svg",
+      "interaction_svg": "assets/interactions/C01.svg",
+      "interaction_pdf": "assets/interactions/C01.pdf",
       "url": "patterns/C01/"
     },
     {
@@ -4036,6 +4147,9 @@
       },
       "diagram_svg": "assets/diagrams/C02.svg",
       "diagram_pdf": "assets/diagrams/C02.pdf",
+      "class_svg": "assets/diagrams/C02-class.svg",
+      "interaction_svg": "assets/interactions/C02.svg",
+      "interaction_pdf": "assets/interactions/C02.pdf",
       "url": "patterns/C02/"
     },
     {
@@ -4141,6 +4255,9 @@
       },
       "diagram_svg": "assets/diagrams/C03.svg",
       "diagram_pdf": "assets/diagrams/C03.pdf",
+      "class_svg": "assets/diagrams/C03-class.svg",
+      "interaction_svg": "assets/interactions/C03.svg",
+      "interaction_pdf": "assets/interactions/C03.pdf",
       "url": "patterns/C03/"
     },
     {
@@ -4256,6 +4373,9 @@
       },
       "diagram_svg": "assets/diagrams/C04.svg",
       "diagram_pdf": "assets/diagrams/C04.pdf",
+      "class_svg": "assets/diagrams/C04-class.svg",
+      "interaction_svg": "assets/interactions/C04.svg",
+      "interaction_pdf": "assets/interactions/C04.pdf",
       "url": "patterns/C04/"
     },
     {
@@ -4359,6 +4479,9 @@
       },
       "diagram_svg": "assets/diagrams/R01.svg",
       "diagram_pdf": "assets/diagrams/R01.pdf",
+      "class_svg": "assets/diagrams/R01-class.svg",
+      "interaction_svg": "assets/interactions/R01.svg",
+      "interaction_pdf": "assets/interactions/R01.pdf",
       "url": "patterns/R01/"
     },
     {
@@ -4458,6 +4581,9 @@
       },
       "diagram_svg": "assets/diagrams/R02.svg",
       "diagram_pdf": "assets/diagrams/R02.pdf",
+      "class_svg": "assets/diagrams/R02-class.svg",
+      "interaction_svg": "assets/interactions/R02.svg",
+      "interaction_pdf": "assets/interactions/R02.pdf",
       "url": "patterns/R02/"
     },
     {
@@ -4563,6 +4689,9 @@
       },
       "diagram_svg": "assets/diagrams/E01.svg",
       "diagram_pdf": "assets/diagrams/E01.pdf",
+      "class_svg": "assets/diagrams/E01-class.svg",
+      "interaction_svg": "assets/interactions/E01.svg",
+      "interaction_pdf": "assets/interactions/E01.pdf",
       "url": "patterns/E01/"
     },
     {
@@ -4666,6 +4795,9 @@
       },
       "diagram_svg": "assets/diagrams/E02.svg",
       "diagram_pdf": "assets/diagrams/E02.pdf",
+      "class_svg": "assets/diagrams/E02-class.svg",
+      "interaction_svg": "assets/interactions/E02.svg",
+      "interaction_pdf": "assets/interactions/E02.pdf",
       "url": "patterns/E02/"
     },
     {
@@ -4771,6 +4903,9 @@
       },
       "diagram_svg": "assets/diagrams/E03.svg",
       "diagram_pdf": "assets/diagrams/E03.pdf",
+      "class_svg": "assets/diagrams/E03-class.svg",
+      "interaction_svg": "assets/interactions/E03.svg",
+      "interaction_pdf": "assets/interactions/E03.pdf",
       "url": "patterns/E03/"
     },
     {
@@ -4876,6 +5011,9 @@
       },
       "diagram_svg": "assets/diagrams/E04.svg",
       "diagram_pdf": "assets/diagrams/E04.pdf",
+      "class_svg": "assets/diagrams/E04-class.svg",
+      "interaction_svg": "assets/interactions/E04.svg",
+      "interaction_pdf": "assets/interactions/E04.pdf",
       "url": "patterns/E04/"
     },
     {
@@ -4981,6 +5119,9 @@
       },
       "diagram_svg": "assets/diagrams/E05.svg",
       "diagram_pdf": "assets/diagrams/E05.pdf",
+      "class_svg": "assets/diagrams/E05-class.svg",
+      "interaction_svg": "assets/interactions/E05.svg",
+      "interaction_pdf": "assets/interactions/E05.pdf",
       "url": "patterns/E05/"
     },
     {
@@ -5084,6 +5225,9 @@
       },
       "diagram_svg": "assets/diagrams/E06.svg",
       "diagram_pdf": "assets/diagrams/E06.pdf",
+      "class_svg": "assets/diagrams/E06-class.svg",
+      "interaction_svg": "assets/interactions/E06.svg",
+      "interaction_pdf": "assets/interactions/E06.pdf",
       "url": "patterns/E06/"
     },
     {
@@ -5189,6 +5333,9 @@
       },
       "diagram_svg": "assets/diagrams/E07.svg",
       "diagram_pdf": "assets/diagrams/E07.pdf",
+      "class_svg": "assets/diagrams/E07-class.svg",
+      "interaction_svg": "assets/interactions/E07.svg",
+      "interaction_pdf": "assets/interactions/E07.pdf",
       "url": "patterns/E07/"
     },
     {
@@ -5293,6 +5440,9 @@
       },
       "diagram_svg": "assets/diagrams/E08.svg",
       "diagram_pdf": "assets/diagrams/E08.pdf",
+      "class_svg": "assets/diagrams/E08-class.svg",
+      "interaction_svg": "assets/interactions/E08.svg",
+      "interaction_pdf": "assets/interactions/E08.pdf",
       "url": "patterns/E08/"
     },
     {
@@ -5398,6 +5548,9 @@
       },
       "diagram_svg": "assets/diagrams/E09.svg",
       "diagram_pdf": "assets/diagrams/E09.pdf",
+      "class_svg": "assets/diagrams/E09-class.svg",
+      "interaction_svg": "assets/interactions/E09.svg",
+      "interaction_pdf": "assets/interactions/E09.pdf",
       "url": "patterns/E09/"
     },
     {
@@ -5503,6 +5656,9 @@
       },
       "diagram_svg": "assets/diagrams/E10.svg",
       "diagram_pdf": "assets/diagrams/E10.pdf",
+      "class_svg": "assets/diagrams/E10-class.svg",
+      "interaction_svg": "assets/interactions/E10.svg",
+      "interaction_pdf": "assets/interactions/E10.pdf",
       "url": "patterns/E10/"
     }
   ]

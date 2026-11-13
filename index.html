@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An engineering field guide to 52 candidate patterns for agent harnesses: pointcuts, contracts, variation, evidence, and lifecycle.">
+  <meta name="description" content="An engineering field guide to 52 candidate patterns for agent harnesses: UML class views, pointcuts, contracts, variation, prompt and code design sketches, evidence, and lifecycle.">
   <meta name="theme-color" content="#f2eee4">
   <title>POHE — Pattern-Oriented Harness Engineering</title>
   <link rel="canonical" href="https://xhyccc.github.io/pohe/">
@@ -30,27 +30,49 @@
     <div class="hero-kicker"><span>Field guide № 01</span><span>Proposed pattern discipline</span></div>
     <div class="hero-grid">
       <div>
-        <h1 id="hero-title">The harness is<br><em>the software.</em></h1>
+        <h1 id="hero-title">Pattern-Oriented<br><em>Harness Engineering</em></h1>
         <p class="hero-deck">A field guide to the recurring decisions around AI agents: what may vary, what must hold, and what happens when it does not.</p>
         <div class="hero-actions"><a class="button button-primary" href="#catalog">Browse the 52 records <span aria-hidden="true">↓</span></a><a class="text-link" href="method.html">Read the method <span aria-hidden="true">↗</span></a></div>
       </div>
       <aside class="hero-note" aria-label="Position statement">
         <span class="note-label">Position / 001</span>
         <p>Scaling alone cannot absorb a harness’s system responsibilities. Name the join point. Protect the contract. Test the violation path. Record the lifecycle.</p>
-        <div class="coordinate-sketch" aria-hidden="true"><span>A1</span><span>A2</span><span>A3</span><i></i><b>Protected contract<br>×<br>Permitted variation</b></div>
+        <a class="note-map-link" href="#a2-map"><span>A² taxonomy</span><strong>See the two-axis map</strong><i aria-hidden="true">↓</i></a>
       </aside>
     </div>
-    <div class="inventory-line"><strong>52</strong><span>candidate records</span><strong>05</strong><span>source families</span><strong>03</strong><span>activity coordinates</span><small>Inventory size, not a prevalence claim.</small></div>
+    <figure class="hero-map" id="a2-map">
+      <a class="hero-map-frame" href="assets/a2/taxonomy-a2.svg" aria-label="Open the full A² taxonomy map as SVG">
+        <img src="assets/a2/taxonomy-a2.svg" width="1120" height="690" alt="A-squared taxonomy: three activities—design, verification, and evolution—cross protected contracts and permitted variation, with an authorized re-generalization return from maintenance to design." loading="lazy">
+      </a>
+      <figcaption>
+        <span class="map-kicker">A² / THE TAXONOMY</span>
+        <h3>Two axes, one record.</h3>
+        <p>Activities ask when an obligation is designed, verified, and revisited. Assets ask what must hold and what may change. The dashed return is re-generalization: the contract itself is reopened.</p>
+        <div class="map-links"><a class="button button-ghost" href="assets/a2/taxonomy-a2.svg">Open the full map <span aria-hidden="true">↗</span></a><a class="text-link" href="assets/a2/taxonomy-a2.pdf" download>Download PDF <span aria-hidden="true">↓</span></a></div>
+      </figcaption>
+    </figure>
+    <div class="inventory-line"><div class="stat"><strong>52</strong><span>candidate records</span></div><div class="stat"><strong>05</strong><span>source families</span></div><div class="stat"><strong>03</strong><span>activity coordinates</span></div><small>Inventory size, not a prevalence claim.</small></div>
   </section>
 
   <section class="lens-section" aria-labelledby="lens-title">
-    <div class="section-index">A² / THE LENS</div>
-    <div class="lens-copy"><h2 id="lens-title">Activities × Assets</h2><p>A pattern name is not yet an engineering record. The A² lens asks <strong>when</strong> an obligation is designed, verified, and revisited—and <strong>what</strong> must remain stable while implementations change.</p></div>
-    <div class="lens-axis"><h3>Activities</h3><p><b>A1</b> Design & implementation</p><p><b>A2</b> Testing & verification</p><p><b>A3</b> Maintenance & evolution</p></div>
-    <div class="lens-axis"><h3>Assets</h3><p><b>Protected contract</b><br>Authority, state, invocation, and acceptance semantics clients can rely on.</p><p><b>Permitted variation</b><br>Adapters, policies, providers, and projections that can change without breaking that contract.</p></div>
+    <div class="lens-head"><div class="section-index">A² / THE LENS</div><h2 id="lens-title">Activities × Assets</h2><p>A pattern name is not yet an engineering record. The A² lens asks <strong>when</strong> an obligation is designed, verified, and revisited—and <strong>what</strong> must remain stable while implementations change.</p></div>
+    <div class="a2-matrix" role="img" aria-label="A two-by-three matrix: protected contract and permitted variation across design, verification, and evolution activities.">
+      <div class="a2-corner"><span>A²</span><small>record lens</small></div>
+      <div class="a2-col"><b>A1</b><span>Design</span></div>
+      <div class="a2-col"><b>A2</b><span>Verify</span></div>
+      <div class="a2-col"><b>A3</b><span>Evolve</span></div>
+      <div class="a2-row"><b>Protected contract</b><span>What must hold</span></div>
+      <div class="a2-cell"><strong>Declare</strong> authority, state, and acceptance</div>
+      <div class="a2-cell"><strong>Exercise</strong> the violation path</div>
+      <div class="a2-cell"><strong>Re-generalize</strong> when the seam fails</div>
+      <div class="a2-row"><b>Permitted variation</b><span>What may change</span></div>
+      <div class="a2-cell"><strong>Admit</strong> adapters, policies, providers</div>
+      <div class="a2-cell"><strong>Vary</strong> tests and diagnostics</div>
+      <div class="a2-cell"><strong>Move</strong> the mechanism without losing the contract</div>
+    </div>
   </section>
 
-  <section class="family-section" aria-labelledby="family-title"><div class="section-index">05 / SOURCE FAMILIES</div><h2 id="family-title" class="visually-hidden">Five source families</h2><div class="family-rules"><a href="#catalog" class="family-rule" data-family-link="P"><span>P</span><strong>Coding-agent mechanisms</strong><small>Execution loops, tools, authority, durable state, and stop-time checks.</small></a><a href="#catalog" class="family-rule" data-family-link="W"><span>W</span><strong>Workflows &amp; coordination</strong><small>Named workflows and coordination forms from official agent guides.</small></a><a href="#catalog" class="family-rule" data-family-link="C"><span>C</span><strong>Communication</strong><small>Classical communication structures applied to agent systems.</small></a><a href="#catalog" class="family-rule" data-family-link="R"><span>R</span><strong>Reasoning &amp; feedback</strong><small>Reason–act and verbal-feedback mechanisms.</small></a><a href="#catalog" class="family-rule" data-family-link="E"><span>E</span><strong>Harness evolution</strong><small>Research mechanisms that adapt or search over harnesses.</small></a></div><p class="section-footnote">Families record provenance, not another taxonomy axis. E records are research mechanisms, not claims of independently established recurring patterns.</p></section>
+  <section class="family-section" aria-labelledby="family-title"><div class="section-index">05 / SOURCE FAMILIES</div><h2 id="family-title" class="visually-hidden">Five source families</h2><div class="family-rules"><a href="#catalog" class="family-rule" data-family="P" data-family-link="P"><span class="family-code">P</span><strong>Coding-agent mechanisms</strong><small>Execution loops, tools, authority, durable state, and stop-time checks.</small><span class="family-count">29 records</span></a><a href="#catalog" class="family-rule" data-family="W" data-family-link="W"><span class="family-code">W</span><strong>Workflows &amp; coordination</strong><small>Named workflows and coordination forms from official agent guides.</small><span class="family-count">7 records</span></a><a href="#catalog" class="family-rule" data-family="C" data-family-link="C"><span class="family-code">C</span><strong>Communication</strong><small>Classical communication structures applied to agent systems.</small><span class="family-count">4 records</span></a><a href="#catalog" class="family-rule" data-family="R" data-family-link="R"><span class="family-code">R</span><strong>Reasoning &amp; feedback</strong><small>Reason–act and verbal-feedback mechanisms.</small><span class="family-count">2 records</span></a><a href="#catalog" class="family-rule" data-family="E" data-family-link="E"><span class="family-code">E</span><strong>Harness evolution</strong><small>Research mechanisms that adapt or search over harnesses.</small><span class="family-count">10 records</span></a></div><p class="section-footnote">Families record provenance, not another taxonomy axis. E records are research mechanisms, not claims of independently established recurring patterns.</p></section>
 
   <section class="catalog-section" id="catalog" aria-labelledby="catalog-title">
     <div class="catalog-heading"><div><span class="section-index">INDEX / 001—052</span><h2 id="catalog-title">Pattern catalog</h2></div><p>Search by responsibility, mechanism, or join point. Filter without losing the underlying record.</p></div>
@@ -66,7 +88,8 @@
   <a class="pattern-row-link" href="patterns/P01/" aria-label="P01: Minimal linear loop">
     <span class="pattern-code">P01</span>
     <span class="pattern-main"><strong>Minimal linear loop</strong><span>Alternate model turns and action execution.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 35 of 36 repository families"><span class="coverage-track"><i style="width:97%"></i></span><small>35<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -74,7 +97,8 @@
   <a class="pattern-row-link" href="patterns/P02/" aria-label="P02: Streaming concurrent batch loop">
     <span class="pattern-code">P02</span>
     <span class="pattern-main"><strong>Streaming concurrent batch loop</strong><span>Overlap output and independent work.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 36 of 36 repository families"><span class="coverage-track"><i style="width:100%"></i></span><small>36<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -82,7 +106,8 @@
   <a class="pattern-row-link" href="patterns/P03/" aria-label="P03: Asynchronous state machine">
     <span class="pattern-code">P03</span>
     <span class="pattern-main"><strong>Asynchronous state machine</strong><span>Make waiting and resumption explicit.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 34 of 36 repository families"><span class="coverage-track"><i style="width:94%"></i></span><small>34<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -90,7 +115,8 @@
   <a class="pattern-row-link" href="patterns/P04/" aria-label="P04: Middleware-pipeline loop">
     <span class="pattern-code">P04</span>
     <span class="pattern-main"><strong>Middleware-pipeline loop</strong><span>Layer behavior around model/tool calls.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 34 of 36 repository families"><span class="coverage-track"><i style="width:94%"></i></span><small>34<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -98,7 +124,8 @@
   <a class="pattern-row-link" href="patterns/P05/" aria-label="P05: Asynchronous-generator loop">
     <span class="pattern-code">P05</span>
     <span class="pattern-main"><strong>Asynchronous-generator loop</strong><span>Expose incremental execution events.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 25 of 36 repository families"><span class="coverage-track"><i style="width:69%"></i></span><small>25<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -106,7 +133,8 @@
   <a class="pattern-row-link" href="patterns/P06/" aria-label="P06: Functional core and steering queues">
     <span class="pattern-code">P06</span>
     <span class="pattern-main"><strong>Functional core and steering queues</strong><span>Separate transitions from live control.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 25 of 36 repository families"><span class="coverage-track"><i style="width:69%"></i></span><small>25<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -114,7 +142,8 @@
   <a class="pattern-row-link" href="patterns/P07/" aria-label="P07: Cache-dialect fanout">
     <span class="pattern-code">P07</span>
     <span class="pattern-main"><strong>Cache-dialect fanout</strong><span>Adapt caching to provider-specific interfaces.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 34 of 36 repository families"><span class="coverage-track"><i style="width:94%"></i></span><small>34<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -122,7 +151,8 @@
   <a class="pattern-row-link" href="patterns/P08/" aria-label="P08: Multi-provider transport abstraction">
     <span class="pattern-code">P08</span>
     <span class="pattern-main"><strong>Multi-provider transport abstraction</strong><span>Swap model backends.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 28 of 36 repository families"><span class="coverage-track"><i style="width:78%"></i></span><small>28<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -130,7 +160,8 @@
   <a class="pattern-row-link" href="patterns/P09/" aria-label="P09: Deferred tool loading">
     <span class="pattern-code">P09</span>
     <span class="pattern-main"><strong>Deferred tool loading</strong><span>Discover capabilities only when needed.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 32 of 36 repository families"><span class="coverage-track"><i style="width:89%"></i></span><small>32<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -138,7 +169,8 @@
   <a class="pattern-row-link" href="patterns/P10/" aria-label="P10: Capped output and remediation errors">
     <span class="pattern-code">P10</span>
     <span class="pattern-main"><strong>Capped output and remediation errors</strong><span>Bound observations while enabling recovery.</span></span>
-    <span class="pattern-activity">A1 · A2<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1 · A2</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 36 of 36 repository families"><span class="coverage-track"><i style="width:100%"></i></span><small>36<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -146,7 +178,8 @@
   <a class="pattern-row-link" href="patterns/P11/" aria-label="P11: Tool-workflow boundary">
     <span class="pattern-code">P11</span>
     <span class="pattern-main"><strong>Tool-workflow boundary</strong><span>Distinguish an operation from an orchestration.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 30 of 36 repository families"><span class="coverage-track"><i style="width:83%"></i></span><small>30<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -154,7 +187,8 @@
   <a class="pattern-row-link" href="patterns/P12/" aria-label="P12: Coordinator-worker spawn flow">
     <span class="pattern-code">P12</span>
     <span class="pattern-main"><strong>Coordinator-worker spawn flow</strong><span>Delegate bounded subtasks.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 36 of 36 repository families"><span class="coverage-track"><i style="width:100%"></i></span><small>36<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -162,7 +196,8 @@
   <a class="pattern-row-link" href="patterns/P13/" aria-label="P13: Log-as-queue loops">
     <span class="pattern-code">P13</span>
     <span class="pattern-main"><strong>Log-as-queue loops</strong><span>Drive work from a durable execution record.</span></span>
-    <span class="pattern-activity">A1 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 22 of 36 repository families"><span class="coverage-track"><i style="width:61%"></i></span><small>22<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -170,7 +205,8 @@
   <a class="pattern-row-link" href="patterns/P14/" aria-label="P14: Event-sourced conversation engine">
     <span class="pattern-code">P14</span>
     <span class="pattern-main"><strong>Event-sourced conversation engine</strong><span>Reconstruct state from recorded events.</span></span>
-    <span class="pattern-activity">A1 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 31 of 36 repository families"><span class="coverage-track"><i style="width:86%"></i></span><small>31<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -178,7 +214,8 @@
   <a class="pattern-row-link" href="patterns/P15/" aria-label="P15: Declarative skills">
     <span class="pattern-code">P15</span>
     <span class="pattern-main"><strong>Declarative skills</strong><span>Package reusable task procedures.</span></span>
-    <span class="pattern-activity">A1 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 30 of 36 repository families"><span class="coverage-track"><i style="width:83%"></i></span><small>30<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -186,7 +223,8 @@
   <a class="pattern-row-link" href="patterns/P16/" aria-label="P16: Hooks and event bus">
     <span class="pattern-code">P16</span>
     <span class="pattern-main"><strong>Hooks and event bus</strong><span>Extend behavior at named events.</span></span>
-    <span class="pattern-activity">A1 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 31 of 36 repository families"><span class="coverage-track"><i style="width:86%"></i></span><small>31<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -194,7 +232,8 @@
   <a class="pattern-row-link" href="patterns/P17/" aria-label="P17: Verify-on-stop guards">
     <span class="pattern-code">P17</span>
     <span class="pattern-main"><strong>Verify-on-stop guards</strong><span>Check artifacts before accepting completion.</span></span>
-    <span class="pattern-activity">A2<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 8 of 36 repository families"><span class="coverage-track"><i style="width:22%"></i></span><small>8<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -202,7 +241,8 @@
   <a class="pattern-row-link" href="patterns/P18/" aria-label="P18: Hybrid loop detection">
     <span class="pattern-code">P18</span>
     <span class="pattern-main"><strong>Hybrid loop detection</strong><span>Detect stalled or repetitive behavior.</span></span>
-    <span class="pattern-activity">A2<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 8 of 36 repository families"><span class="coverage-track"><i style="width:22%"></i></span><small>8<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -210,7 +250,8 @@
   <a class="pattern-row-link" href="patterns/P19/" aria-label="P19: Budgeted loop with caps">
     <span class="pattern-code">P19</span>
     <span class="pattern-main"><strong>Budgeted loop with caps</strong><span>Bound execution resources.</span></span>
-    <span class="pattern-activity">A2<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 27 of 36 repository families"><span class="coverage-track"><i style="width:75%"></i></span><small>27<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -218,7 +259,8 @@
   <a class="pattern-row-link" href="patterns/P20/" aria-label="P20: Reflection-augmented loop">
     <span class="pattern-code">P20</span>
     <span class="pattern-main"><strong>Reflection-augmented loop</strong><span>Use feedback to revise attempts.</span></span>
-    <span class="pattern-activity">A2 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 29 of 36 repository families"><span class="coverage-track"><i style="width:81%"></i></span><small>29<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -226,7 +268,8 @@
   <a class="pattern-row-link" href="patterns/P21/" aria-label="P21: Syntax-aware command permissioning">
     <span class="pattern-code">P21</span>
     <span class="pattern-main"><strong>Syntax-aware command permissioning</strong><span>Inspect command structure before execution.</span></span>
-    <span class="pattern-activity">A2<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 2 of 36 repository families"><span class="coverage-track"><i style="width:6%"></i></span><small>2<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -234,7 +277,8 @@
   <a class="pattern-row-link" href="patterns/P22/" aria-label="P22: Policy floor">
     <span class="pattern-code">P22</span>
     <span class="pattern-main"><strong>Policy floor</strong><span>Preserve minimum restrictions across customization.</span></span>
-    <span class="pattern-activity">A2<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 8 of 36 repository families"><span class="coverage-track"><i style="width:22%"></i></span><small>8<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -242,7 +286,8 @@
   <a class="pattern-row-link" href="patterns/P23/" aria-label="P23: Layered permission and sandbox">
     <span class="pattern-code">P23</span>
     <span class="pattern-main"><strong>Layered permission and sandbox</strong><span>Combine policy decisions with execution isolation.</span></span>
-    <span class="pattern-activity">A2<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 36 of 36 repository families"><span class="coverage-track"><i style="width:100%"></i></span><small>36<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -250,7 +295,8 @@
   <a class="pattern-row-link" href="patterns/P24/" aria-label="P24: Guardian approval reviewer">
     <span class="pattern-code">P24</span>
     <span class="pattern-main"><strong>Guardian approval reviewer</strong><span>Review risky proposed actions.</span></span>
-    <span class="pattern-activity">A2<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 22 of 36 repository families"><span class="coverage-track"><i style="width:61%"></i></span><small>22<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -258,7 +304,8 @@
   <a class="pattern-row-link" href="patterns/P25/" aria-label="P25: Scope-based authorization and profiles">
     <span class="pattern-code">P25</span>
     <span class="pattern-main"><strong>Scope-based authorization and profiles</strong><span>Bind capabilities to explicit scopes.</span></span>
-    <span class="pattern-activity">A2<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 36 of 36 repository families"><span class="coverage-track"><i style="width:100%"></i></span><small>36<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -266,7 +313,8 @@
   <a class="pattern-row-link" href="patterns/P26/" aria-label="P26: Session-tree version control">
     <span class="pattern-code">P26</span>
     <span class="pattern-main"><strong>Session-tree version control</strong><span>Branch or revisit execution history.</span></span>
-    <span class="pattern-activity">A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 30 of 36 repository families"><span class="coverage-track"><i style="width:83%"></i></span><small>30<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -274,7 +322,8 @@
   <a class="pattern-row-link" href="patterns/P27/" aria-label="P27: Lineage and threshold compaction">
     <span class="pattern-code">P27</span>
     <span class="pattern-main"><strong>Lineage and threshold compaction</strong><span>Bound history while retaining useful state.</span></span>
-    <span class="pattern-activity">A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 35 of 36 repository families"><span class="coverage-track"><i style="width:97%"></i></span><small>35<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -282,7 +331,8 @@
   <a class="pattern-row-link" href="patterns/P28/" aria-label="P28: Agent-maintained memory pipelines">
     <span class="pattern-code">P28</span>
     <span class="pattern-main"><strong>Agent-maintained memory pipelines</strong><span>Update reusable task memory.</span></span>
-    <span class="pattern-activity">A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 34 of 36 repository families"><span class="coverage-track"><i style="width:94%"></i></span><small>34<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -290,7 +340,8 @@
   <a class="pattern-row-link" href="patterns/P29/" aria-label="P29: Harness mimicry and service hosting">
     <span class="pattern-code">P29</span>
     <span class="pattern-main"><strong>Harness mimicry and service hosting</strong><span>Preserve an interface while changing its implementation or host.</span></span>
-    <span class="pattern-activity">A1 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 29 of 36 repository families"><span class="coverage-track"><i style="width:81%"></i></span><small>29<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -298,7 +349,8 @@
   <a class="pattern-row-link" href="patterns/W01/" aria-label="W01: Prompt chaining">
     <span class="pattern-code">W01</span>
     <span class="pattern-main"><strong>Prompt chaining</strong><span>Pass intermediate results through planned stages.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 6 of 36 repository families"><span class="coverage-track"><i style="width:17%"></i></span><small>6<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -306,7 +358,8 @@
   <a class="pattern-row-link" href="patterns/W02/" aria-label="W02: Routing">
     <span class="pattern-code">W02</span>
     <span class="pattern-main"><strong>Routing</strong><span>Select a specialized path for an input.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 36 of 36 repository families"><span class="coverage-track"><i style="width:100%"></i></span><small>36<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -314,7 +367,8 @@
   <a class="pattern-row-link" href="patterns/W03/" aria-label="W03: Parallelization">
     <span class="pattern-code">W03</span>
     <span class="pattern-main"><strong>Parallelization</strong><span>Run independent work or alternative judgments concurrently.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 24 of 36 repository families"><span class="coverage-track"><i style="width:67%"></i></span><small>24<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -322,7 +376,8 @@
   <a class="pattern-row-link" href="patterns/W04/" aria-label="W04: Orchestrator-workers">
     <span class="pattern-code">W04</span>
     <span class="pattern-main"><strong>Orchestrator-workers</strong><span>Generate and delegate subtasks dynamically.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 30 of 36 repository families"><span class="coverage-track"><i style="width:83%"></i></span><small>30<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -330,7 +385,8 @@
   <a class="pattern-row-link" href="patterns/W05/" aria-label="W05: Evaluator-optimizer">
     <span class="pattern-code">W05</span>
     <span class="pattern-main"><strong>Evaluator-optimizer</strong><span>Revise an artifact using iterative feedback.</span></span>
-    <span class="pattern-activity">A2 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 17 of 36 repository families"><span class="coverage-track"><i style="width:47%"></i></span><small>17<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -338,7 +394,8 @@
   <a class="pattern-row-link" href="patterns/W06/" aria-label="W06: Manager coordination">
     <span class="pattern-code">W06</span>
     <span class="pattern-main"><strong>Manager coordination</strong><span>Keep a coordinating agent in control of specialists.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 27 of 36 repository families"><span class="coverage-track"><i style="width:75%"></i></span><small>27<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -346,7 +403,8 @@
   <a class="pattern-row-link" href="patterns/W07/" aria-label="W07: Decentralized handoffs">
     <span class="pattern-code">W07</span>
     <span class="pattern-main"><strong>Decentralized handoffs</strong><span>Transfer control to another specialized agent.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 29 of 36 repository families"><span class="coverage-track"><i style="width:81%"></i></span><small>29<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -354,7 +412,8 @@
   <a class="pattern-row-link" href="patterns/C01/" aria-label="C01: Mediator">
     <span class="pattern-code">C01</span>
     <span class="pattern-main"><strong>Mediator</strong><span>Coordinate interactions through an intermediary.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 5 of 36 repository families"><span class="coverage-track"><i style="width:14%"></i></span><small>5<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -362,7 +421,8 @@
   <a class="pattern-row-link" href="patterns/C02/" aria-label="C02: Observer">
     <span class="pattern-code">C02</span>
     <span class="pattern-main"><strong>Observer</strong><span>Notify registered dependents of changes.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 29 of 36 repository families"><span class="coverage-track"><i style="width:81%"></i></span><small>29<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -370,7 +430,8 @@
   <a class="pattern-row-link" href="patterns/C03/" aria-label="C03: Publish-subscribe">
     <span class="pattern-code">C03</span>
     <span class="pattern-main"><strong>Publish-subscribe</strong><span>Decouple producers from consumers.</span></span>
-    <span class="pattern-activity">A1 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 24 of 36 repository families"><span class="coverage-track"><i style="width:67%"></i></span><small>24<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -378,7 +439,8 @@
   <a class="pattern-row-link" href="patterns/C04/" aria-label="C04: Broker">
     <span class="pattern-code">C04</span>
     <span class="pattern-main"><strong>Broker</strong><span>Mediate discovery and invocation across boundaries.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 22 of 36 repository families"><span class="coverage-track"><i style="width:61%"></i></span><small>22<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -386,7 +448,8 @@
   <a class="pattern-row-link" href="patterns/R01/" aria-label="R01: Reason-act-observe">
     <span class="pattern-code">R01</span>
     <span class="pattern-main"><strong>Reason-act-observe</strong><span>Interleave reasoning and external actions.</span></span>
-    <span class="pattern-activity">A1<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 35 of 36 repository families"><span class="coverage-track"><i style="width:97%"></i></span><small>35<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -394,7 +457,8 @@
   <a class="pattern-row-link" href="patterns/R02/" aria-label="R02: Verbal reflection memory">
     <span class="pattern-code">R02</span>
     <span class="pattern-main"><strong>Verbal reflection memory</strong><span>Reuse feedback across attempts.</span></span>
-    <span class="pattern-activity">A2 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 1 of 36 repository families"><span class="coverage-track"><i style="width:3%"></i></span><small>1<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -402,7 +466,8 @@
   <a class="pattern-row-link" href="patterns/E01/" aria-label="E01: Inheritance and polymorphic routing">
     <span class="pattern-code">E01</span>
     <span class="pattern-main"><strong>Inheritance and polymorphic routing</strong><span>Specialize related harnesses.</span></span>
-    <span class="pattern-activity">A1 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 33 of 36 repository families"><span class="coverage-track"><i style="width:92%"></i></span><small>33<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -410,7 +475,8 @@
   <a class="pattern-row-link" href="patterns/E02/" aria-label="E02: Propose-Probe-Compose">
     <span class="pattern-code">E02</span>
     <span class="pattern-main"><strong>Propose-Probe-Compose</strong><span>Improve a harness using contrastive probes.</span></span>
-    <span class="pattern-activity">A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 6 of 36 repository families"><span class="coverage-track"><i style="width:17%"></i></span><small>6<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -418,7 +484,8 @@
   <a class="pattern-row-link" href="patterns/E03/" aria-label="E03: Regularized harness improvement">
     <span class="pattern-code">E03</span>
     <span class="pattern-main"><strong>Regularized harness improvement</strong><span>Limit overfitting during repeated edits.</span></span>
-    <span class="pattern-activity">A2 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 12 of 36 repository families"><span class="coverage-track"><i style="width:33%"></i></span><small>12<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -426,7 +493,8 @@
   <a class="pattern-row-link" href="patterns/E04/" aria-label="E04: Multi-objective evolution and composition">
     <span class="pattern-code">E04</span>
     <span class="pattern-main"><strong>Multi-objective evolution and composition</strong><span>Search among competing objectives.</span></span>
-    <span class="pattern-activity">A2 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 8 of 36 repository families"><span class="coverage-track"><i style="width:22%"></i></span><small>8<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -434,7 +502,8 @@
   <a class="pattern-row-link" href="patterns/E05/" aria-label="E05: Composable harness foundry">
     <span class="pattern-code">E05</span>
     <span class="pattern-main"><strong>Composable harness foundry</strong><span>Construct and evolve reusable harness components.</span></span>
-    <span class="pattern-activity">A1 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 2 of 36 repository families"><span class="coverage-track"><i style="width:6%"></i></span><small>2<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -442,7 +511,8 @@
   <a class="pattern-row-link" href="patterns/E06/" aria-label="E06: Joint harness-policy evolution">
     <span class="pattern-code">E06</span>
     <span class="pattern-main"><strong>Joint harness-policy evolution</strong><span>Adapt runtime structure and policy together.</span></span>
-    <span class="pattern-activity">A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 1 of 36 repository families"><span class="coverage-track"><i style="width:3%"></i></span><small>1<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -450,7 +520,8 @@
   <a class="pattern-row-link" href="patterns/E07/" aria-label="E07: Evaluator-guided program search">
     <span class="pattern-code">E07</span>
     <span class="pattern-main"><strong>Evaluator-guided program search</strong><span>Evolve executable candidates.</span></span>
-    <span class="pattern-activity">A2 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 3 of 36 repository families"><span class="coverage-track"><i style="width:8%"></i></span><small>3<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -458,7 +529,8 @@
   <a class="pattern-row-link" href="patterns/E08/" aria-label="E08: On-demand adaptation target selection">
     <span class="pattern-code">E08</span>
     <span class="pattern-main"><strong>On-demand adaptation target selection</strong><span>Choose harness versus weight adaptation.</span></span>
-    <span class="pattern-activity">A3<small>Specification only</small></span>
+    <span class="pattern-activity"><b>A3</b><small>Specification only</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 0 of 36 repository families"><span class="coverage-track"><i style="width:0%"></i></span><small>0<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -466,7 +538,8 @@
   <a class="pattern-row-link" href="patterns/E09/" aria-label="E09: Dual-loop assistance">
     <span class="pattern-code">E09</span>
     <span class="pattern-main"><strong>Dual-loop assistance</strong><span>Separate planning and execution feedback.</span></span>
-    <span class="pattern-activity">A1 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A1 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 3 of 36 repository families"><span class="coverage-track"><i style="width:8%"></i></span><small>3<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article>
@@ -474,7 +547,8 @@
   <a class="pattern-row-link" href="patterns/E10/" aria-label="E10: Observability-driven harness evolution">
     <span class="pattern-code">E10</span>
     <span class="pattern-main"><strong>Observability-driven harness evolution</strong><span>Use traces to guide candidate changes.</span></span>
-    <span class="pattern-activity">A2 · A3<small>Source-located</small></span>
+    <span class="pattern-activity"><b>A2 · A3</b><small>Source-located</small></span>
+    <span class="row-coverage" aria-label="Any-evidence coverage: 1 of 36 repository families"><span class="coverage-track"><i style="width:3%"></i></span><small>1<b>/36</b></small></span>
     <span class="row-arrow" aria-hidden="true">↗</span>
   </a>
 </article></div>
@@ -485,9 +559,10 @@
   <aside class="evidence-banner" id="evidence-key"><span class="section-index">READ WITH CARE</span><h2>A cue is a place to look,<br>not a pattern confirmed.</h2><div><p><strong>Proposed specification.</strong> Pointcuts and contracts define what a conforming mechanism would do.</p><p><strong>Exploratory retrieval cue.</strong> A regex or structural match retrieves candidate locations. Any-evidence coverage is not confirmed prevalence.</p><p><strong>Source-located exemplar.</strong> A curator identified a concrete implementation anchor. It does not certify every contract field.</p><p><strong>Human / AI review.</strong> Study annotations are AI-assisted and bounded; independent human validation remains open.</p></div><a class="text-link" href="method.html#evidence-key">Full evidence key and limitations <span aria-hidden="true">↗</span></a></aside>
 </main>
 <footer class="site-footer">
-  <div><strong>POHE</strong> / Pattern-Oriented Harness Engineering</div>
+  <div><strong>POHE</strong> / Pattern-Oriented Harness Engineering<br><span class="footer-author">Haoyi Xiong</span></div>
   <p>A proposed discipline for recurring harness decisions. Specifications and analytical diagrams do not certify implementations.</p>
   <div class="footer-links"><a href="method.html#evidence-key">How to read the evidence</a><a href="method.html#colophon">Colophon</a></div>
+  <p class="footer-disclosure">Analytical diagrams, prompt sketches, and code designs describe proposed contracts. They are not observed traces, repository class declarations, or evidence that any implementation conforms.</p>
 </footer>
 </body>
 </html>

@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title description">
+  <title id="title">A-squared taxonomy: Activities times Assets</title>
+  <desc id="description">Three activities, design and implementation, testing and verification, and maintenance and evolution, cross two asset views under a merged Assets header: generalized contracts and customization seams. A dashed return from A3 to A1 denotes authorized re-generalization when the protected contract must change. Paradigm, quality, and human or agent factors are cross-cutting lenses, not additional axes.</desc>
+  <defs>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #213247; }
+      .title { font-size: 27px; font-weight: 700; }
+      .subtitle { font-size: 17px; fill: #586879; }
+      .axis { font-size: 23px; font-weight: 700; }
+      .column { font-size: 21px; font-weight: 700; }
+      .heading { font-size: 21px; font-weight: 700; }
+      .body { font-size: 21px; fill: #475b70; }
+      .small { font-size: 17px; fill: #586879; }
+      .icon { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+      .rule { stroke: #d7e0e9; stroke-width: 1.2; }
+    </style>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6.8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 L7 4 L1 7" fill="none" stroke="#60788e" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="return-arrow" markerWidth="10" markerHeight="10" refX="8.5" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#9a6b2b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <symbol id="lock" viewBox="0 0 24 24">
+      <rect x="5" y="10" width="14" height="11" rx="2"/>
+      <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>
+    </symbol>
+    <symbol id="plug" viewBox="0 0 24 24">
+      <path d="M8 3v5M16 3v5M5 8h14v3a7 7 0 0 1-7 7v4M8 12h8"/>
+    </symbol>
+    <symbol id="build" viewBox="0 0 24 24">
+      <rect x="2" y="3" width="7" height="7" rx="1.5"/>
+      <rect x="15" y="14" width="7" height="7" rx="1.5"/>
+      <path d="M9 6.5h8a2 2 0 0 1 2 2V14M5.5 10v7a2 2 0 0 0 2 2H15"/>
+      <path d="m15 4 3 2.5L15 9"/>
+    </symbol>
+    <symbol id="verify" viewBox="0 0 24 24">
+      <path d="M13 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5M7 7h6M7 11h3M7 15h2"/>
+      <circle cx="17" cy="16.5" r="5"/>
+      <path d="m14.5 16.5 1.7 1.7 3.3-3.5"/>
+    </symbol>
+    <symbol id="evolve" viewBox="0 0 24 24">
+      <path d="M20 9a8 8 0 0 0-13-4L3 9M3 4v5h5M4 15a8 8 0 0 0 13 4l4-4M21 20v-5h-5"/>
+      <path d="M10 12h4M12 10v4"/>
+    </symbol>
+    <symbol id="layers" viewBox="0 0 24 24">
+      <path d="m12 3 10 5-10 5L2 8l10-5ZM3 12l9 5 9-5M3 16l9 5 9-5"/>
+    </symbol>
+    <symbol id="code" viewBox="0 0 24 24">
+      <path d="m8 6-6 6 6 6M16 6l6 6-6 6M14 3l-4 18"/>
+    </symbol>
+    <symbol id="shield" viewBox="0 0 24 24">
+      <path d="m12 2 9 4v6c0 5-5 8-9 10-4-2-9-5-9-10V6l9-4Z"/>
+      <path d="m7.5 12 3 3 6-6"/>
+    </symbol>
+    <symbol id="people" viewBox="0 0 24 24">
+      <circle cx="7" cy="7" r="3"/>
+      <path d="M1 20v-3a6 6 0 0 1 10-4"/>
+      <rect x="13" y="11" width="10" height="9" rx="2"/>
+      <path d="M18 8v3M16 15h0M20 15h0M16 18h4"/>
+    </symbol>
+  </defs>
+
+  <text class="title" x="76" y="35">A<tspan baseline-shift="super" font-size="17">2</tspan> = Activities × Assets</text>
+  <text class="subtitle" x="1094" y="34" text-anchor="end">Pattern discipline across the harness lifecycle</text>
+
+  <!-- The Assets parent spans both asset views; Activities spans both header tiers. -->
+  <rect x="76" y="68" width="1018" height="446" rx="12" fill="#ffffff" stroke="#c7d4e0" stroke-width="1.5"/>
+  <path d="M88 68H341V160H76V80a12 12 0 0 1 12-12Z" fill="#eaf0f7"/>
+  <path d="M341 68H1082a12 12 0 0 1 12 12v32H341Z" fill="#e5edf6"/>
+  <rect x="341" y="112" width="753" height="48" fill="#f3f6fa"/>
+  <rect x="77" y="160" width="264" height="118" fill="#f1f5fb"/>
+  <rect x="77" y="278" width="264" height="118" fill="#eef6f5"/>
+  <path d="M77 396H341V513H88a11 11 0 0 1-11-11Z" fill="#f7f3ed"/>
+  <line class="rule" x1="341" y1="68" x2="341" y2="514"/>
+  <line class="rule" x1="715" y1="112" x2="715" y2="514"/>
+  <line class="rule" x1="341" y1="112" x2="1094" y2="112"/>
+  <line class="rule" x1="76" y1="160" x2="1094" y2="160"/>
+  <line class="rule" x1="76" y1="278" x2="1094" y2="278"/>
+  <line class="rule" x1="76" y1="396" x2="1094" y2="396"/>
+
+  <use href="#layers" x="98" y="96" width="29" height="29" class="icon" color="#42658c"/>
+  <text class="axis" x="140" y="114">Activities</text>
+  <text class="small" x="140" y="137">Work on reusable assets</text>
+  <text class="axis" x="717.5" y="96" text-anchor="middle">Assets</text>
+  <use href="#lock" x="361" y="123" width="25" height="25" class="icon" color="#42658c"/>
+  <text class="column" x="398" y="133">Protected contract</text>
+  <text class="small" x="398" y="152">Generalized contract / frozen point</text>
+  <use href="#plug" x="735" y="123" width="25" height="25" class="icon" color="#257a78"/>
+  <text class="column" x="772" y="133">Permitted variation</text>
+  <text class="small" x="772" y="152">Customization seams / variation mechanisms</text>
+
+  <g>
+    <circle cx="117" cy="209" r="25" fill="#dce8f7"/>
+    <use href="#build" x="101" y="193" width="32" height="32" class="icon" color="#42658c"/>
+    <rect x="161" y="178" width="38" height="22" rx="6" fill="#42658c"/>
+    <text x="180" y="194" fill="white" style="fill:#fff;font-size:14px;font-weight:700" text-anchor="middle">A1</text>
+    <text class="heading" x="161" y="226">Design and</text>
+    <text class="body" x="161" y="250">implementation</text>
+    <text class="heading" x="363" y="194">Specify the invariant</text>
+    <text class="body" x="363" y="230">Schema; authorization; termination</text>
+    <text class="heading" x="737" y="194">Expose permitted variation</text>
+    <text class="body" x="737" y="230">Adapters; middleware; policy hooks</text>
+  </g>
+  <g>
+    <circle cx="117" cy="327" r="25" fill="#d9eeeb"/>
+    <use href="#verify" x="101" y="311" width="32" height="32" class="icon" color="#257a78"/>
+    <rect x="161" y="296" width="38" height="22" rx="6" fill="#257a78"/>
+    <text x="180" y="312" style="fill:#fff;font-size:14px;font-weight:700" text-anchor="middle">A2</text>
+    <text class="heading" x="161" y="344">Testing and</text>
+    <text class="body" x="161" y="368">verification</text>
+    <text class="heading" x="363" y="312">Test the promised invariant</text>
+    <text class="body" x="363" y="348">Bypass probes; acceptance checks</text>
+    <text class="heading" x="737" y="312">Exercise the variation space</text>
+    <text class="body" x="737" y="348">Test doubles; faults; varied workloads</text>
+  </g>
+  <g>
+    <circle cx="117" cy="445" r="25" fill="#efe3d2"/>
+    <use href="#evolve" x="101" y="429" width="32" height="32" class="icon" color="#9a6b2b"/>
+    <rect x="161" y="414" width="38" height="22" rx="6" fill="#9a6b2b"/>
+    <text x="180" y="430" style="fill:#fff;font-size:14px;font-weight:700" text-anchor="middle">A3</text>
+    <text class="heading" x="161" y="462" style="font-size:19px">Maintenance and</text>
+    <text class="body" x="161" y="486">evolution</text>
+    <text class="heading" x="363" y="430">Maintain or reopen the contract</text>
+    <text class="body" x="363" y="466">Compatibility; recovery; audit history</text>
+    <text class="heading" x="737" y="430">Make only permitted changes</text>
+    <text class="body" x="737" y="466">Plugins; policies; context strategies</text>
+  </g>
+
+  <path d="M117 241V294" fill="none" stroke="#60788e" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <path d="M117 359V412" fill="none" stroke="#60788e" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <path d="M76 445H43V209H75" fill="none" stroke="#9a6b2b" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#return-arrow)"/>
+  <text x="24" y="327" transform="rotate(-90 24 327)" text-anchor="middle" style="font-size:14px;letter-spacing:1px;fill:#8a6028">REDESIGN IF CONTRACT CHANGES</text>
+
+  <rect x="76" y="535" width="1018" height="64" rx="10" fill="#f5f7fa" stroke="#e1e7ee"/>
+  <text x="94" y="561" style="font-size:14px;font-weight:700;letter-spacing:.7px;fill:#586879">CROSS-CUTTING LENSES</text>
+  <text class="small" x="94" y="583">Not additional axes</text>
+  <use href="#code" x="397" y="553" width="27" height="27" class="icon" color="#607088"/>
+  <text class="heading" x="436" y="574">Paradigm</text>
+  <line class="rule" x1="575" y1="551" x2="575" y2="583"/>
+  <use href="#shield" x="604" y="553" width="27" height="27" class="icon" color="#607088"/>
+  <text class="heading" x="643" y="574">Quality</text>
+  <line class="rule" x1="754" y1="551" x2="754" y2="583"/>
+  <use href="#people" x="782" y="552" width="29" height="29" class="icon" color="#607088"/>
+  <text class="heading" x="825" y="574">Human / agent factors</text>
+
+  <rect x="76" y="619" width="493" height="58" rx="10" fill="#eef6f5"/>
+  <use href="#plug" x="95" y="635" width="27" height="27" class="icon" color="#257a78"/>
+  <text class="heading" x="138" y="643">Fits the contract → customize</text>
+  <text class="body" x="138" y="666">Use the declared change point in A3.</text>
+  <rect x="589" y="619" width="505" height="58" rx="10" fill="#f7f3ed"/>
+  <use href="#evolve" x="608" y="635" width="27" height="27" class="icon" color="#9a6b2b"/>
+  <text class="heading" x="651" y="643">Must change the contract → A1</text>
+  <text class="body" x="651" y="666">Authorized redesign, not routine tuning.</text>
+</svg>
