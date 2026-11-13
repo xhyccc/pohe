@@ -216,6 +216,7 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertIn('id="nav-toggle"', text)
                 self.assertIn('aria-expanded="false"', text)
                 self.assertIn('href="https://xhyccc.github.io/"', text)
+                self.assertIn("About me", text)
 
     def test_all_local_html_references_resolve(self) -> None:
         pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "agent.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]

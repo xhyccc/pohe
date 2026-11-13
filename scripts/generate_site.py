@@ -183,7 +183,7 @@ def nav(prefix: str, current: str) -> str:
     <a href="{prefix}inventory.html"{' aria-current="page"' if current == 'inventory' else ''}>Inventory</a>
     <a href="{prefix}agent.html"{' aria-current="page"' if current == 'agent' else ''}>Agent</a>
     <a href="{prefix}method.html"{' aria-current="page"' if current == 'method' else ''}>Method & evidence</a>
-    <a class="personal-link" href="https://xhyccc.github.io/">Website <span aria-hidden="true">↗</span></a>
+    <a class="personal-link" href="https://xhyccc.github.io/">About me <span aria-hidden="true">↗</span></a>
     <a class="paper-link" href="{prefix}assets/paper/pohe-position.pdf">Read the paper <span aria-hidden="true">↗</span></a>
   </nav>
 </header>""".strip()
