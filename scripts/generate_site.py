@@ -380,10 +380,10 @@ def render_agent() -> str:
   </header>
 
   <section class="agent-pipeline" aria-labelledby="pipeline-title">
-    <div class="agent-section-head"><span class="section-index">THE PIPELINE</span><h2 id="pipeline-title">Three commands, three questions.</h2><p>What is worth reading? Is it really this record? What may safely change?</p></div>
+    <div class="agent-section-head"><span class="section-index">THE PIPELINE</span><h2 id="pipeline-title">Three moves, three questions.</h2><p>What is worth reading? Is the mechanism in this scope? What may safely change?</p></div>
     <div class="pipeline-grid">
       <article><span>01 / DETECT</span><h3>Where are the leads?</h3><p>Run the frozen cue expressions over code, tests, and support files. Excludes caches, build output, and vendored trees.</p><code>pohe-agent scan &lt;repo&gt;</code></article>
-      <article><span>02 / MATCH</span><h3>Is it this record?</h3><p>Extract symbols and aliases, then answer the pointcut, contract, and negative-control questions against the source.</p><code>pohe-agent match &lt;repo&gt; --pattern P01</code></article>
+      <article><span>02 / ANALYZE</span><h3>Is the mechanism here?</h3><p>Anchor each cue to its enclosing declaration, then check context, trigger, structure, and effect. The packet reports missing roles, the negative control, and contract probes.</p><code>pohe-agent analyze &lt;repo&gt; --pattern P01</code></article>
       <article><span>03 / EVOLVE</span><h3>What may change?</h3><p>Build a proposal that protects the contract, names authority, adds the test obligation, and records rollback.</p><code>pohe-agent plan &lt;repo&gt; --findings findings.json</code></article>
     </div>
   </section>
@@ -401,7 +401,7 @@ pohe-agent scan /path/to/your/harness</code></pre></div>
     <div class="ships-grid">
       <article><span class="ship-code">A</span><h3>AGENTS.md</h3><p>The operating manual: the evidence ladder, the standard workflow, the hard rules, and the handoff points between detection, matching, and evolution.</p></article>
       <article><span class="ship-code">S</span><h3>Three skills</h3><p><b>Detection</b> finds leads. <b>Matching</b> adjudicates a candidate against the pointcut, contract, and negative control. <b>Evolution</b> plans and verifies the change.</p><ul class="skill-list"><li><code>pohe-pattern-detection</code></li><li><code>pohe-pattern-matching</code></li><li><code>pohe-harness-evolution</code></li></ul></article>
-      <article><span class="ship-code">C</span><h3>CLI</h3><p><code>scan</code>, <code>match</code>, <code>plan</code>, <code>list</code>, and <code>show</code>. Deterministic walking, JSON output, and Markdown reports.</p></article>
+      <article><span class="ship-code">C</span><h3>CLI</h3><p><code>scan</code>, <code>match</code>, <code>analyze</code>, <code>plan</code>, <code>list</code>, and <code>show</code>. Deterministic walking, JSON output, and Markdown reports.</p></article>
       <article><span class="ship-code">D</span><h3>Frozen catalog</h3><p>All 52 records: pointcut, contract, variation, test obligation, negative control, evolution question, cue, and canonical exemplar where one exists.</p></article>
       <article><span class="ship-code">E</span><h3>Runnable example</h3><p>A three-file mini harness with a bounded loop, deferred tool discovery, and a permission check. Scan it before pointing the tool at your own code.</p></article>
       <article><span class="ship-code">T</span><h3>Tests</h3><p>Catalog integrity, repository walking, cue retrieval, structural candidates, report boundaries, and plan generation. Runs on every push.</p></article>
@@ -417,6 +417,7 @@ pohe-agent scan /path/to/your/harness</code></pre></div>
       <div><b>99.60%</b><span>recall over study-positive cells</span></div>
     </div>
     <p class="repro-note">All five misses are files the scanner excludes by design: four above the 2 MB limit and one minified third-party asset. Most extra cells are cells where re-running the study's own detector retrieves cues the frozen matrix omits. This is cue-level agreement, not a claim that every match is an implemented pattern. <a class="text-link" href="https://github.com/xhyccc/pohe-agent/blob/main/docs/reproduction.md">Method and per-cell differences <span aria-hidden="true">↗</span></a></p>
+    <p class="repro-note">A separate calibration audit checks all 51 canonical anchors. It reports frozen-cue misses, file-level anchors, missing structure roles, and negative-control risks instead of forcing every exemplar to pass. <a class="text-link" href="https://github.com/xhyccc/pohe-agent/blob/main/docs/calibration.md">Read the calibration report <span aria-hidden="true">↗</span></a></p>
   </section>
 
   <section class="agent-boundary" aria-labelledby="boundary-title">
@@ -434,7 +435,7 @@ pohe-agent scan /path/to/your/harness</code></pre></div>
     <ol class="workflow-list">
       <li><span>01</span><div><h3>Orient</h3><p>Read the target repository's own instructions and confirm the task: detection only, matching, or evolution.</p></div></li>
       <li><span>02</span><div><h3>Scan</h3><p>Retrieve cues, read the family table, and keep unobserved records visible as unobserved.</p></div></li>
-      <li><span>03</span><div><h3>Match</h3><p>Open the candidate source. Answer all four pointcut dimensions and all four contract fields. Apply the negative control.</p></div></li>
+      <li><span>03</span><div><h3>Analyze</h3><p>Run <code>analyze</code>, read the anchored scope and missing roles, then open the source. Answer all four pointcut dimensions and all four contract fields. Apply the negative control.</p></div></li>
       <li><span>04</span><div><h3>Record</h3><p>Write the evidence level actually reached, the files and tests, and the remaining unknowns.</p></div></li>
       <li><span>05</span><div><h3>Plan</h3><p>Protect the contract, stay inside the variation seam, and name authority, rollback, and a retirement trigger.</p></div></li>
       <li><span>06</span><div><h3>Verify</h3><p>Add the contract test first. Exercise failure and termination paths. Canary one real task before rollout.</p></div></li>
@@ -448,7 +449,7 @@ pohe-agent scan /path/to/your/harness</code></pre></div>
 </main>"""
     return shell(
         "Agent toolkit — POHE",
-        "An open agent package for POHE harness pattern detection, source matching, and pattern-guided harness evolution. 52 frozen records, three agent skills, and a dependency-free CLI.",
+        "An open agent package for POHE harness pattern detection, scope-anchored source analysis, and pattern-guided harness evolution. 52 frozen records, three agent skills, and a dependency-free CLI.",
         body,
         current="agent",
         canonical="agent.html",
