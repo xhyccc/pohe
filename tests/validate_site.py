@@ -120,6 +120,14 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertIn(f"assets/interactions/{pattern_id}.pdf", text)
                 self.assertIn("Repository files", text)
                 self.assertIn('id="repo-files"', text)
+                self.assertIn("Detection &amp; matching", text)
+                self.assertIn('id="detection"', text)
+                self.assertIn("Join point", text)
+                self.assertIn("Source locator", text)
+                self.assertIn("Lexical cue", text)
+                self.assertIn("Aliases", text)
+                self.assertIn("Canonical exemplar", text)
+                self.assertIn("class=\"detection-regex\"", text)
                 if pattern["repo_files"]:
                     self.assertIn('class="repo-file"', text)
                     self.assertIn("https://github.com/", text)
@@ -154,6 +162,26 @@ class SiteIntegrityTests(unittest.TestCase):
             self.assertIn(field, text)
         self.assertIn('href="inventory.html" aria-current="page"', text)
 
+    def test_agent_toolkit_page(self) -> None:
+        text, parser = parse_document(ROOT / "agent.html")
+        self.assertTrue(parser.has_main)
+        for phrase in (
+            "pohe-agent", "AGENTS.md", "pohe-pattern-detection",
+            "pohe-pattern-matching", "pohe-harness-evolution",
+            "pohe-agent scan", "pohe-agent match",
+            "pohe-agent plan", "E1", "E2", "E3",
+            "not a confirmed implementation",
+        ):
+            self.assertIn(phrase, text)
+        self.assertIn("https://github.com/xhyccc/pohe-agent", text)
+        self.assertIn('href="agent.html" aria-current="page"', text)
+        self.assertIn('data-copy="agent-install-code"', text)
+        home = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="agent.html"', home)
+        self.assertIn("Point the lens at your own harness.", home)
+        for page in (ROOT / "index.html", ROOT / "inventory.html", ROOT / "method.html", ROOT / "patterns" / "P01" / "index.html"):
+            self.assertIn("agent.html", page.read_text(encoding="utf-8"))
+
     def test_catalog_search_filters_and_empty_state(self) -> None:
         text, parser = parse_document(ROOT / "index.html")
         self.assertEqual(parser.pattern_rows, 52)
@@ -173,7 +201,7 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertIn("coverage is not confirmed prevalence", text.lower())
 
     def test_page_metadata_and_accessibility_shell(self) -> None:
-        pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
+        pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "agent.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
         for page in pages:
             with self.subTest(page=page.relative_to(ROOT)):
                 text, parser = parse_document(page)
@@ -190,7 +218,7 @@ class SiteIntegrityTests(unittest.TestCase):
                 self.assertIn('href="https://xhyccc.github.io/"', text)
 
     def test_all_local_html_references_resolve(self) -> None:
-        pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
+        pages = [ROOT / "index.html", ROOT / "inventory.html", ROOT / "agent.html", ROOT / "method.html"] + [ROOT / "patterns" / pid / "index.html" for pid in EXPECTED_IDS]
         for page in pages:
             _, parser = parse_document(page)
             for reference in parser.references:

@@ -181,6 +181,7 @@ def nav(prefix: str, current: str) -> str:
   <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
     <a href="{prefix}./#catalog"{' aria-current="page"' if current == 'catalog' else ''}>Catalog <sup>52</sup></a>
     <a href="{prefix}inventory.html"{' aria-current="page"' if current == 'inventory' else ''}>Inventory</a>
+    <a href="{prefix}agent.html"{' aria-current="page"' if current == 'agent' else ''}>Agent</a>
     <a href="{prefix}method.html"{' aria-current="page"' if current == 'method' else ''}>Method & evidence</a>
     <a class="personal-link" href="https://xhyccc.github.io/">Website <span aria-hidden="true">↗</span></a>
     <a class="paper-link" href="{prefix}assets/paper/pohe-position.pdf">Read the paper <span aria-hidden="true">↗</span></a>
@@ -283,21 +284,25 @@ def catalog_row(p: dict) -> str:
 </article>""".strip()
 
 
-def inventory_entry(p: dict) -> str:
+def exemplar_html(p: dict) -> str:
     source_anchor = next((anchor for anchor in p["anchors"] if anchor.get("kind") == "source"), None)
-    if source_anchor:
-        exemplar = (
-            f'<a class="inventory-source-link" href="{esc(source_anchor["url"])}" target="_blank" rel="noreferrer">'
-            f'{esc(source_anchor["repo_slug"])}<code>{esc(source_anchor["implementation"])}</code></a>'
+    if not source_anchor:
+        return '<span class="inventory-empty">None. This record is anchored only in its source specification.</span>'
+    exemplar = (
+        f'<a class="inventory-source-link" href="{esc(source_anchor["url"])}" target="_blank" rel="noreferrer">'
+        f'{esc(source_anchor["repo_slug"])}<code>{esc(source_anchor["implementation"])}</code></a>'
+    )
+    if source_anchor.get("support_url"):
+        exemplar += (
+            f'<span class="inventory-support">Support: '
+            f'<a href="{esc(source_anchor["support_url"])}" target="_blank" rel="noreferrer">'
+            f'{esc(source_anchor["support"])}</a></span>'
         )
-        if source_anchor.get("support_url"):
-            exemplar += (
-                f'<span class="inventory-support">Support: '
-                f'<a href="{esc(source_anchor["support_url"])}" target="_blank" rel="noreferrer">'
-                f'{esc(source_anchor["support"])}</a></span>'
-            )
-    else:
-        exemplar = '<span class="inventory-empty">None. This record is anchored only in its source specification.</span>'
+    return exemplar
+
+
+def inventory_entry(p: dict) -> str:
+    exemplar = exemplar_html(p)
     aliases = ", ".join(esc(alias) for alias in p["aliases"]) or "None"
     source = esc(p["source_locator"]) if p["source_locator"] else "See the source record."
     coordinates = " · ".join(esc(item) for item in p["activities"])
@@ -348,6 +353,96 @@ def render_inventory(data: dict) -> str:
         body,
         current="inventory",
         canonical="inventory.html",
+    )
+
+
+def render_agent() -> str:
+    body = """
+<main id="main-content" class="agent-page">
+  <header class="agent-hero">
+    <div class="agent-hero-copy">
+      <span class="section-index">OPEN PACKAGE / AGENT + CLI + SKILLS</span>
+      <h1>Point the lens<br><em>at your own harness.</em></h1>
+      <p class="agent-deck">A portable agent package for the 52 POHE records. Scan an arbitrary repository for harness-pattern cues, pull the structural candidates into source review, and turn what survives into a pattern-guided evolution proposal.</p>
+      <div class="method-actions"><a class="button button-primary" href="https://github.com/xhyccc/pohe-agent">Open the repository <span aria-hidden="true">↗</span></a><a class="text-link" href="#install">Install the CLI <span aria-hidden="true">↓</span></a></div>
+      <ul class="agent-meta"><li><b>MIT</b><span>license</span></li><li><b>stdlib</b><span>no runtime deps</span></li><li><b>52</b><span>frozen records</span></li><li><b>3</b><span>agent skills</span></li></ul>
+    </div>
+    <aside class="agent-terminal" aria-label="Example scan output">
+      <div class="terminal-bar"><i></i><i></i><i></i><b>pohe-agent scan</b></div>
+      <pre class="terminal-body"><code><span class="terminal-prompt">$</span> pohe-agent scan ./harness
+<span class="terminal-dim">52 records · 6 with a retrieval cue · 0 high priority</span>
+
+<span class="terminal-id">P01</span>  Minimal linear loop        <span class="terminal-dim">medium</span>  runtime/loop.py:6
+<span class="terminal-id">P09</span>  Deferred tool loading      <span class="terminal-dim">medium</span>  runtime/tools.py:15
+<span class="terminal-id">P19</span>  Budgeted loop with caps    <span class="terminal-dim">medium</span>  runtime/loop.py:8
+
+<span class="terminal-note">E1 retrieval cue. Open the source before calling it a pattern.</span></code></pre>
+      <p class="terminal-caption">Illustrative output. A cue is a place to look, not a confirmed implementation.</p>
+    </aside>
+  </header>
+
+  <section class="agent-pipeline" aria-labelledby="pipeline-title">
+    <div class="agent-section-head"><span class="section-index">THE PIPELINE</span><h2 id="pipeline-title">Three commands, three questions.</h2><p>What is worth reading? Is it really this record? What may safely change?</p></div>
+    <div class="pipeline-grid">
+      <article><span>01 / DETECT</span><h3>Where are the leads?</h3><p>Run the frozen cue expressions over code, tests, and support files. Excludes caches, build output, and vendored trees.</p><code>pohe-agent scan &lt;repo&gt;</code></article>
+      <article><span>02 / MATCH</span><h3>Is it this record?</h3><p>Extract symbols and aliases, then answer the pointcut, contract, and negative-control questions against the source.</p><code>pohe-agent match &lt;repo&gt; --pattern P01</code></article>
+      <article><span>03 / EVOLVE</span><h3>What may change?</h3><p>Build a proposal that protects the contract, names authority, adds the test obligation, and records rollback.</p><code>pohe-agent plan &lt;repo&gt; --findings findings.json</code></article>
+    </div>
+  </section>
+
+  <section class="agent-install" id="install">
+    <div class="agent-install-copy"><span class="section-index">INSTALL / 60 SECONDS</span><h2>Clone, install, point.</h2><p>The scanner is Python standard library only. The agent instructions and skills travel with the repository.</p><p class="agent-install-note">Python 3.10+. No API key, no network access, and no repository upload.</p></div>
+    <div class="agent-install-command"><div class="command-head"><span>TERMINAL</span><button class="copy-button" type="button" data-copy="agent-install-code">Copy</button></div><pre class="command-block" id="agent-install-code"><code>git clone https://github.com/xhyccc/pohe-agent.git
+cd pohe-agent
+python3 -m pip install -e .
+pohe-agent scan /path/to/your/harness</code></pre></div>
+  </section>
+
+  <section class="agent-ships" aria-labelledby="ships-title">
+    <div class="agent-section-head"><span class="section-index">WHAT SHIPS</span><h2 id="ships-title">An agent package, not a black box.</h2><p>Every layer is readable, testable, and replaceable.</p></div>
+    <div class="ships-grid">
+      <article><span class="ship-code">A</span><h3>AGENTS.md</h3><p>The operating manual: the evidence ladder, the standard workflow, the hard rules, and the handoff points between detection, matching, and evolution.</p></article>
+      <article><span class="ship-code">S</span><h3>Three skills</h3><p><b>Detection</b> finds leads. <b>Matching</b> adjudicates a candidate against the pointcut, contract, and negative control. <b>Evolution</b> plans and verifies the change.</p><ul class="skill-list"><li><code>pohe-pattern-detection</code></li><li><code>pohe-pattern-matching</code></li><li><code>pohe-harness-evolution</code></li></ul></article>
+      <article><span class="ship-code">C</span><h3>CLI</h3><p><code>scan</code>, <code>match</code>, <code>plan</code>, <code>list</code>, and <code>show</code>. Deterministic walking, JSON output, and Markdown reports.</p></article>
+      <article><span class="ship-code">D</span><h3>Frozen catalog</h3><p>All 52 records: pointcut, contract, variation, test obligation, negative control, evolution question, cue, and canonical exemplar where one exists.</p></article>
+      <article><span class="ship-code">E</span><h3>Runnable example</h3><p>A three-file mini harness with a bounded loop, deferred tool discovery, and a permission check. Scan it before pointing the tool at your own code.</p></article>
+      <article><span class="ship-code">T</span><h3>Tests</h3><p>Catalog integrity, repository walking, cue retrieval, structural candidates, report boundaries, and plan generation. Runs on every push.</p></article>
+    </div>
+  </section>
+
+  <section class="agent-boundary" aria-labelledby="boundary-title">
+    <div class="agent-boundary-copy"><span class="section-index">EVIDENCE LADDER</span><h2 id="boundary-title">Cues are leads.<br>Contracts are claims.</h2><p>The tool can produce E1 on its own. E2 and E3 require reading the source, the tests, or a runtime check. The package keeps that boundary visible in every report.</p><a class="text-link" href="method.html#evidence-key">Read the full evidence key <span aria-hidden="true">↗</span></a></div>
+    <ol class="agent-ladder">
+      <li><b>E0</b><div><strong>Proposed record</strong><span>The frozen specification and its negative control.</span></div></li>
+      <li><b>E1</b><div><strong>Retrieval cue</strong><span>A regex or symbol hit. Produced by <code>scan</code> and <code>match</code>.</span></div></li>
+      <li><b>E2</b><div><strong>Source-located mechanism</strong><span>Roles, state, and control flow identified in source.</span></div></li>
+      <li><b>E3</b><div><strong>Contract support</strong><span>Executable or explicit evidence for ordering, errors, or boundaries.</span></div></li>
+    </ol>
+  </section>
+
+  <section class="agent-workflow" aria-labelledby="workflow-title">
+    <div class="agent-section-head"><span class="section-index">AGENT WORKFLOW</span><h2 id="workflow-title">From scan to recorded decision.</h2></div>
+    <ol class="workflow-list">
+      <li><span>01</span><div><h3>Orient</h3><p>Read the target repository's own instructions and confirm the task: detection only, matching, or evolution.</p></div></li>
+      <li><span>02</span><div><h3>Scan</h3><p>Retrieve cues, read the family table, and keep unobserved records visible as unobserved.</p></div></li>
+      <li><span>03</span><div><h3>Match</h3><p>Open the candidate source. Answer all four pointcut dimensions and all four contract fields. Apply the negative control.</p></div></li>
+      <li><span>04</span><div><h3>Record</h3><p>Write the evidence level actually reached, the files and tests, and the remaining unknowns.</p></div></li>
+      <li><span>05</span><div><h3>Plan</h3><p>Protect the contract, stay inside the variation seam, and name authority, rollback, and a retirement trigger.</p></div></li>
+      <li><span>06</span><div><h3>Verify</h3><p>Add the contract test first. Exercise failure and termination paths. Canary one real task before rollout.</p></div></li>
+    </ol>
+  </section>
+
+  <aside class="agent-cta">
+    <div><span class="section-index">START HERE</span><h2>Read the agent. Then read your harness.</h2><p>The repository contains the instructions, the skills, the catalog, and the CLI. The field guide remains the reference for every record.</p></div>
+    <div class="agent-cta-actions"><a class="button button-primary" href="https://github.com/xhyccc/pohe-agent">GitHub / pohe-agent <span aria-hidden="true">↗</span></a><a class="text-link" href="inventory.html">Browse the 52 records <span aria-hidden="true">↗</span></a></div>
+  </aside>
+</main>"""
+    return shell(
+        "Agent toolkit — POHE",
+        "An open agent package for POHE harness pattern detection, source matching, and pattern-guided harness evolution. 52 frozen records, three agent skills, and a dependency-free CLI.",
+        body,
+        current="agent",
+        canonical="agent.html",
     )
 
 
@@ -423,6 +518,13 @@ def render_index(patterns: list[dict]) -> str:
   </section>
 
   <aside class="evidence-banner" id="evidence-key"><span class="section-index">READ WITH CARE</span><h2>A cue is a place to look,<br>not a pattern confirmed.</h2><div><p><strong>Proposed specification.</strong> Pointcuts and contracts define what a conforming mechanism would do.</p><p><strong>Exploratory retrieval cue.</strong> A regex or structural match retrieves candidate locations. Any-evidence coverage is not confirmed prevalence.</p><p><strong>Source-located exemplar.</strong> A curator identified a concrete implementation anchor. It does not certify every contract field.</p><p><strong>Human / AI review.</strong> Study annotations are AI-assisted and bounded; independent human validation remains open.</p></div><a class="text-link" href="method.html#evidence-key">Full evidence key and limitations <span aria-hidden="true">↗</span></a></aside>
+
+  <section class="agent-teaser" aria-labelledby="agent-teaser-title">
+    <div class="agent-teaser-copy"><span class="section-index">OPEN PACKAGE / AGENT + CLI</span><h2 id="agent-teaser-title">Point the lens at your own harness.</h2><p>A portable agent package brings the 52 records to an arbitrary repository: scan for cues, pull structural candidates into source review, and plan evolution without losing the protected contract.</p><div class="agent-teaser-actions"><a class="button button-primary" href="agent.html">Explore the agent toolkit <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/xhyccc/pohe-agent">GitHub repository <span aria-hidden="true">↗</span></a></div></div>
+    <div class="agent-teaser-code"><span class="teaser-code-label">TERMINAL</span><pre><code><span class="teaser-prompt">$</span> pohe-agent scan ./harness
+<span class="teaser-prompt">$</span> pohe-agent match ./harness --pattern P01
+<span class="teaser-prompt">$</span> pohe-agent plan ./harness --findings findings.json</code></pre><small>E1 retrieval only. Source review decides what is real.</small></div>
+  </section>
 </main>"""
     return shell("POHE — Pattern-Oriented Harness Engineering: Design needs Patterns, when Agentic AI meets OOD", "An engineering field guide to 52 candidate patterns for agent harnesses: UML class views, pointcuts, contracts, variation, prompt and code design sketches, evidence, and lifecycle.", body, current="catalog")
 
@@ -452,6 +554,23 @@ def example_section(p: dict) -> str:
       <article class="design-card"><div class="design-card-head"><span>CODE DESIGN / PYTHON</span><button class="copy-button" type="button" data-copy="{code_id}">Copy</button></div><pre class="code-block" id="{code_id}"><code>{code}</code></pre></article>
     </div>
     <p class="design-note"><strong>Illustrative design sketch.</strong> {note} This example is a teaching aid, not implementation evidence or a conformance claim.</p>
+  </section>"""
+
+
+def detection_section(p: dict) -> str:
+    aliases = ", ".join(esc(alias) for alias in p["aliases"]) or "None"
+    source = esc(p["source_locator"]) if p["source_locator"] else "See the source record."
+    regex = esc(p["retrieval_cue"]["regex"])
+    return f"""
+  <section class="record-section detection-section" id="detection"><div class="record-section-label"><span>07</span><h2>Detection &amp; matching</h2><p>The frozen rule that retrieves this record, the canonical source exemplar, and the control that should stay unmatched.</p></div>
+    <dl class="pointcut-grid detection-grid">
+      <div><dt>Join point</dt><dd><code class="detection-code">{esc(p['join_point'])}</code></dd></div>
+      <div><dt>Source locator</dt><dd>{source}</dd></div>
+      <div><dt>Lexical cue</dt><dd><code class="detection-regex">{regex}</code><span class="detection-note">Frozen expression, v{esc(p['retrieval_cue']['version'])}. A match is a retrieval cue, not a confirmed implementation.</span></dd></div>
+      <div><dt>Aliases</dt><dd>{aliases}</dd></div>
+      <div><dt>Canonical exemplar</dt><dd>{exemplar_html(p)}</dd></div>
+      <div><dt>Negative control</dt><dd>{esc(p['negative_control'])}</dd></div>
+    </dl>
   </section>"""
 
 
@@ -509,7 +628,7 @@ def render_detail(p: dict, previous_id: str, next_id: str) -> str:
 
   <section class="record-section interaction-section" id="interactions"><div class="record-section-label"><span>02</span><h2>Object interactions</h2><p>The same roles and calls as a class collaboration and a numbered message sequence.</p></div><figure class="interaction-figure"><a href="../../{p['interaction_svg']}" aria-label="Open full-size object interaction diagram for {p['id']}"><img src="../../{p['interaction_svg']}" alt="Object interaction diagram for {esc(p['name'])}, showing role collaboration and a numbered message sequence" loading="lazy"></a><figcaption><span>FIG. {p['id']} / OBJECT INTERACTIONS</span><div class="figure-links"><a href="../../{p['interaction_svg']}">Open full SVG <span aria-hidden="true">↗</span></a><a class="download-link" href="../../{p['interaction_pdf']}" download>Download PDF <span aria-hidden="true">↓</span></a></div></figcaption></figure></section>
 
-  <nav class="record-toc" aria-label="On this page"><span>On this record</span><a href="#uml-view">UML view</a><a href="#interactions">Object interactions</a><a href="#pointcut">Pointcut</a><a href="#contract">Contract</a><a href="#variation">Variation</a><a href="#prompt-code">Prompt + code</a><a href="#repo-files">Repository files</a><a href="#evidence">Evidence</a></nav>
+  <nav class="record-toc" aria-label="On this page"><span>On this record</span><a href="#uml-view">UML view</a><a href="#interactions">Object interactions</a><a href="#pointcut">Pointcut</a><a href="#contract">Contract</a><a href="#variation">Variation</a><a href="#prompt-code">Prompt + code</a><a href="#detection">Detection</a><a href="#repo-files">Repository files</a><a href="#evidence">Evidence</a></nav>
 
   <section class="record-section pointcut-section" id="pointcut"><div class="record-section-label"><span>03</span><h2>Pointcut</h2><p>Where the mechanism applies. All four dimensions belong to the proposed match, not just its vocabulary.</p></div><dl class="pointcut-grid">{pointcut}</dl></section>
 
@@ -521,9 +640,11 @@ def render_detail(p: dict, previous_id: str, next_id: str) -> str:
 
 {example_section(p)}
 
-  <section class="record-section repo-files-section" id="repo-files"><div class="record-section-label"><span>07</span><h2>Repository files</h2><p>Up to five public files retrieved by the frozen cue and pinned to the audited commit. A match is a place to inspect, not a confirmed implementation.</p></div><div class="repo-files">{repo_files_html(p['repo_files'])}</div></section>
+{detection_section(p)}
 
-  <section class="record-section evidence-section" id="evidence"><div class="record-section-label"><span>08</span><h2>Evidence & provenance</h2><p>Each layer answers a different question. Do not substitute retrieval for review.</p></div><div class="evidence-content"><div class="evidence-status"><span class="status-mark"></span><h3>{esc(status)}</h3><p>{esc(evidence_note)}</p><p class="review-note"><strong>Review boundary:</strong> this candidate and its specification come from an AI-assisted study. Independent human validation remains open.</p></div><div class="coverage-figure"><span>ANY-EVIDENCE FAMILY COVERAGE</span><strong>{coverage}<i>/{family_total}</i></strong><div class="coverage-bar" aria-hidden="true"><i style="width:{percent}%"></i></div><p>{percent}% of repository families in the frozen panel have at least one current cue, historical cue, or canonical source layer. <strong>This is not confirmed prevalence.</strong></p><small>Current lexical-cue repositories: {current} / {evidence['repository_total']}</small></div></div><div class="anchors">{anchors}</div><details class="retrieval-cue"><summary>Exploratory retrieval cue <span>Regex / v{esc(p['retrieval_cue']['version'])}</span></summary><div><code>{regex}</code><p>This expression is a discovery instrument only. A match is a retrieval cue—not a confirmed implementation, pointcut match, or contract proof.</p></div></details></section>
+  <section class="record-section repo-files-section" id="repo-files"><div class="record-section-label"><span>08</span><h2>Repository files</h2><p>Up to five public files retrieved by the frozen cue and pinned to the audited commit. A match is a place to inspect, not a confirmed implementation.</p></div><div class="repo-files">{repo_files_html(p['repo_files'])}</div></section>
+
+  <section class="record-section evidence-section" id="evidence"><div class="record-section-label"><span>09</span><h2>Evidence & provenance</h2><p>Each layer answers a different question. Do not substitute retrieval for review.</p></div><div class="evidence-content"><div class="evidence-status"><span class="status-mark"></span><h3>{esc(status)}</h3><p>{esc(evidence_note)}</p><p class="review-note"><strong>Review boundary:</strong> this candidate and its specification come from an AI-assisted study. Independent human validation remains open.</p></div><div class="coverage-figure"><span>ANY-EVIDENCE FAMILY COVERAGE</span><strong>{coverage}<i>/{family_total}</i></strong><div class="coverage-bar" aria-hidden="true"><i style="width:{percent}%"></i></div><p>{percent}% of repository families in the frozen panel have at least one current cue, historical cue, or canonical source layer. <strong>This is not confirmed prevalence.</strong></p><small>Current lexical-cue repositories: {current} / {evidence['repository_total']}</small></div></div><div class="anchors">{anchors}</div><details class="retrieval-cue"><summary>Exploratory retrieval cue <span>Regex / v{esc(p['retrieval_cue']['version'])}</span></summary><div><code>{regex}</code><p>This expression is a discovery instrument only. A match is a retrieval cue—not a confirmed implementation, pointcut match, or contract proof.</p></div></details></section>
 
   <nav class="record-pagination" aria-label="Adjacent pattern records"><a class="previous-record" href="../{previous_id}/"><span>← Previous record</span><strong>{previous_id}</strong></a><a href="../../#catalog" class="all-records">All 52</a><a class="next-record" href="../{next_id}/"><span>Next record →</span><strong>{next_id}</strong></a></nav>
 </main>"""
@@ -724,6 +845,7 @@ def main() -> None:
     write_text(ROOT / "data/patterns.json", json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     write_text(ROOT / "index.html", render_index(data["patterns"]))
     write_text(ROOT / "inventory.html", render_inventory(data))
+    write_text(ROOT / "agent.html", render_agent())
     write_text(ROOT / "method.html", render_method(data))
     for index, pattern in enumerate(data["patterns"]):
         write_text(ROOT / "patterns" / pattern["id"] / "index.html", render_detail(pattern, EXPECTED_IDS[(index - 1) % 52], EXPECTED_IDS[(index + 1) % 52]))

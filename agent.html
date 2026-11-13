@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An open agent package for POHE harness pattern detection, source matching, and pattern-guided harness evolution. 52 frozen records, three agent skills, and a dependency-free CLI.">
+  <meta name="theme-color" content="#f2eee4">
+  <title>Agent toolkit — POHE</title>
+  <link rel="canonical" href="https://xhyccc.github.io/pohe/agent.html">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <a class="wordmark" href="./" aria-label="POHE field guide home">
+    <svg class="mark" viewBox="0 0 42 42" aria-hidden="true"><path d="M4 4h34v34H4zM4 14h34M14 4v34M14 14l12 12M26 14v12H14"/><circle cx="14" cy="14" r="2.5"/><circle cx="26" cy="26" r="2.5"/></svg>
+    <span><strong>POHE</strong><small>Engineering field guide</small></span>
+  </a>
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span>Index</span><i aria-hidden="true"></i></button>
+  <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+    <a href="./#catalog">Catalog <sup>52</sup></a>
+    <a href="inventory.html">Inventory</a>
+    <a href="agent.html" aria-current="page">Agent</a>
+    <a href="method.html">Method & evidence</a>
+    <a class="personal-link" href="https://xhyccc.github.io/">Website <span aria-hidden="true">↗</span></a>
+    <a class="paper-link" href="assets/paper/pohe-position.pdf">Read the paper <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
+
+<main id="main-content" class="agent-page">
+  <header class="agent-hero">
+    <div class="agent-hero-copy">
+      <span class="section-index">OPEN PACKAGE / AGENT + CLI + SKILLS</span>
+      <h1>Point the lens<br><em>at your own harness.</em></h1>
+      <p class="agent-deck">A portable agent package for the 52 POHE records. Scan an arbitrary repository for harness-pattern cues, pull the structural candidates into source review, and turn what survives into a pattern-guided evolution proposal.</p>
+      <div class="method-actions"><a class="button button-primary" href="https://github.com/xhyccc/pohe-agent">Open the repository <span aria-hidden="true">↗</span></a><a class="text-link" href="#install">Install the CLI <span aria-hidden="true">↓</span></a></div>
+      <ul class="agent-meta"><li><b>MIT</b><span>license</span></li><li><b>stdlib</b><span>no runtime deps</span></li><li><b>52</b><span>frozen records</span></li><li><b>3</b><span>agent skills</span></li></ul>
+    </div>
+    <aside class="agent-terminal" aria-label="Example scan output">
+      <div class="terminal-bar"><i></i><i></i><i></i><b>pohe-agent scan</b></div>
+      <pre class="terminal-body"><code><span class="terminal-prompt">$</span> pohe-agent scan ./harness
+<span class="terminal-dim">52 records · 6 with a retrieval cue · 0 high priority</span>
+
+<span class="terminal-id">P01</span>  Minimal linear loop        <span class="terminal-dim">medium</span>  runtime/loop.py:6
+<span class="terminal-id">P09</span>  Deferred tool loading      <span class="terminal-dim">medium</span>  runtime/tools.py:15
+<span class="terminal-id">P19</span>  Budgeted loop with caps    <span class="terminal-dim">medium</span>  runtime/loop.py:8
+
+<span class="terminal-note">E1 retrieval cue. Open the source before calling it a pattern.</span></code></pre>
+      <p class="terminal-caption">Illustrative output. A cue is a place to look, not a confirmed implementation.</p>
+    </aside>
+  </header>
+
+  <section class="agent-pipeline" aria-labelledby="pipeline-title">
+    <div class="agent-section-head"><span class="section-index">THE PIPELINE</span><h2 id="pipeline-title">Three commands, three questions.</h2><p>What is worth reading? Is it really this record? What may safely change?</p></div>
+    <div class="pipeline-grid">
+      <article><span>01 / DETECT</span><h3>Where are the leads?</h3><p>Run the frozen cue expressions over code, tests, and support files. Excludes caches, build output, and vendored trees.</p><code>pohe-agent scan &lt;repo&gt;</code></article>
+      <article><span>02 / MATCH</span><h3>Is it this record?</h3><p>Extract symbols and aliases, then answer the pointcut, contract, and negative-control questions against the source.</p><code>pohe-agent match &lt;repo&gt; --pattern P01</code></article>
+      <article><span>03 / EVOLVE</span><h3>What may change?</h3><p>Build a proposal that protects the contract, names authority, adds the test obligation, and records rollback.</p><code>pohe-agent plan &lt;repo&gt; --findings findings.json</code></article>
+    </div>
+  </section>
+
+  <section class="agent-install" id="install">
+    <div class="agent-install-copy"><span class="section-index">INSTALL / 60 SECONDS</span><h2>Clone, install, point.</h2><p>The scanner is Python standard library only. The agent instructions and skills travel with the repository.</p><p class="agent-install-note">Python 3.10+. No API key, no network access, and no repository upload.</p></div>
+    <div class="agent-install-command"><div class="command-head"><span>TERMINAL</span><button class="copy-button" type="button" data-copy="agent-install-code">Copy</button></div><pre class="command-block" id="agent-install-code"><code>git clone https://github.com/xhyccc/pohe-agent.git
+cd pohe-agent
+python3 -m pip install -e .
+pohe-agent scan /path/to/your/harness</code></pre></div>
+  </section>
+
+  <section class="agent-ships" aria-labelledby="ships-title">
+    <div class="agent-section-head"><span class="section-index">WHAT SHIPS</span><h2 id="ships-title">An agent package, not a black box.</h2><p>Every layer is readable, testable, and replaceable.</p></div>
+    <div class="ships-grid">
+      <article><span class="ship-code">A</span><h3>AGENTS.md</h3><p>The operating manual: the evidence ladder, the standard workflow, the hard rules, and the handoff points between detection, matching, and evolution.</p></article>
+      <article><span class="ship-code">S</span><h3>Three skills</h3><p><b>Detection</b> finds leads. <b>Matching</b> adjudicates a candidate against the pointcut, contract, and negative control. <b>Evolution</b> plans and verifies the change.</p><ul class="skill-list"><li><code>pohe-pattern-detection</code></li><li><code>pohe-pattern-matching</code></li><li><code>pohe-harness-evolution</code></li></ul></article>
+      <article><span class="ship-code">C</span><h3>CLI</h3><p><code>scan</code>, <code>match</code>, <code>plan</code>, <code>list</code>, and <code>show</code>. Deterministic walking, JSON output, and Markdown reports.</p></article>
+      <article><span class="ship-code">D</span><h3>Frozen catalog</h3><p>All 52 records: pointcut, contract, variation, test obligation, negative control, evolution question, cue, and canonical exemplar where one exists.</p></article>
+      <article><span class="ship-code">E</span><h3>Runnable example</h3><p>A three-file mini harness with a bounded loop, deferred tool discovery, and a permission check. Scan it before pointing the tool at your own code.</p></article>
+      <article><span class="ship-code">T</span><h3>Tests</h3><p>Catalog integrity, repository walking, cue retrieval, structural candidates, report boundaries, and plan generation. Runs on every push.</p></article>
+    </div>
+  </section>
+
+  <section class="agent-boundary" aria-labelledby="boundary-title">
+    <div class="agent-boundary-copy"><span class="section-index">EVIDENCE LADDER</span><h2 id="boundary-title">Cues are leads.<br>Contracts are claims.</h2><p>The tool can produce E1 on its own. E2 and E3 require reading the source, the tests, or a runtime check. The package keeps that boundary visible in every report.</p><a class="text-link" href="method.html#evidence-key">Read the full evidence key <span aria-hidden="true">↗</span></a></div>
+    <ol class="agent-ladder">
+      <li><b>E0</b><div><strong>Proposed record</strong><span>The frozen specification and its negative control.</span></div></li>
+      <li><b>E1</b><div><strong>Retrieval cue</strong><span>A regex or symbol hit. Produced by <code>scan</code> and <code>match</code>.</span></div></li>
+      <li><b>E2</b><div><strong>Source-located mechanism</strong><span>Roles, state, and control flow identified in source.</span></div></li>
+      <li><b>E3</b><div><strong>Contract support</strong><span>Executable or explicit evidence for ordering, errors, or boundaries.</span></div></li>
+    </ol>
+  </section>
+
+  <section class="agent-workflow" aria-labelledby="workflow-title">
+    <div class="agent-section-head"><span class="section-index">AGENT WORKFLOW</span><h2 id="workflow-title">From scan to recorded decision.</h2></div>
+    <ol class="workflow-list">
+      <li><span>01</span><div><h3>Orient</h3><p>Read the target repository's own instructions and confirm the task: detection only, matching, or evolution.</p></div></li>
+      <li><span>02</span><div><h3>Scan</h3><p>Retrieve cues, read the family table, and keep unobserved records visible as unobserved.</p></div></li>
+      <li><span>03</span><div><h3>Match</h3><p>Open the candidate source. Answer all four pointcut dimensions and all four contract fields. Apply the negative control.</p></div></li>
+      <li><span>04</span><div><h3>Record</h3><p>Write the evidence level actually reached, the files and tests, and the remaining unknowns.</p></div></li>
+      <li><span>05</span><div><h3>Plan</h3><p>Protect the contract, stay inside the variation seam, and name authority, rollback, and a retirement trigger.</p></div></li>
+      <li><span>06</span><div><h3>Verify</h3><p>Add the contract test first. Exercise failure and termination paths. Canary one real task before rollout.</p></div></li>
+    </ol>
+  </section>
+
+  <aside class="agent-cta">
+    <div><span class="section-index">START HERE</span><h2>Read the agent. Then read your harness.</h2><p>The repository contains the instructions, the skills, the catalog, and the CLI. The field guide remains the reference for every record.</p></div>
+    <div class="agent-cta-actions"><a class="button button-primary" href="https://github.com/xhyccc/pohe-agent">GitHub / pohe-agent <span aria-hidden="true">↗</span></a><a class="text-link" href="inventory.html">Browse the 52 records <span aria-hidden="true">↗</span></a></div>
+  </aside>
+</main>
+<footer class="site-footer">
+  <div><strong>POHE</strong> / Pattern-Oriented Harness Engineering<br><span class="footer-author">Haoyi Xiong</span></div>
+  <p>A proposed discipline for recurring harness decisions. Specifications and analytical diagrams do not certify implementations.</p>
+  <div class="footer-links"><a href="method.html#evidence-key">How to read the evidence</a><a href="method.html#colophon">Colophon</a></div>
+  <p class="footer-disclosure">Analytical diagrams, prompt sketches, and code designs describe proposed contracts. They are not observed traces, repository class declarations, or evidence that any implementation conforms.</p>
+</footer>
+</body>
+</html>

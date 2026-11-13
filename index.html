@@ -21,6 +21,7 @@
   <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
     <a href="./#catalog" aria-current="page">Catalog <sup>52</sup></a>
     <a href="inventory.html">Inventory</a>
+    <a href="agent.html">Agent</a>
     <a href="method.html">Method & evidence</a>
     <a class="personal-link" href="https://xhyccc.github.io/">Website <span aria-hidden="true">↗</span></a>
     <a class="paper-link" href="assets/paper/pohe-position.pdf">Read the paper <span aria-hidden="true">↗</span></a>
@@ -559,6 +560,13 @@
   </section>
 
   <aside class="evidence-banner" id="evidence-key"><span class="section-index">READ WITH CARE</span><h2>A cue is a place to look,<br>not a pattern confirmed.</h2><div><p><strong>Proposed specification.</strong> Pointcuts and contracts define what a conforming mechanism would do.</p><p><strong>Exploratory retrieval cue.</strong> A regex or structural match retrieves candidate locations. Any-evidence coverage is not confirmed prevalence.</p><p><strong>Source-located exemplar.</strong> A curator identified a concrete implementation anchor. It does not certify every contract field.</p><p><strong>Human / AI review.</strong> Study annotations are AI-assisted and bounded; independent human validation remains open.</p></div><a class="text-link" href="method.html#evidence-key">Full evidence key and limitations <span aria-hidden="true">↗</span></a></aside>
+
+  <section class="agent-teaser" aria-labelledby="agent-teaser-title">
+    <div class="agent-teaser-copy"><span class="section-index">OPEN PACKAGE / AGENT + CLI</span><h2 id="agent-teaser-title">Point the lens at your own harness.</h2><p>A portable agent package brings the 52 records to an arbitrary repository: scan for cues, pull structural candidates into source review, and plan evolution without losing the protected contract.</p><div class="agent-teaser-actions"><a class="button button-primary" href="agent.html">Explore the agent toolkit <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/xhyccc/pohe-agent">GitHub repository <span aria-hidden="true">↗</span></a></div></div>
+    <div class="agent-teaser-code"><span class="teaser-code-label">TERMINAL</span><pre><code><span class="teaser-prompt">$</span> pohe-agent scan ./harness
+<span class="teaser-prompt">$</span> pohe-agent match ./harness --pattern P01
+<span class="teaser-prompt">$</span> pohe-agent plan ./harness --findings findings.json</code></pre><small>E1 retrieval only. Source review decides what is real.</small></div>
+  </section>
 </main>
 <footer class="site-footer">
   <div><strong>POHE</strong> / Pattern-Oriented Harness Engineering<br><span class="footer-author">Haoyi Xiong</span></div>
