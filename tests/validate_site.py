@@ -321,7 +321,7 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r'class="hypothesis-card\b', text)), 3)
         for hypothesis_id in ("h1-asset", "h2-agency", "h3-controlled-variation"):
             self.assertIn(f'id="{hypothesis_id}"', text)
-        for field in ("Claim", "Metrics", "Evidence status", "Open / falsification boundary"):
+        for field in ("Question", "Our answer", "Metrics", "Evidence status", "Open / falsification boundary"):
             self.assertEqual(text.count(f"<h4>{field}</h4>"), 3, field)
         visible_text = html.unescape(re.sub(r"<[^>]+>", "", text))
         for phrase in (
