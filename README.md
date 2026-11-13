@@ -22,6 +22,12 @@ Published at **https://xhyccc.github.io/pohe/**
 The catalog deliberately keeps these boundaries visible instead of compressing
 them into a single confidence score.
 
+The method page closes with a colophon honoring the author's unpublished
+master's research on design patterns. It records the sources that shaped the
+vocabulary here: the Gang of Four catalog, Roy T. Fielding's dissertation on
+architectural styles, and Douglas C. Schmidt's work on distributed-computing
+patterns and the POSA series.
+
 ## Structure
 
 ```

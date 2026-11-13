@@ -208,6 +208,22 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertIn("actions/deploy-pages", workflow)
         self.assertIn("path: .", workflow)
 
+    def test_colophon_and_influences(self) -> None:
+        text = (ROOT / "method.html").read_text(encoding="utf-8")
+        self.assertIn('id="colophon"', text)
+        self.assertIn("Colophon", text)
+        for phrase in (
+            "unpublished master’s research project on design patterns",
+            "Gang of Four",
+            "Roy T. Fielding",
+            "Douglas C. Schmidt",
+            "Pattern-Oriented Software Architecture",
+        ):
+            self.assertIn(phrase, text)
+        self.assertIn("https://roy.gbiv.com/pubs/dissertation/top.htm", text)
+        self.assertIn("https://www.dre.vanderbilt.edu/~schmidt/", text)
+        self.assertIn('href="method.html#colophon"', (ROOT / "index.html").read_text(encoding="utf-8"))
+
     def test_no_raw_evidence_or_cache_material(self) -> None:
         forbidden = [p for p in ROOT.rglob("*") if p.is_file() and (p.suffix in {".jsonl", ".zip"} or "__pycache__" in p.parts)]
         self.assertEqual(forbidden, [])
