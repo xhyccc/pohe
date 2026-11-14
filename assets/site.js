@@ -204,17 +204,6 @@
       });
     });
 
-    document.querySelectorAll("[data-hypothesis-link]").forEach(function (link) {
-      link.addEventListener("click", function () {
-        hypothesis.value = link.getAttribute("data-hypothesis-link") || "all";
-        apply();
-        var catalog = document.getElementById("catalog");
-        if (catalog && catalog.scrollIntoView) {
-          catalog.scrollIntoView({ behavior: "smooth" });
-        }
-      });
-    });
-
     readUrl();
     apply(false);
   }

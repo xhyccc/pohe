@@ -42,7 +42,7 @@ ACTIVITIES = {
 # or evidence value. A record informs a hypothesis through its frozen activity
 # focus: A1 (design) specifies the durable commitment (H1), A2 (verification)
 # exercises mechanized separation (H2), and A3 (evolution) is where bounded
-# self-modification is tested (H3).
+# self-improvement is tested (H3).
 HYPOTHESES = {
     "H1": {
         "kicker": "Asset question",
@@ -58,9 +58,9 @@ HYPOTHESES = {
     },
     "H3": {
         "kicker": "Controlled-variation question",
-        "title": "Do explicit variation boundaries beat unconstrained self-modification?",
+        "title": "Do explicit variation boundaries beat unconstrained self-improvement?",
         "activity": "A3",
-        "summary": "We ask whether bounded self-modification yields lower contract drift, lower regression, faster recovery, and clearer attribution than unconstrained revision. This causal comparison is still open.",
+        "summary": "We ask whether bounded self-improvement yields lower contract drift, lower regression, faster recovery, and clearer attribution than unconstrained revision. This causal comparison is still open.",
     },
 }
 HYPOTHESIS_BY_ACTIVITY = {"A1": "H1", "A2": "H2", "A3": "H3"}
@@ -490,22 +490,12 @@ pohe-agent scan /path/to/your/harness</code></pre></div>
     )
 
 
-def hypothesis_card(key: str, spec: dict, count: int) -> str:
-    return f"""<article class="hypothesis-band-card hypothesis-{key.lower()}" data-hypothesis-link="{key}">
-  <header><span class="hypothesis-code">{key}</span><div><span class="hypothesis-kicker">{esc(spec['kicker'])}</span><h3>{esc(spec['title'])}</h3></div></header>
-  <p>{esc(spec['summary'])}</p>
-  <footer><span>{spec['activity']} · {esc(ACTIVITIES[spec['activity']])}</span><strong>{count} records</strong></footer>
-</article>"""
-
-
 def render_index(patterns: list[dict]) -> str:
     family_options = "".join(f'<option value="{key}">{key} — {esc(value[0])}</option>' for key, value in FAMILIES.items())
     activity_options = "".join(f'<option value="{key}">{key} — {esc(value)}</option>' for key, value in ACTIVITIES.items())
     hypothesis_options = "".join(f'<option value="{key}">{key} · {esc(value["kicker"])}</option>' for key, value in HYPOTHESES.items())
     family_counts = Counter(p["family"] for p in patterns)
     family_rules = "".join(f"""<a href="#catalog" class="family-rule" data-family="{key}" data-family-link="{key}"><span class="family-code">{key}</span><strong>{esc(value[0])}</strong><small>{esc(value[1])}</small><span class="family-count">{family_counts[key]} records</span></a>""" for key, value in FAMILIES.items())
-    hypothesis_counts = Counter(h for p in patterns for h in p["hypotheses"])
-    hypothesis_cards = "".join(hypothesis_card(key, spec, hypothesis_counts.get(key, 0)) for key, spec in HYPOTHESES.items())
     rows = "\n".join(catalog_row(p) for p in patterns)
     body = f"""
 <main id="main-content">
@@ -516,9 +506,9 @@ def render_index(patterns: list[dict]) -> str:
         <h1 id="hero-title">Pattern-Oriented<br><em>Harness Engineering<span class="hero-title-colon">:</span></em><span class="hero-title-sub">Design needs Patterns, when Agentic AI meets OOD</span></h1>
         <p class="hero-deck">A field guide to the recurring decisions around AI agents: what may vary, what must hold, and what happens when it does not.</p>
         <ol class="hero-questions" aria-label="Three questions this field guide asks">
-          <li><span class="hero-q-tag">H1</span><p class="hero-q">When a prompt or code snapshot may be replaced within days, what is the asset of harness engineering?<small>Our answer: an inspectable design commitment—pointcut, contract, permitted variation, test obligation, negative control.</small></p></li>
-          <li><span class="hero-q-tag">H2</span><p class="hero-q">Design patterns and POSA separated what rarely changes from what may be customized. Must harness engineering keep that separation of concerns—and its boundary?<small>Our answer: yes, and under agent-led evolution the boundary must be mechanized, not merely documented.</small></p></li>
-          <li><span class="hero-q-tag">H3</span><p class="hero-q">Does self-modification with explicit variation boundaries drift less, regress less, recover faster, and attribute changes more clearly than unconstrained revision?<small>Our answer: we predict yes on all four—but this causal comparison is still open.</small></p></li>
+          <li><span class="hero-q-tag">H1</span><p class="hero-q">When a prompt or code snapshot may be replaced within days, what is the asset of harness engineering?</p></li>
+          <li><span class="hero-q-tag">H2</span><p class="hero-q">Design patterns and POSA separated what rarely changes from what may be customized. Must harness engineering keep that separation of concerns—and its boundary?</p></li>
+          <li><span class="hero-q-tag">H3</span><p class="hero-q">Does bounded self-improvement with explicit variation boundaries drift less, regress less, recover faster, and attribute changes more clearly than unconstrained revision?</p></li>
         </ol>
         <div class="hero-actions"><a class="button button-primary" href="#catalog">Browse the 52 records <span aria-hidden="true">↓</span></a><a class="text-link" href="method.html">Read the method <span aria-hidden="true">↗</span></a></div>
       </div>
@@ -543,12 +533,6 @@ def render_index(patterns: list[dict]) -> str:
   </section>
 
   <section class="family-section" aria-labelledby="family-title"><div class="section-index">05 / SOURCE FAMILIES</div><h2 id="family-title" class="visually-hidden">Five source families</h2><div class="family-rules">{family_rules}</div><p class="section-footnote">Families record provenance, not another taxonomy axis. E records are research mechanisms, not claims of independently established recurring patterns.</p></section>
-
-  <section class="hypothesis-section" aria-labelledby="hypothesis-title">
-    <div class="hypothesis-intro"><div><span class="section-index">H1—H3 / THREE QUESTIONS</span><h2 id="hypothesis-title">Three questions, one catalog.</h2></div><p>Each record speaks to a question through its A² activity coordinate: A1 (design) asks what the durable asset is, A2 (verification) asks whether a separation of concerns must be kept, and A3 (evolution) asks whether bounded self-modification beats unconstrained revision. This is a reading lens—not a change to any frozen pointcut, contract, cue, or evidence value.</p></div>
-    <div class="hypothesis-band">{hypothesis_cards}</div>
-    <a class="text-link" href="paper.html#research-agenda">Read the questions, our proposed answers, and their falsification boundaries <span aria-hidden="true">↗</span></a>
-  </section>
 
   <section class="catalog-section" id="catalog" aria-labelledby="catalog-title">
     <div class="catalog-heading"><div><span class="section-index">INDEX / 001—052</span><h2 id="catalog-title">Pattern catalog</h2></div><p>Search by responsibility, mechanism, or join point. Filter without losing the underlying record.</p></div>
@@ -700,13 +684,13 @@ def research_agenda() -> str:
   <section class="method-section research-agenda" id="research-agenda" aria-labelledby="research-agenda-title"><div class="method-section-number">01</div><div>
     <span class="section-index">RESEARCH AGENDA / H1—H3</span>
     <h2 id="research-agenda-title">From position to testable hypotheses.</h2>
-    <p class="method-lead">Traditional software engineering was led by people; the agent harness increasingly evolves itself. Three questions follow. What is the asset when a prompt or code snapshot may be replaced within days? Must harness engineering keep the separation of concerns—and the boundary—that design patterns and POSA used to mark what rarely changes versus what may be derived, generalized, or customized? And does self-modification with explicit variation boundaries drift less, regress less, recover faster, and attribute changes more clearly than unconstrained revision? Each question keeps its proposed answer, evidence, and falsification boundary in view.</p>
+    <p class="method-lead">Traditional software engineering was led by people; the agent harness increasingly evolves itself. Three questions follow. What is the asset when a prompt or code snapshot may be replaced within days? Must harness engineering keep the separation of concerns—and the boundary—that design patterns and POSA used to mark what rarely changes versus what may be derived, generalized, or customized? And does self-improvement with explicit variation boundaries drift less, regress less, recover faster, and attribute changes more clearly than unconstrained revision? Each question keeps its proposed answer, evidence, and falsification boundary in view.</p>
     <p class="research-manuscript-context"><a class="text-link" href="assets/paper/pohe-position.pdf">Read the paper PDF <span aria-hidden="true">↗</span></a><span>Manuscript context: §3, “Harness Design Patterns and the A² Taxonomy”; §4, “Three Major Hypotheses”; and §6, “Future Work: Prospective Tests of the Three Hypotheses.” The hypotheses below are an agenda, not completed results.</span></p>
 
     <figure class="research-map">
       <svg class="research-agenda-svg" viewBox="0 0 760 500" role="img" aria-labelledby="research-map-title research-map-description">
         <title id="research-map-title">H1–H3 in the A² research agenda</title>
-        <desc id="research-map-description">A² means Activities × Assets. H1 locates stable, inspectable design commitments on the Assets axis. H2 spans activities and assets with mechanized guards, gates, checkpoints, rollback, and evaluation. H3 sits in A3, Maintenance and evolution, and proposes repeated-round comparisons of bounded and unconstrained self-modification.</desc>
+        <desc id="research-map-description">A² means Activities × Assets. H1 locates stable, inspectable design commitments on the Assets axis. H2 spans activities and assets with mechanized guards, gates, checkpoints, rollback, and evaluation. H3 sits in A3, Maintenance and evolution, and proposes repeated-round comparisons of bounded and unconstrained self-improvement.</desc>
         <rect class="map-frame" x="20" y="58" width="720" height="410" rx="3"/>
         <text class="map-title" x="28" y="36">A² = Activities × Assets</text>
         <path class="map-column-rule" d="M260 58V468M500 58V468"/>
@@ -749,8 +733,8 @@ def research_agenda() -> str:
       </article>
 
       <article class="hypothesis-card hypothesis-h3" id="h3-controlled-variation">
-        <header class="hypothesis-head"><span class="hypothesis-code">H3</span><div><span class="hypothesis-kicker">CONTROLLED-VARIATION QUESTION</span><h3>Do explicit variation boundaries beat unconstrained self-modification?</h3></div></header>
-        <div class="hypothesis-block"><h4>Question</h4><p>Compared with unconstrained self-modification, does self-modification with explicit variation boundaries yield <strong>lower contract drift, lower regression rate, faster failure recovery, and clearer change attribution</strong>?</p></div>
+        <header class="hypothesis-head"><span class="hypothesis-code">H3</span><div><span class="hypothesis-kicker">CONTROLLED-VARIATION QUESTION</span><h3>Do explicit variation boundaries beat unconstrained self-improvement?</h3></div></header>
+        <div class="hypothesis-block"><h4>Question</h4><p>Compared with unconstrained self-improvement, does self-improvement with explicit variation boundaries yield <strong>lower contract drift, lower regression rate, faster failure recovery, and clearer change attribution</strong>?</p></div>
         <div class="hypothesis-block"><h4>Our answer</h4><p>We predict yes on all four outcomes—but this is a hypothesis to be tested, not an observed result.</p></div>
         <div class="hypothesis-block"><h4>Metrics</h4><ul><li>Contract drift and regression rate per modification round.</li><li>Time to successful recovery and completeness of change attribution.</li></ul></div>
         <div class="hypothesis-evidence"><h4>Evidence status</h4><p><strong>Prospective / causal-open.</strong> There is no current experimental evidence for this predicted comparison.</p></div>
@@ -758,14 +742,14 @@ def research_agenda() -> str:
       </article>
     </div>
 
-    <aside class="research-protocol" aria-labelledby="research-protocol-title"><div><span class="section-index">PROTOCOL TEASER / PROSPECTIVE</span><h3 id="research-protocol-title">Bounded versus unconstrained, round by round.</h3></div><div><p>H3 compares bounded and unconstrained self-modification in a planning cohort of 12 harnesses. The design uses matched randomization to bounded or unconstrained arms for ten revision rounds. The frozen task distribution covers feature adaptation, tool/schema change, failure recovery, and permission/acceptance change. Contract, regression, recovery, and attribution measures should be predeclared, with comparable tasks, models, and budgets.</p><p class="research-protocol-status"><strong>Planning only: no causal result.</strong> No completed experiment is claimed; this teaser specifies a comparison to run, not a result to cite.</p></div></aside>
+    <aside class="research-protocol" aria-labelledby="research-protocol-title"><div><span class="section-index">PROTOCOL TEASER / PROSPECTIVE</span><h3 id="research-protocol-title">Bounded versus unconstrained, round by round.</h3></div><div><p>H3 compares bounded and unconstrained self-improvement in a planning cohort of 12 harnesses. The design uses matched randomization to bounded or unconstrained arms for ten revision rounds. The frozen task distribution covers feature adaptation, tool/schema change, failure recovery, and permission/acceptance change. Contract, regression, recovery, and attribution measures should be predeclared, with comparable tasks, models, and budgets.</p><p class="research-protocol-status"><strong>Planning only: no causal result.</strong> No completed experiment is claimed; this teaser specifies a comparison to run, not a result to cite.</p></div></aside>
   </div></section>"""
 
 
 def render_paper() -> str:
     body = f"""
 <main id="main-content" class="method-page paper-page">
-  <header class="method-hero paper-hero"><span class="section-index">PAPER / POSITION / PROSPECTIVE TESTS</span><h1>Agent harnesses need<br><em>a pattern discipline.</em></h1><p>Scaling alone cannot absorb their system responsibilities. The position paper asks three questions—what is the asset under constant rewriting, must a separation of concerns be kept, and do explicit variation boundaries improve self-modification—and develops the A² taxonomy and the prospective tests that could answer them.</p><div class="method-actions"><a class="button button-primary" href="assets/paper/pohe-position.pdf" download>Download the paper PDF <span aria-hidden="true">↓</span></a><a class="text-link" href="assets/paper/pohe-position.pdf">Open the PDF <span aria-hidden="true">↗</span></a><a class="text-link" href="#research-agenda">Research agenda <span aria-hidden="true">↓</span></a></div><p class="paper-hero-note">Unpublished manuscript. Hypotheses and protocols are prospective; no causal result is claimed.</p></header>
+  <header class="method-hero paper-hero"><span class="section-index">PAPER / POSITION / PROSPECTIVE TESTS</span><h1>Agent harnesses need<br><em>a pattern discipline.</em></h1><p>Scaling alone cannot absorb their system responsibilities. The position paper asks three questions—what is the asset under constant rewriting, must a separation of concerns be kept, and do explicit variation boundaries improve self-improvement—and develops the A² taxonomy and the prospective tests that could answer them.</p><div class="method-actions"><a class="button button-primary" href="assets/paper/pohe-position.pdf" download>Download the paper PDF <span aria-hidden="true">↓</span></a><a class="text-link" href="assets/paper/pohe-position.pdf">Open the PDF <span aria-hidden="true">↗</span></a><a class="text-link" href="#research-agenda">Research agenda <span aria-hidden="true">↓</span></a></div><p class="paper-hero-note">Unpublished manuscript. Hypotheses and protocols are prospective; no causal result is claimed.</p></header>
 
 {research_agenda()}
 </main>"""

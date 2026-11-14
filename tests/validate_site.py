@@ -217,13 +217,12 @@ class SiteIntegrityTests(unittest.TestCase):
         self.assertEqual(counts, {"H1": 31, "H2": 16, "H3": 22})
 
         index_text, _ = parse_document(ROOT / "index.html")
+        # The hero already asks the three questions, so the standalone band is
+        # removed; the filter and per-row hypothesis chips remain.
         self.assertIn('id="hypothesis-filter"', index_text)
-        self.assertIn('class="hypothesis-band"', index_text)
-        self.assertEqual(len(re.findall(r'class="hypothesis-band-card\b', index_text)), 3)
-        for hypothesis in ("H1", "H2", "H3"):
-            self.assertIn(f'data-hypothesis-link="{hypothesis}"', index_text)
-            self.assertIn(f'hypothesis-{hypothesis.lower()}"', index_text)
-            self.assertIn(f"<strong>{counts[hypothesis]} records</strong>", index_text)
+        self.assertNotIn('class="hypothesis-section"', index_text)
+        self.assertNotIn('class="hypothesis-band"', index_text)
+        self.assertNotIn("hypothesis-band-card", index_text)
         self.assertEqual(index_text.count('class="row-hypothesis"'), sum(counts.values()))
 
         for pattern_id in ("P01", "W01", "C01", "R01", "E01"):
@@ -331,7 +330,7 @@ class SiteIntegrityTests(unittest.TestCase):
             "Comparative causal benefit remains open",
             "lower contract drift", "lower regression rate", "faster failure recovery",
             "clearer change attribution", "Prospective / causal-open",
-            "bounded and unconstrained self-modification", "repeated rounds",
+            "bounded and unconstrained self-improvement", "repeated rounds",
             "planning cohort of 12 harnesses", "matched randomization", "ten revision rounds",
             "feature adaptation", "tool/schema change", "failure recovery", "permission/acceptance change",
             "frozen task distribution", "No completed experiment is claimed",
